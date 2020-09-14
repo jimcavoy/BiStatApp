@@ -27,5 +27,8 @@ namespace BiStatApp.Models
 		public bool Delta { get; set; }
 
 		public bool Echo { get; set; }
+
+		public int SessionId { get; set; }
+		public Session Session { get; set; }
 	}
 }

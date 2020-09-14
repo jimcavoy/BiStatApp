@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms.Internals;
 
@@ -25,6 +26,17 @@ namespace BiStatApp.ViewModels
 		public SessionViewModel() 
 		{
 			DateTime = System.DateTime.Now;
+			var initialBout = new ShootingBout()
+			{ 
+				Position = ShootingBout.PositionEnum.PRONE,
+				Alpha = false,
+				Bravo = false,
+				Charlie = false,
+				Delta = false,
+				Echo = false
+			};
+
+			_shootingBouts.Add(initialBout);
 		}
 
 		public SessionViewModel(Session session)
@@ -33,6 +45,7 @@ namespace BiStatApp.ViewModels
 			DateTime = session.DateTime;
 			_name = session.Name;
 			_description = session.Description;
+			_shootingBouts = session.Bouts;
 		}
 
 		private string _name;
@@ -57,6 +70,17 @@ namespace BiStatApp.ViewModels
 			}
 		}
 
+		private List<ShootingBout> _shootingBouts = new List<ShootingBout>();
+
+		public IEnumerable<ShootingBout> Bouts
+		{
+			get { return _shootingBouts; }
+			set
+			{
+				SetValue(ref _shootingBouts, value.ToList());
+				OnPropertyChanged(nameof(Bouts));
+			}
+		}
 
 	}
 }

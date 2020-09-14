@@ -16,6 +16,6 @@ namespace BiStatApp.Models
 
 		public string Description { get; set; }
 
-		//public List<ShootingBout> Bouts { get; set; }
+		public List<ShootingBout> Bouts { get; set; } = new List<ShootingBout>();
 	}
 }

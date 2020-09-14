@@ -1,5 +1,6 @@
 ﻿using BiStatApp.Models;
 using BiStatApp.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace BiStatApp.Persistence
 			{ 
 				using (var context = new BiStatContext())
 				{
-					list = context.Sessions.ToList();
+					list = context.Sessions.Include(s => s.Bouts).ToList();
 				}
 			});
 
@@ -34,7 +35,8 @@ namespace BiStatApp.Persistence
 			using (var context = new BiStatContext())
 			{
 				var origSession = context.Sessions
-					.Where(s => s.Id == session.Id).FirstOrDefault();
+					.Where(s => s.Id == session.Id)
+					.FirstOrDefault();
 				context.Remove(origSession);
 				await context.SaveChangesAsync();
 			}
@@ -45,6 +47,11 @@ namespace BiStatApp.Persistence
 			using (var context = new BiStatContext())
 			{
 				context.Sessions.Add(session);
+
+				foreach (var b in session.Bouts)
+				{
+					context.Bouts.Add(b);
+				}
 
 				await context.SaveChangesAsync();
 			}
@@ -74,10 +81,59 @@ namespace BiStatApp.Persistence
 				{
 					session = context.Sessions
 						.Where(s => s.Id == id)
+						.Include(s => s.Bouts)
 						.FirstOrDefault();
 				}
 			});
 			return session;
+		}
+
+		public async Task AddShootingBout(ShootingBout bout)
+		{
+			using (var context = new BiStatContext())
+			{
+				var session = await context.Sessions.FirstOrDefaultAsync(s => s.Id == bout.SessionId);
+				if (session != null)
+				{
+					session.Bouts.Add(bout);
+					await context.SaveChangesAsync();
+				}
+			}
+		}
+
+		public async Task UpdateShootingBout(ShootingBout bout)
+		{
+			using (var context = new BiStatContext())
+			{
+				var origBout = context.Bouts
+					.Where(b => b.Id == bout.Id).FirstOrDefault();
+
+				if (origBout != null)
+				{
+					origBout.Position = bout.Position;
+					origBout.Alpha = bout.Alpha;
+					origBout.Bravo = bout.Bravo;
+					origBout.Charlie = bout.Charlie;
+					origBout.Delta = bout.Delta;
+					origBout.Echo = bout.Echo;
+
+					await context.SaveChangesAsync(); 
+				}
+			}
+		}
+
+		public async Task DeleteShootingBout(ShootingBout bout)
+		{
+			using (var context = new BiStatContext())
+			{
+				var session = await context.Sessions.FirstOrDefaultAsync(s => s.Id == bout.SessionId);
+				if (session != null)
+				{
+					session.Bouts.Remove(bout);
+
+					await context.SaveChangesAsync();
+				}
+			}
 		}
 
 	}

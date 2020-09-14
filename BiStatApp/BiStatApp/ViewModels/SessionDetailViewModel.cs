@@ -2,6 +2,7 @@
 using BiStatApp.ViewModels;
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -32,7 +33,8 @@ namespace BiStatApp.ViewModels
                 Id = viewModel.Id,
                 Name = viewModel.Name,
                 Description = viewModel.Description,
-                DateTime = viewModel.DateTime
+                DateTime = viewModel.DateTime,
+                Bouts = viewModel.Bouts.ToList()
             };
         }
 
