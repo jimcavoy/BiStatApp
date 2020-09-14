@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="sessionsPage"
+             x:Class="BiStatApp.Views.SessionsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddSessionCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Sessions}" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" 
+                  HasUnevenRows="True" SeparatorColor="Gray" ItemSelected="OnSessionSelected"
+                  SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Orientation="Vertical" Padding="10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="Micro" 
+                                           FontAttributes="Bold"
+                                           Style="{DynamicResource ListItemTextStyle}"/>
+                                    <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
+                                           FontSize="Micro" 
+                                           HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Description}" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="Micro"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell.View>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionsPage}, Path=ViewModel.DeleteSessionCommand}" CommandParameter="{Binding .}" />
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
