@@ -18,7 +18,7 @@ namespace BiStatApp.Views
 		{
 			InitializeComponent();
 
-			var sessionStore = new SQLiteSessionStore(DependencyService.Get<ISQLiteDb>());
+			var sessionStore = new SQLiteSessionStore();
 			var pageService = new PageService();
 			Title = (viewModel.Name == null) ? "New Session" : "Edit Session";
 			BindingContext = new SessionDetailViewModel(viewModel ?? new SessionViewModel(), sessionStore, pageService);

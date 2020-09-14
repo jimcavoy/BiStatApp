@@ -17,7 +17,7 @@ namespace BiStatApp.Views
 	{
 		public SessionsPage()
 		{
-			var sessionStore = new SQLiteSessionStore(DependencyService.Get<ISQLiteDb>());
+			var sessionStore = new SQLiteSessionStore();
 			var pageService = new PageService();
 
 			ViewModel = new SessionsPageViewModel(sessionStore, pageService);
