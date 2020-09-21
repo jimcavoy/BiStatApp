@@ -1,5 +1,5 @@
 ﻿using BiStatApp.Models;
-using BiStatApp.ViewModels;
+using BiStatApp.Views;
 
 using System;
 using System.Linq;
@@ -9,14 +9,19 @@ using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
 {
-	public class SessionDetailViewModel
-	{
+    public class SessionDetailViewModel
+    {
         private readonly ISessionStore _sessionStore;
         private readonly IPageService _pageService;
 
         public Session Session { get; private set; }
 
         public ICommand SaveCommand { get; private set; }
+
+        public ICommand AddShootingBoutCommand { get; private set; }
+
+        public ICommand SelectShootingBoutCommand { get; private set; }
+
 
         public SessionDetailViewModel(SessionViewModel viewModel, ISessionStore sessionStore, IPageService pageService)
         {
@@ -27,6 +32,8 @@ namespace BiStatApp.ViewModels
             _sessionStore = sessionStore;
 
             SaveCommand = new Command(async () => await Save());
+            AddShootingBoutCommand = new Command(async c => await AddShootingBout());
+            SelectShootingBoutCommand = new Command<SessionViewModel>(async c => await SelectShootingBout(c));
 
             Session = new Session
             {
@@ -57,6 +64,16 @@ namespace BiStatApp.ViewModels
                 MessagingCenter.Send(this, Events.SessionUpdated, Session);
             }
             await _pageService.PopAsync();
+        }
+
+        private async Task AddShootingBout()
+        {
+            await _pageService.PushAsync(new ShootingBoutDetailPage());
+        }
+
+        private async Task SelectShootingBout(SessionViewModel session)
+        {
+            await _pageService.PushAsync(new ShootingBoutDetailPage());
         }
     }
 

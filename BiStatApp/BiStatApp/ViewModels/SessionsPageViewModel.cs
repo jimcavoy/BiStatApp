@@ -12,8 +12,8 @@ using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
 {
-	public class SessionsPageViewModel : BaseViewModel
-	{
+    public class SessionsPageViewModel : BaseViewModel
+    {
         private SessionViewModel _selectedSession;
         private ISessionStore _sessionStore;
         private IPageService _pageService;
@@ -48,7 +48,7 @@ namespace BiStatApp.ViewModels
                 (this, Events.SessionAdded, OnSessionAdded);
 
             MessagingCenter.Subscribe<SessionDetailViewModel, Session>
-            (this, Events.SessionUpdated, OnSessionUpdated);
+                (this, Events.SessionUpdated, OnSessionUpdated);
         }
 
         private void OnSessionAdded(SessionDetailViewModel source, Session session)

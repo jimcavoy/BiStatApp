@@ -12,34 +12,34 @@ using Xamarin.Forms.Xaml;
 
 namespace BiStatApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SessionsPage : ContentPage
-	{
-		public SessionsPage()
-		{
-			var sessionStore = new SQLiteSessionStore();
-			var pageService = new PageService();
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SessionsPage : ContentPage
+    {
+        public SessionsPage()
+        {
+            var sessionStore = new SQLiteSessionStore();
+            var pageService = new PageService();
 
-			ViewModel = new SessionsPageViewModel(sessionStore, pageService);
+            ViewModel = new SessionsPageViewModel(sessionStore, pageService);
 
-			InitializeComponent();
-		}
+            InitializeComponent();
+        }
 
-		protected override void OnAppearing()
-		{
-			ViewModel.LoadDataCommand.Execute(null);
-			base.OnAppearing();
-		}
+        protected override void OnAppearing()
+        {
+            ViewModel.LoadDataCommand.Execute(null);
+            base.OnAppearing();
+        }
 
-		void OnSessionSelected(object sender, SelectedItemChangedEventArgs e)
-		{
-			ViewModel.SelectSessionCommand.Execute(e.SelectedItem);
-		}
+        void OnSessionSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ViewModel.SelectSessionCommand.Execute(e.SelectedItem);
+        }
 
-		public SessionsPageViewModel ViewModel
-		{
-			get { return BindingContext as SessionsPageViewModel; }
-			set { BindingContext = value; }
-		}
-	}
+        public SessionsPageViewModel ViewModel
+        {
+            get { return BindingContext as SessionsPageViewModel; }
+            set { BindingContext = value; }
+        }
+    }
 }
