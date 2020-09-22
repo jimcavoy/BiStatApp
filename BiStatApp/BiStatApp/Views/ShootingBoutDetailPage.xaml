@@ -3,10 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BiStatApp.Views.ShootingBoutDetailPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <CheckBox x:Name="Alpha" />
+                <CheckBox x:Name="Bravo" />
+                <CheckBox x:Name="Charlie" />
+                <CheckBox x:Name="Delta" />
+                <CheckBox x:Name="Echo" />
+                <Switch x:Name="Position" />
+            </StackLayout>
+            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="1"/>
+        </Grid>
+
+        
     </ContentPage.Content>
 </ContentPage>

@@ -15,6 +15,8 @@
   <ItemGroup>
     <None Remove="Assets\Images\BiProne.png" />
     <None Remove="Assets\Images\BiStand.png" />
+    <None Remove="Assets\Images\starget0.png" />
+    <None Remove="Assets\Images\stargetA.png" />
     <None Remove="Assets\Images\target0.png" />
   </ItemGroup>
 
@@ -22,13 +24,16 @@
     <EmbeddedResource Include="Assets\Images\BiProne.png" />
     <EmbeddedResource Include="Assets\Images\BiStand.png" />
     <EmbeddedResource Include="Assets\Images\target0.png" />
+	<EmbeddedResource Include="Assets\Images\targetA.png" />
+	<EmbeddedResource Include="Assets\Images\starget0.png" />
+    <EmbeddedResource Include="Assets\Images\stargetA.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-  </ItemGroup>
+  </ItemGroup> 
 
   <ItemGroup>
     <EmbeddedResource Update="Views\SessionDetailPage.xaml">

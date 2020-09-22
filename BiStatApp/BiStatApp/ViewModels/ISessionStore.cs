@@ -18,6 +18,8 @@ namespace BiStatApp.ViewModels
 
 		Task DeleteSession(Session session);
 
+		Task<ShootingBout> GetShootingBout(int id);
+
 		Task AddShootingBout(ShootingBout bout);
 
 		Task UpdateShootingBout(ShootingBout bout);

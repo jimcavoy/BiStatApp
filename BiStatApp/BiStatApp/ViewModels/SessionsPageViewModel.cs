@@ -18,7 +18,7 @@ namespace BiStatApp.ViewModels
         private ISessionStore _sessionStore;
         private IPageService _pageService;
 
-        private bool _isDataLoaded = false;
+        //private bool _isDataLoaded = false;
 
         public ObservableCollection<SessionViewModel> Sessions { get; private set; }
             = new ObservableCollection<SessionViewModel>();
@@ -68,10 +68,11 @@ namespace BiStatApp.ViewModels
 
         private async Task LoadData()
         {
-            if (_isDataLoaded)
-                return;
+            //if (_isDataLoaded)
+            //    return;
 
-            _isDataLoaded = true;
+            //_isDataLoaded = true;
+            Sessions.Clear();
             var sessions = await _sessionStore.GetSessionsAsync();
             foreach (var session in sessions)
                 Sessions.Add(new SessionViewModel(session));

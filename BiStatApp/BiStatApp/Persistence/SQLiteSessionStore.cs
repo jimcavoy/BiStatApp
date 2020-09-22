@@ -9,132 +9,138 @@ using System.Threading.Tasks;
 
 namespace BiStatApp.Persistence
 {
-	public class SQLiteSessionStore : ISessionStore
-	{
-		public SQLiteSessionStore()
-		{
+    public class SQLiteSessionStore : ISessionStore
+    {
+        public SQLiteSessionStore()
+        {
 
-		}
+        }
 
-		public async Task<IEnumerable<Session>> GetSessionsAsync()
-		{
-			List<Session> list = new List<Session>();
-			await Task.Run(() => 
-			{ 
-				using (var context = new BiStatContext())
-				{
-					list = context.Sessions.Include(s => s.Bouts).ToList();
-				}
-			});
+        public async Task<IEnumerable<Session>> GetSessionsAsync()
+        {
+            List<Session> list = new List<Session>();
+            await Task.Run(() =>
+            {
+                using (var context = new BiStatContext())
+                {
+                    list = context.Sessions.Include(s => s.Bouts).ToList();
+                }
+            });
 
-			return list.AsEnumerable();
-		}
+            return list.AsEnumerable();
+        }
 
-		public async Task DeleteSession(Session session)
-		{
-			using (var context = new BiStatContext())
-			{
-				var origSession = context.Sessions
-					.Where(s => s.Id == session.Id)
-					.FirstOrDefault();
-				context.Remove(origSession);
-				await context.SaveChangesAsync();
-			}
-		}
+        public async Task DeleteSession(Session session)
+        {
+            using (var context = new BiStatContext())
+            {
+                var origSession = context.Sessions
+                    .Where(s => s.Id == session.Id)
+                    .FirstOrDefault();
+                context.Remove(origSession);
+                await context.SaveChangesAsync();
+            }
+        }
 
-		public async Task AddSession(Session session)
-		{
-			using (var context = new BiStatContext())
-			{
-				context.Sessions.Add(session);
+        public async Task AddSession(Session session)
+        {
+            using (var context = new BiStatContext())
+            {
+                context.Sessions.Add(session);
 
-				foreach (var b in session.Bouts)
-				{
-					context.Bouts.Add(b);
-				}
+                foreach (var b in session.Bouts)
+                {
+                    context.Bouts.Add(b);
+                }
 
-				await context.SaveChangesAsync();
-			}
-		}
+                await context.SaveChangesAsync();
+            }
+        }
 
-		public async Task UpdateSession(Session session)
-		{
-			using (var context = new BiStatContext())
-			{
-				var origSession = context.Sessions
-					.Where(s => s.Id == session.Id).FirstOrDefault();
+        public async Task UpdateSession(Session session)
+        {
+            using (var context = new BiStatContext())
+            {
+                var origSession = context.Sessions
+                    .Where(s => s.Id == session.Id).FirstOrDefault();
 
-				origSession.Name = session.Name;
-				origSession.Description = session.Description;
-				origSession.DateTime = session.DateTime;
+                origSession.Name = session.Name;
+                origSession.Description = session.Description;
+                origSession.DateTime = session.DateTime;
 
-				await context.SaveChangesAsync();
-			}
-		}
+                await context.SaveChangesAsync();
+            }
+        }
 
-		public async Task<Session> GetSession(int id)
-		{
-			Session session = new Session();
-			await Task.Run(() =>
-			{
-				using (var context = new BiStatContext())
-				{
-					session = context.Sessions
-						.Where(s => s.Id == id)
-						.Include(s => s.Bouts)
-						.FirstOrDefault();
-				}
-			});
-			return session;
-		}
+        public async Task<Session> GetSession(int id)
+        {
+            Session session = new Session();
+            await Task.Run(() =>
+            {
+                using (var context = new BiStatContext())
+                {
+                    session = context.Sessions
+                        .Where(s => s.Id == id)
+                        .Include(s => s.Bouts)
+                        .FirstOrDefault();
+                }
+            });
+            return session;
+        }
 
-		public async Task AddShootingBout(ShootingBout bout)
-		{
-			using (var context = new BiStatContext())
-			{
-				var session = await context.Sessions.FirstOrDefaultAsync(s => s.Id == bout.SessionId);
-				if (session != null)
-				{
-					session.Bouts.Add(bout);
-					await context.SaveChangesAsync();
-				}
-			}
-		}
+        public async Task<ShootingBout> GetShootingBout(int id)
+        {
+            ShootingBout bout = new ShootingBout();
+            await Task.Run(() =>
+            {
+                using (var context = new BiStatContext())
+                {
+                    bout = context.Bouts
+                        .Where(b => b.Id == id)
+                        .FirstOrDefault();
+                }
+            });
+            return bout;
+        }
 
-		public async Task UpdateShootingBout(ShootingBout bout)
-		{
-			using (var context = new BiStatContext())
-			{
-				var origBout = context.Bouts
-					.Where(b => b.Id == bout.Id).FirstOrDefault();
+        public async Task AddShootingBout(ShootingBout bout)
+        {
+            using (var context = new BiStatContext())
+            {
+                context.Bouts.Add(bout);
+                await context.SaveChangesAsync();
+            }
+        }
 
-				if (origBout != null)
-				{
-					origBout.Position = bout.Position;
-					origBout.Alpha = bout.Alpha;
-					origBout.Bravo = bout.Bravo;
-					origBout.Charlie = bout.Charlie;
-					origBout.Delta = bout.Delta;
-					origBout.Echo = bout.Echo;
+        public async Task UpdateShootingBout(ShootingBout bout)
+        {
+            using (var context = new BiStatContext())
+            {
+                var origBout = context.Bouts
+                    .Where(b => b.Id == bout.Id).FirstOrDefault();
 
-					await context.SaveChangesAsync(); 
-				}
-			}
-		}
+                if (origBout != null)
+                {
+                    origBout.Position = bout.Position;
+                    origBout.Alpha = bout.Alpha;
+                    origBout.Bravo = bout.Bravo;
+                    origBout.Charlie = bout.Charlie;
+                    origBout.Delta = bout.Delta;
+                    origBout.Echo = bout.Echo;
 
-		public async Task DeleteShootingBout(ShootingBout bout)
-		{
-			using (var context = new BiStatContext())
-			{
-				var session = await context.Sessions.FirstOrDefaultAsync(s => s.Id == bout.SessionId);
-				if (session != null)
-				{
-					session.Bouts.Remove(bout);
+                    await context.SaveChangesAsync();
+                }
+            }
+        }
 
-					await context.SaveChangesAsync();
-				}
-			}
-		}
+        public async Task DeleteShootingBout(ShootingBout bout)
+        {
+            using (var context = new BiStatContext())
+            {
+                context.Bouts.Remove(bout);
+                await context.SaveChangesAsync();
+            }
+        }
 
-	}
+    }
 }

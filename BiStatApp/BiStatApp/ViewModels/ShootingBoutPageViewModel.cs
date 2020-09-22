@@ -17,7 +17,7 @@ namespace BiStatApp.ViewModels
 
         public ICommand SaveCommand { get; private set; }
 
-        public ShootingBoutPageViewModel(ShootingBout viewModel, ISessionStore sessionStore, IPageService pageService)
+        public ShootingBoutPageViewModel(ShootingBoutViewModel viewModel, ISessionStore sessionStore, IPageService pageService)
         {
             if (viewModel == null)
                 throw new ArgumentNullException(nameof(viewModel));
@@ -26,17 +26,31 @@ namespace BiStatApp.ViewModels
             _sessionStore = sessionStore;
 
             SaveCommand = new Command(async () => await Save());
+
+            Bout = new ShootingBout
+            {
+                Id = viewModel.Id,
+                SessionId = viewModel.SessionId,
+                Alpha = viewModel.Alpha,
+                Bravo = viewModel.Bravo,
+                Charlie = viewModel.Charlie,
+                Delta = viewModel.Delta,
+                Echo = viewModel.Echo,
+                Position = viewModel.Position
+            };
         }
 
         async Task Save()
         {
             if (Bout.Id == 0)
             {
-
+                await _sessionStore.AddShootingBout(Bout);
+                MessagingCenter.Send(this, Events.ShootingBoutAdded, Bout);
             }
             else
             {
-
+                await _sessionStore.UpdateShootingBout(Bout);
+                MessagingCenter.Send(this, Events.ShootingBoutUpdated, Bout);
             }
             await _pageService.PopAsync();
         }

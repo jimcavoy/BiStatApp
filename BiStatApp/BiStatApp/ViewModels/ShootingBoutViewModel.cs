@@ -10,6 +10,8 @@ namespace BiStatApp.ViewModels
     {
         public int Id { get; set; }
 
+        public int SessionId { get; set; }
+
         public ShootingBoutViewModel()
         {
 
@@ -24,6 +26,7 @@ namespace BiStatApp.ViewModels
             _charlie = bout.Charlie;
             _delta = bout.Delta;
             _echo = bout.Echo;
+            SessionId = bout.SessionId;
         }
 
         private ShootingBout.PositionEnum _position;
@@ -127,10 +130,28 @@ namespace BiStatApp.ViewModels
             {
                 if (Position == ShootingBout.PositionEnum.PRONE)
                 {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images.target0.png");
+                    return GetProneTarget();
                 }
-                return ImageSource.FromResource("BiStatApp.Assets.Images.starget0.png");
+                return GetStandingTarget();
             }
+        }
+
+        private ImageSource GetProneTarget()
+        {
+            if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
+            {
+                return ImageSource.FromResource("BiStatApp.Assets.Images.targetA.png");
+            }
+            return ImageSource.FromResource("BiStatApp.Assets.Images.target0.png");
+        }
+
+        private ImageSource GetStandingTarget()
+        {
+            if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
+            {
+                return ImageSource.FromResource("BiStatApp.Assets.Images.stargetA.png");
+            }
+            return ImageSource.FromResource("BiStatApp.Assets.Images.starget0.png");
         }
     }
 }

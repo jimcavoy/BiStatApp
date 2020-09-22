@@ -36,6 +36,8 @@ namespace BiStatApp.ViewModels
 
         public ICommand SelectShootingBoutCommand { get; private set; }
 
+        public ICommand DeleteShootingBoutCommand { get; private set; }
+
         public SessionDetailViewModel(SessionViewModel viewModel, ISessionStore sessionStore, IPageService pageService)
         {
             if (viewModel == null)
@@ -48,6 +50,7 @@ namespace BiStatApp.ViewModels
             SaveCommand = new Command(async () => await Save());
             AddShootingBoutCommand = new Command(async c => await AddShootingBout());
             SelectShootingBoutCommand = new Command<ShootingBoutViewModel>(async c => await SelectShootingBout(c));
+            DeleteShootingBoutCommand = new Command<ShootingBoutViewModel>(async c => await DeleteShootingBout(c));
 
             Session = new Session
             {
@@ -67,8 +70,7 @@ namespace BiStatApp.ViewModels
 
         private void OnShootingBoutAdded(ShootingBoutPageViewModel source, ShootingBout bout)
         {
-            bout.SessionId = Session.Id;
-            _sessionStore.AddShootingBout(bout);
+            ShootingBouts.Add(new ShootingBoutViewModel(bout));
         }
 
         private void OnShootingBoutUpdated(ShootingBoutPageViewModel source, ShootingBout bout)
@@ -118,7 +120,7 @@ namespace BiStatApp.ViewModels
 
         private async Task AddShootingBout()
         {
-            await _pageService.PushAsync(new ShootingBoutDetailPage());
+            await _pageService.PushAsync(new ShootingBoutDetailPage(new ShootingBoutViewModel() { SessionId = Session.Id}));
         }
 
         private async Task SelectShootingBout(ShootingBoutViewModel bout)
@@ -127,7 +129,18 @@ namespace BiStatApp.ViewModels
                 return;
 
             SelectedShootingBout = null;
-            await _pageService.PushAsync(new ShootingBoutDetailPage());
+            await _pageService.PushAsync(new ShootingBoutDetailPage(bout));
+        }
+
+        private async Task DeleteShootingBout(ShootingBoutViewModel boutViewModel)
+        {
+            if (await _pageService.DisplayAlert("Warning", $"Are you sure you want to delete shooting bout?", "Yes", "No"))
+            {
+                ShootingBouts.Remove(boutViewModel); 
+
+                var sb = await _sessionStore.GetShootingBout(boutViewModel.Id);
+                await _sessionStore.DeleteShootingBout(sb);
+            }
         }
     }
 
