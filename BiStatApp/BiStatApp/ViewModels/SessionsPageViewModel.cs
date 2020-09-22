@@ -18,7 +18,7 @@ namespace BiStatApp.ViewModels
         private ISessionStore _sessionStore;
         private IPageService _pageService;
 
-        private bool _isDataLoaded;
+        private bool _isDataLoaded = false;
 
         public ObservableCollection<SessionViewModel> Sessions { get; private set; }
             = new ObservableCollection<SessionViewModel>();

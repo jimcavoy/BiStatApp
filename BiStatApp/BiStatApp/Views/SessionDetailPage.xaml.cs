@@ -24,6 +24,12 @@ namespace BiStatApp.Views
             BindingContext = new SessionDetailViewModel(viewModel ?? new SessionViewModel(), sessionStore, pageService);
         }
 
+        protected override void OnAppearing()
+        {
+            ViewModel.LoadDataCommand.Execute(null);
+            base.OnAppearing();
+        }
+
         void OnBoutSelected(object sender, SelectedItemChangedEventArgs e)
         {
             ViewModel.SelectShootingBoutCommand.Execute(e.SelectedItem);

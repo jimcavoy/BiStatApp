@@ -9,43 +9,46 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <TableView Intent="Form" Margin="16">
-            <TableRoot>
-                <TableSection>
-                    <EntryCell Label="Name" Text="{Binding Path=Session.Name}" />
-                    <EntryCell Label="Description" Text="{Binding Path=Session.Description}" />
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
-                            <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
-                        </DatePicker>
-                    </ViewCell>
-                </TableSection>
-                <TableSection Title="Shooting Bouts">
-                    <ViewCell>
-                        <ListView ItemsSource="{Binding Path=Session.Bouts}" SelectedItem="{Binding SelectedBout, Mode=TwoWay}"
-                                  HasUnevenRows="True" SeparatorColor="Gray" HeightRequest="100"
-                                  ItemSelected="OnBoutSelected">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal" Padding="10">
-                                            <Label Text="{Binding Position}" FontSize="Micro" Style="{DynamicResource ListItemTextStyle}"/>
-                                            <Label Text="{Binding Misses}" FontSize="Micro" Style="{DynamicResource ListItemTextStyle}"/>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </ViewCell>
-                </TableSection>
-                <TableSection>
-                    <ViewCell>
-                        <Button Text="Save" Command="{Binding SaveCommand}" />
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            
+                <TableView Intent="Form" Margin="16">
+                    <TableRoot>
+                        <TableSection>
+                            <EntryCell Label="Name" Text="{Binding Path=Session.Name}" />
+                            <EntryCell Label="Description" Text="{Binding Path=Session.Description}" />
+                        </TableSection>
+                        <TableSection>
+                            <ViewCell>
+                                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
+                                    <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
+                                </DatePicker>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+            <ListView ItemsSource="{Binding Path=ShootingBouts}" 
+                      SelectedItem="{Binding SelectedBout, Mode=TwoWay}"
+                      HasUnevenRows="True" 
+                      ItemSelected="OnBoutSelected"
+                      Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding TargetImage}" HeightRequest="60"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="2" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

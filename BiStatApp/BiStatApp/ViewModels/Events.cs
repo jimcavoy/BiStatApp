@@ -8,5 +8,7 @@ namespace BiStatApp.ViewModels
 	{
 		public static string SessionAdded = "AddSession";
 		public static string SessionUpdated = "UpdateSession";
+		public static string ShootingBoutAdded = "AddShootingBout";
+		public static string ShootingBoutUpdated = "UpdateShootingBout";
 	}
 }

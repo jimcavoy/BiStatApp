@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
 {
@@ -12,6 +13,17 @@ namespace BiStatApp.ViewModels
         public ShootingBoutViewModel()
         {
 
+        }
+
+        public ShootingBoutViewModel(ShootingBout bout)
+        {
+            Id = bout.Id;
+            _position = bout.Position;
+            _alpha = bout.Alpha;
+            _bravo = bout.Bravo;
+            _charlie = bout.Charlie;
+            _delta = bout.Delta;
+            _echo = bout.Echo;
         }
 
         private ShootingBout.PositionEnum _position;
@@ -81,5 +93,44 @@ namespace BiStatApp.ViewModels
             }
         }
 
+        public int Misses
+        {
+            get
+            {
+                int m = 0;
+
+                m = Alpha ? 0 : 1;
+                m += Bravo ? 0 : 1;
+                m += Charlie ? 0 : 1;
+                m += Delta ? 0 : 1;
+                m += Echo ? 0 : 1;
+
+                return m;
+            }
+        }
+
+        public ImageSource PositionImage
+        {
+            get
+            {
+                if (Position == ShootingBout.PositionEnum.PRONE)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images.BiProne.png");
+                }
+                return ImageSource.FromResource("BiStatApp.Assets.Images.BiStand.png");
+            }
+        }
+
+        public ImageSource TargetImage
+        {
+            get
+            {
+                if (Position == ShootingBout.PositionEnum.PRONE)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images.target0.png");
+                }
+                return ImageSource.FromResource("BiStatApp.Assets.Images.starget0.png");
+            }
+        }
     }
 }
