@@ -29,7 +29,7 @@ namespace BiStatApp.ViewModels
             SessionId = bout.SessionId;
         }
 
-        private ShootingBout.PositionEnum _position;
+        private ShootingBout.PositionEnum _position = ShootingBout.PositionEnum.PRONE;
         public ShootingBout.PositionEnum Position
         {
             get { return _position; }
@@ -100,9 +100,7 @@ namespace BiStatApp.ViewModels
         {
             get
             {
-                int m = 0;
-
-                m = Alpha ? 0 : 1;
+                int m = Alpha ? 0 : 1;
                 m += Bravo ? 0 : 1;
                 m += Charlie ? 0 : 1;
                 m += Delta ? 0 : 1;

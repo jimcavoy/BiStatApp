@@ -18,7 +18,7 @@ namespace BiStatApp.Models
 		[Key]
 		public int Id { get; set; }
 
-		public PositionEnum Position { get; set; }
+		public PositionEnum Position { get; set; } = PositionEnum.PRONE;
 
 		public bool Alpha { get; set; }
 

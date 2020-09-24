@@ -15,8 +15,8 @@ namespace BiStatApp.ViewModels
     public class SessionsPageViewModel : BaseViewModel
     {
         private SessionViewModel _selectedSession;
-        private ISessionStore _sessionStore;
-        private IPageService _pageService;
+        private readonly ISessionStore _sessionStore;
+        private readonly IPageService _pageService;
 
         //private bool _isDataLoaded = false;
 
