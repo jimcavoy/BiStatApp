@@ -9,12 +9,12 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <CheckBox x:Name="Alpha" />
-                <CheckBox x:Name="Bravo" />
-                <CheckBox x:Name="Charlie" />
-                <CheckBox x:Name="Delta" />
-                <CheckBox x:Name="Echo" />
-                <Switch x:Name="Position" />
+                <CheckBox x:Name="Alpha" CheckedChanged="Alpha_CheckedChanged"/>
+                <CheckBox x:Name="Bravo" CheckedChanged="Bravo_CheckedChanged"/>
+                <CheckBox x:Name="Charlie" CheckedChanged="Charlie_CheckedChanged"/>
+                <CheckBox x:Name="Delta" CheckedChanged="Delta_CheckedChanged"/>
+                <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
+                <Switch x:Name="Position" Toggled="Position_Toggled" />
             </StackLayout>
             <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="1"/>
         </Grid>

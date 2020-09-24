@@ -36,7 +36,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _position, value);
-                OnPropertyChanged(nameof(Position));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
@@ -47,7 +47,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _alpha, value);
-                OnPropertyChanged(nameof(Alpha));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
@@ -58,7 +58,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _bravo, value);
-                OnPropertyChanged(nameof(Bravo));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
@@ -69,7 +69,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _charlie, value);
-                OnPropertyChanged(nameof(Charlie));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
@@ -81,7 +81,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _delta, value);
-                OnPropertyChanged(nameof(Delta));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
@@ -92,7 +92,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _echo, value);
-                OnPropertyChanged(nameof(Echo));
+                OnPropertyChanged(nameof(TargetImage));
             }
         }
 
