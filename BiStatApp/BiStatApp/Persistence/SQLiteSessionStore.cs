@@ -135,6 +135,9 @@ namespace BiStatApp.Persistence
 
         public async Task DeleteShootingBout(ShootingBout bout)
         {
+            if (bout.Id == 0)
+                return;
+
             using (var context = new BiStatContext())
             {
                 context.Bouts.Remove(bout);
