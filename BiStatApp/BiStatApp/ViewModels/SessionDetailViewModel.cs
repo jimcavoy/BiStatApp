@@ -122,6 +122,11 @@ namespace BiStatApp.ViewModels
 
         private async Task AddShootingBout()
         {
+            if (Session.Id == 0)
+            {
+                await _pageService.DisplayAlert("Warning", $"Save session first before adding a shooting bout.", "Ok");
+                return;
+            }
             Subscribe();
             await _pageService.PushAsync(new ShootingBoutDetailPage(new ShootingBoutViewModel() { SessionId = Session.Id }));
         }
@@ -130,6 +135,12 @@ namespace BiStatApp.ViewModels
         {
             if (bout == null)
                 return;
+
+            if (Session.Id == 0)
+            {
+                await _pageService.DisplayAlert("Warning", $"Save session first before editing a shooting bout.", "Ok");
+                return;
+            }
 
             Subscribe();
             SelectedShootingBout = null;
