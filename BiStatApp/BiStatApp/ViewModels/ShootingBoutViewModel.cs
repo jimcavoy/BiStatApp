@@ -126,30 +126,31 @@ namespace BiStatApp.ViewModels
         {
             get
             {
-                if (Position == ShootingBout.PositionEnum.PRONE)
+                string imageName = Position == ShootingBout.PositionEnum.PRONE ? "target" : "starget";
+                if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
                 {
-                    return GetProneTarget();
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "A.png");
                 }
-                return GetStandingTarget();
+                else if (Alpha && Bravo && !Charlie && !Delta && !Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "AB.png");
+                }
+                else if (Alpha && Bravo && Charlie && !Delta && !Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABC.png");
+                }
+                else if (Alpha && Bravo && Charlie && Delta && !Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABCD.png");
+                }
+                else if (Alpha && Bravo && Charlie && Delta && Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABCDE.png");
+                }
+                return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "0.png");
             }
         }
 
-        private ImageSource GetProneTarget()
-        {
-            if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
-            {
-                return ImageSource.FromResource("BiStatApp.Assets.Images.targetA.png");
-            }
-            return ImageSource.FromResource("BiStatApp.Assets.Images.target0.png");
-        }
-
-        private ImageSource GetStandingTarget()
-        {
-            if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
-            {
-                return ImageSource.FromResource("BiStatApp.Assets.Images.stargetA.png");
-            }
-            return ImageSource.FromResource("BiStatApp.Assets.Images.starget0.png");
-        }
+        
     }
 }

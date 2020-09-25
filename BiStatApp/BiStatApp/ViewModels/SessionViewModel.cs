@@ -82,5 +82,19 @@ namespace BiStatApp.ViewModels
             }
         }
 
+        public double HitPercentage
+        {
+            get
+            {
+                double hits = 0;
+                foreach(var sb in Bouts)
+                {
+                    var vm = new ShootingBoutViewModel(sb);
+                    hits += 5 - vm.Misses;
+                }
+                return (double)(hits / (Bouts.Count() * 5));
+            }
+        }
+
     }
 }

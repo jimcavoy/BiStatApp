@@ -21,7 +21,12 @@
                                     <Label Text="{Binding Name}" 
                                            FontSize="Micro" 
                                            FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
                                            Style="{DynamicResource ListItemTextStyle}"/>
+                                    <Label Text="{Binding HitPercentage, StringFormat='Hits: {0:P2}'}"
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           FontSize="Micro"
+                                           HorizontalOptions="Center"/>
                                     <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
                                            FontSize="Micro" 
                                            HorizontalOptions="EndAndExpand"/>

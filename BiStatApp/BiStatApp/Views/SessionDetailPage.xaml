@@ -42,7 +42,7 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal" Padding="10">
-                                    <Image Source="{Binding TargetImage}" HeightRequest="30"/>
+                                    <Image Source="{Binding TargetImage}" HeightRequest="60"/>
                                 </StackLayout>
                             </ViewCell.View>
                             <ViewCell.ContextActions>

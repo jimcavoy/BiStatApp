@@ -17,16 +17,35 @@
     <None Remove="Assets\Images\BiStand.png" />
     <None Remove="Assets\Images\starget0.png" />
     <None Remove="Assets\Images\stargetA.png" />
+    <None Remove="Assets\Images\stargetAB.png" />
+    <None Remove="Assets\Images\stargetABC.png" />
+    <None Remove="Assets\Images\stargetABCD.png" />
+    <None Remove="Assets\Images\stargetABCDE.png" />
     <None Remove="Assets\Images\target0.png" />
+    <None Remove="Assets\Images\targetAB.png" />
+    <None Remove="Assets\Images\targetABC.png" />
+    <None Remove="Assets\Images\targetABCD.png" />
+    <None Remove="Assets\Images\targetABCDE.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\targetABCDE.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\Images\BiProne.png" />
     <EmbeddedResource Include="Assets\Images\BiStand.png" />
+    <EmbeddedResource Include="Assets\Images\stargetAB.png" />
+    <EmbeddedResource Include="Assets\Images\stargetABC.png" />
+    <EmbeddedResource Include="Assets\Images\stargetABCD.png" />
+    <EmbeddedResource Include="Assets\Images\stargetABCDE.png" />
     <EmbeddedResource Include="Assets\Images\target0.png" />
 	<EmbeddedResource Include="Assets\Images\targetA.png" />
 	<EmbeddedResource Include="Assets\Images\starget0.png" />
     <EmbeddedResource Include="Assets\Images\stargetA.png" />
+    <EmbeddedResource Include="Assets\Images\targetAB.png" />
+    <EmbeddedResource Include="Assets\Images\targetABC.png" />
+    <EmbeddedResource Include="Assets\Images\targetABCD.png" />
   </ItemGroup>
 
   <ItemGroup>
