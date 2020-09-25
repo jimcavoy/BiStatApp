@@ -42,7 +42,7 @@ namespace BiStatApp.ViewModels
 
         private bool _alpha;
         public bool Alpha
-        { 
+        {
             get { return _alpha; }
             set
             {
@@ -127,46 +127,34 @@ namespace BiStatApp.ViewModels
             get
             {
                 string imageName = Position == ShootingBout.PositionEnum.PRONE ? "target" : "starget";
-                if (Alpha && !Bravo && !Charlie && !Delta && !Echo)
+                if (Misses < 5)
                 {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "A.png");
-                }
-                else if (Alpha && Bravo && !Charlie && !Delta && !Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "AB.png");
-                }
-                else if (Alpha && Bravo && Charlie && !Delta && !Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABC.png");
-                }
-                else if (Alpha && Bravo && Charlie && Delta && !Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABCD.png");
-                }
-                else if (Alpha && Bravo && Charlie && Delta && Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABCDE.png");
-                }
-                if (!Alpha && !Bravo && !Charlie && !Delta && Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "E.png");
-                }
-                else if (!Alpha && !Bravo && !Charlie && Delta && Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "DE.png");
-                }
-                else if (!Alpha && !Bravo && Charlie && Delta && Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "CDE.png");
-                }
-                else if (!Alpha && Bravo && Charlie && Delta && Echo)
-                {
-                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "BCDE.png");
+                    if (Alpha)
+                    {
+                        imageName += "A";
+                    }
+                    if (Bravo)
+                    {
+                        imageName += "B";
+                    }
+                    if (Charlie)
+                    {
+                        imageName += "C";
+                    }
+                    if (Delta)
+                    {
+                        imageName += "D";
+                    }
+                    if (Echo)
+                    {
+                        imageName += "E";
+                    }
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + ".png");
                 }
                 return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "0.png");
             }
         }
 
-        
+
     }
 }
