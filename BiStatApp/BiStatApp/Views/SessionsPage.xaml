@@ -9,41 +9,53 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Sessions}" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Sessions}" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" 
                   HasUnevenRows="True" SeparatorColor="Gray" ItemSelected="OnSessionSelected"
                   SeparatorVisibility="Default">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <ViewCell.View>
-                            <StackLayout Orientation="Vertical" Padding="10">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" 
                                            FontSize="Micro" 
                                            FontAttributes="Bold"
                                            HorizontalOptions="StartAndExpand"
                                            Style="{DynamicResource ListItemTextStyle}"/>
-                                    <Label Text="{Binding HitPercentage, StringFormat='Hits: {0:P2}'}"
+                                        <Label Text="{Binding HitPercentage, StringFormat='Hits: {0:P2}'}"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="Micro"
                                            HorizontalOptions="CenterAndExpand"/>
-                                    <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
+                                        <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
                                            FontSize="Micro" 
                                            HorizontalOptions="EndAndExpand"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Description}" 
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Description}" 
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="Micro"/>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </ViewCell.View>
-                        <ViewCell.ContextActions>
-                            <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionsPage}, Path=ViewModel.DeleteSessionCommand}" CommandParameter="{Binding .}" />
-                        </ViewCell.ContextActions>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            </ViewCell.View>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionsPage}, Path=ViewModel.DeleteSessionCommand}" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--<Label x:Name="OverallLabel"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   Grid.Row="1">
+            </Label>-->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

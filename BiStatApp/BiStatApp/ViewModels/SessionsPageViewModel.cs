@@ -29,10 +29,28 @@ namespace BiStatApp.ViewModels
             set { SetValue(ref _selectedSession, value); }
         }
 
+        public double OverallHitPercentage
+        {
+            get
+            {
+                double hits = 0;
+                foreach(var s in Sessions)
+                {
+                    hits += s.HitPercentage;
+                }
+                return hits / Sessions.Count();
+            }
+        }
+
         public ICommand LoadDataCommand { get; private set; }
         public ICommand AddSessionCommand { get; private set; }
         public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
+
+        public SessionsPageViewModel()
+        {
+
+        }
 
         public SessionsPageViewModel(ISessionStore sessionStore, IPageService pageService)
         {
