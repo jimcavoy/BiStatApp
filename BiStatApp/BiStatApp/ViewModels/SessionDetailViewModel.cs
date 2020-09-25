@@ -62,27 +62,29 @@ namespace BiStatApp.ViewModels
             };
 
             MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
-                (this, Events.ShootingBoutAdded, OnShootingBoutAdded);
-
-            MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
                 (this, Events.ShootingBoutUpdated, OnShootingBoutUpdated);
         }
 
         private void OnShootingBoutAdded(ShootingBoutPageViewModel source, ShootingBout bout)
         {
+            Unsubscribe();
             ShootingBouts.Add(new ShootingBoutViewModel(bout));
         }
 
         private void OnShootingBoutUpdated(ShootingBoutPageViewModel source, ShootingBout bout)
         {
-            var boutInList = ShootingBouts.Single(c => c.Id == bout.Id);
+            Unsubscribe();
+            var boutInList = ShootingBouts.SingleOrDefault(c => c.Id == bout.Id);
 
-            boutInList.Position = bout.Position;
-            boutInList.Alpha = bout.Alpha;
-            boutInList.Bravo = bout.Bravo;
-            boutInList.Charlie = bout.Charlie;
-            boutInList.Delta = bout.Delta;
-            boutInList.Echo = bout.Echo;
+            if (boutInList != null)
+            {
+                boutInList.Position = bout.Position;
+                boutInList.Alpha = bout.Alpha;
+                boutInList.Bravo = bout.Bravo;
+                boutInList.Charlie = bout.Charlie;
+                boutInList.Delta = bout.Delta;
+                boutInList.Echo = bout.Echo; 
+            }
         }
 
         private async Task LoadData()
@@ -120,7 +122,8 @@ namespace BiStatApp.ViewModels
 
         private async Task AddShootingBout()
         {
-            await _pageService.PushAsync(new ShootingBoutDetailPage(new ShootingBoutViewModel() { SessionId = Session.Id}));
+            Subscribe();
+            await _pageService.PushAsync(new ShootingBoutDetailPage(new ShootingBoutViewModel() { SessionId = Session.Id }));
         }
 
         private async Task SelectShootingBout(ShootingBoutViewModel bout)
@@ -128,15 +131,33 @@ namespace BiStatApp.ViewModels
             if (bout == null)
                 return;
 
+            Subscribe();
             SelectedShootingBout = null;
             await _pageService.PushAsync(new ShootingBoutDetailPage(bout));
+        }
+
+        private void Subscribe()
+        {
+            MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
+                (this, Events.ShootingBoutAdded, OnShootingBoutAdded);
+            MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
+                (this, Events.ShootingBoutUpdated, OnShootingBoutUpdated);
+        }
+
+        private void Unsubscribe()
+        {
+            MessagingCenter.Unsubscribe<ShootingBoutPageViewModel, ShootingBout>
+               (this, Events.ShootingBoutAdded);
+
+            MessagingCenter.Unsubscribe<ShootingBoutPageViewModel, ShootingBout>
+                (this, Events.ShootingBoutUpdated);
         }
 
         private async Task DeleteShootingBout(ShootingBoutViewModel boutViewModel)
         {
             if (await _pageService.DisplayAlert("Warning", $"Are you sure you want to delete shooting bout?", "Yes", "No"))
             {
-                ShootingBouts.Remove(boutViewModel); 
+                ShootingBouts.Remove(boutViewModel);
 
                 var sb = await _sessionStore.GetShootingBout(boutViewModel.Id);
                 await _sessionStore.DeleteShootingBout(sb);

@@ -41,7 +41,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" Padding="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
                                     <Image Source="{Binding TargetImage}" HeightRequest="60"/>
                                 </StackLayout>
                             </ViewCell.View>

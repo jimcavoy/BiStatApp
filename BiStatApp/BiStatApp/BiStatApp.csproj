@@ -21,14 +21,26 @@
     <None Remove="Assets\Images\stargetABC.png" />
     <None Remove="Assets\Images\stargetABCD.png" />
     <None Remove="Assets\Images\stargetABCDE.png" />
+    <None Remove="Assets\Images\stargetBCDE.png" />
+    <None Remove="Assets\Images\stargetCDE.png" />
+    <None Remove="Assets\Images\stargetDE.png" />
+    <None Remove="Assets\Images\stargetE.png" />
     <None Remove="Assets\Images\target0.png" />
     <None Remove="Assets\Images\targetAB.png" />
     <None Remove="Assets\Images\targetABC.png" />
     <None Remove="Assets\Images\targetABCD.png" />
     <None Remove="Assets\Images\targetABCDE.png" />
+    <None Remove="Assets\Images\targetBCDE.png" />
+    <None Remove="Assets\Images\targetCDE.png" />
+    <None Remove="Assets\Images\targetDE.png" />
+    <None Remove="Assets\Images\targetE.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\stargetBCDE.png" />
+    <EmbeddedResource Include="Assets\Images\stargetCDE.png" />
+    <EmbeddedResource Include="Assets\Images\stargetDE.png" />
+    <EmbeddedResource Include="Assets\Images\stargetE.png" />
     <EmbeddedResource Include="Assets\Images\targetABCDE.png" />
   </ItemGroup>
 
@@ -46,6 +58,10 @@
     <EmbeddedResource Include="Assets\Images\targetAB.png" />
     <EmbeddedResource Include="Assets\Images\targetABC.png" />
     <EmbeddedResource Include="Assets\Images\targetABCD.png" />
+    <EmbeddedResource Include="Assets\Images\targetBCDE.png" />
+    <EmbeddedResource Include="Assets\Images\targetCDE.png" />
+    <EmbeddedResource Include="Assets\Images\targetDE.png" />
+    <EmbeddedResource Include="Assets\Images\targetE.png" />
   </ItemGroup>
 
   <ItemGroup>

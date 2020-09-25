@@ -147,6 +147,22 @@ namespace BiStatApp.ViewModels
                 {
                     return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "ABCDE.png");
                 }
+                if (!Alpha && !Bravo && !Charlie && !Delta && Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "E.png");
+                }
+                else if (!Alpha && !Bravo && !Charlie && Delta && Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "DE.png");
+                }
+                else if (!Alpha && !Bravo && Charlie && Delta && Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "CDE.png");
+                }
+                else if (!Alpha && Bravo && Charlie && Delta && Echo)
+                {
+                    return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "BCDE.png");
+                }
                 return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "0.png");
             }
         }
