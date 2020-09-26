@@ -22,6 +22,8 @@ namespace BiStatApp.Views
 
             ViewModel = new SessionsPageViewModel(sessionStore, pageService);
 
+            Title = "Sessions";
+
             InitializeComponent();
         }
 

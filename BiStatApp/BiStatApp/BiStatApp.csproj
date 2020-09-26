@@ -24,6 +24,7 @@
     <None Remove="Assets\Images\stargetABCE.png" />
     <None Remove="Assets\Images\stargetABDE.png" />
     <None Remove="Assets\Images\stargetABE.png" />
+    <None Remove="Assets\Images\stargetACD.png" />
     <None Remove="Assets\Images\stargetACDE.png" />
     <None Remove="Assets\Images\stargetACE.png" />
     <None Remove="Assets\Images\stargetADE.png" />
@@ -35,6 +36,7 @@
     <None Remove="Assets\Images\stargetBDE.png" />
     <None Remove="Assets\Images\stargetBE.png" />
     <None Remove="Assets\Images\stargetC.png" />
+    <None Remove="Assets\Images\stargetCD.png" />
     <None Remove="Assets\Images\stargetCDE.png" />
     <None Remove="Assets\Images\stargetCE.png" />
     <None Remove="Assets\Images\stargetD.png" />
@@ -48,6 +50,7 @@
     <None Remove="Assets\Images\targetABCE.png" />
     <None Remove="Assets\Images\targetABDE.png" />
     <None Remove="Assets\Images\targetABE.png" />
+    <None Remove="Assets\Images\targetACD.png" />
     <None Remove="Assets\Images\targetACDE.png" />
     <None Remove="Assets\Images\targetACE.png" />
     <None Remove="Assets\Images\targetADE.png" />
@@ -59,6 +62,7 @@
     <None Remove="Assets\Images\targetBDE.png" />
     <None Remove="Assets\Images\targetBE.png" />
     <None Remove="Assets\Images\targetC.png" />
+    <None Remove="Assets\Images\targetCD.png" />
     <None Remove="Assets\Images\targetCDE.png" />
     <None Remove="Assets\Images\targetCE.png" />
     <None Remove="Assets\Images\targetD.png" />
@@ -70,6 +74,7 @@
     <EmbeddedResource Include="Assets\Images\stargetABCE.png" />
     <EmbeddedResource Include="Assets\Images\stargetABDE.png" />
     <EmbeddedResource Include="Assets\Images\stargetABE.png" />
+    <EmbeddedResource Include="Assets\Images\stargetACD.png" />
     <EmbeddedResource Include="Assets\Images\stargetACDE.png" />
     <EmbeddedResource Include="Assets\Images\stargetACE.png" />
     <EmbeddedResource Include="Assets\Images\stargetADE.png" />
@@ -81,6 +86,7 @@
     <EmbeddedResource Include="Assets\Images\stargetBDE.png" />
     <EmbeddedResource Include="Assets\Images\stargetBE.png" />
     <EmbeddedResource Include="Assets\Images\stargetC.png" />
+    <EmbeddedResource Include="Assets\Images\stargetCD.png" />
     <EmbeddedResource Include="Assets\Images\stargetCDE.png" />
     <EmbeddedResource Include="Assets\Images\stargetCE.png" />
     <EmbeddedResource Include="Assets\Images\stargetD.png" />
@@ -106,6 +112,7 @@
     <EmbeddedResource Include="Assets\Images\targetABCE.png" />
     <EmbeddedResource Include="Assets\Images\targetABDE.png" />
     <EmbeddedResource Include="Assets\Images\targetABE.png" />
+    <EmbeddedResource Include="Assets\Images\targetACD.png" />
     <EmbeddedResource Include="Assets\Images\targetACDE.png" />
     <EmbeddedResource Include="Assets\Images\targetACE.png" />
     <EmbeddedResource Include="Assets\Images\targetADE.png" />
@@ -117,6 +124,7 @@
     <EmbeddedResource Include="Assets\Images\targetBDE.png" />
     <EmbeddedResource Include="Assets\Images\targetBE.png" />
     <EmbeddedResource Include="Assets\Images\targetC.png" />
+    <EmbeddedResource Include="Assets\Images\targetCD.png" />
     <EmbeddedResource Include="Assets\Images\targetCDE.png" />
     <EmbeddedResource Include="Assets\Images\targetCE.png" />
     <EmbeddedResource Include="Assets\Images\targetD.png" />
