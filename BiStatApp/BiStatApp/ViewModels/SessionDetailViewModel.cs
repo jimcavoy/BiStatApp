@@ -196,6 +196,8 @@ namespace BiStatApp.ViewModels
 
             var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
             File.WriteAllText(localPath, jsonString);
+
+            await _pageService.PushAsync(new SendSessionPage(_pageService, localPath));
         }
     }
 

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BiStatApp.Views.SendSessionPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="10">
+            <Label x:Name="labelTitle"
+                Text="Email Results"
+                FontSize="Large"
+                FontAttributes="Bold"
+                TextColor="#CA6F1E"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="textTo" Placeholder="someone@example.com"></Entry>
+            <Entry x:Name="textSubject" Placeholder="Subject"></Entry>
+            <Entry x:Name="textBody" Placeholder="Message" HeightRequest="100"></Entry>
+            <Button x:Name="btnSend" Text="Send Email" Clicked="btnSend_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
