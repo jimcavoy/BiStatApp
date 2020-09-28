@@ -8,6 +8,7 @@ namespace BiStatApp.Models
 	public class Session
 	{
 		[Key]
+		[System.Text.Json.Serialization.JsonIgnore]
 		public int Id { get; set; }
 
 		public string Name { get; set; }

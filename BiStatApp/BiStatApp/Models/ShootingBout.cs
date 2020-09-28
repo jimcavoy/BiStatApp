@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 using Xamarin.Forms;
 
 namespace BiStatApp.Models
@@ -16,6 +17,7 @@ namespace BiStatApp.Models
 		}
 
 		[Key]
+		[JsonIgnore]
 		public int Id { get; set; }
 
 		public PositionEnum Position { get; set; } = PositionEnum.PRONE;
@@ -30,7 +32,10 @@ namespace BiStatApp.Models
 
 		public bool Echo { get; set; }
 
+		[JsonIgnore]
 		public int SessionId { get; set; }
+
+		[JsonIgnore]
 		public Session Session { get; set; }
 
 	}

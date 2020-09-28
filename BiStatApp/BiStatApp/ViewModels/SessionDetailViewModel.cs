@@ -3,9 +3,15 @@ using BiStatApp.Views;
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
@@ -38,6 +44,8 @@ namespace BiStatApp.ViewModels
 
         public ICommand DeleteShootingBoutCommand { get; private set; }
 
+        public ICommand SendCommand { get; private set; }
+
         public SessionDetailViewModel(SessionViewModel viewModel, ISessionStore sessionStore, IPageService pageService)
         {
             if (viewModel == null)
@@ -51,6 +59,7 @@ namespace BiStatApp.ViewModels
             AddShootingBoutCommand = new Command(async c => await AddShootingBout());
             SelectShootingBoutCommand = new Command<ShootingBoutViewModel>(async c => await SelectShootingBout(c));
             DeleteShootingBoutCommand = new Command<ShootingBoutViewModel>(async c => await DeleteShootingBout(c));
+            SendCommand = new Command(async () => await Send());
 
             Session = new Session
             {
@@ -83,7 +92,7 @@ namespace BiStatApp.ViewModels
                 boutInList.Bravo = bout.Bravo;
                 boutInList.Charlie = bout.Charlie;
                 boutInList.Delta = bout.Delta;
-                boutInList.Echo = bout.Echo; 
+                boutInList.Echo = bout.Echo;
             }
         }
 
@@ -173,6 +182,20 @@ namespace BiStatApp.ViewModels
                 var sb = await _sessionStore.GetShootingBout(boutViewModel.Id);
                 await _sessionStore.DeleteShootingBout(sb);
             }
+        }
+
+        private async Task Send()
+        {
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+            options.WriteIndented = true;
+            string jsonString = JsonSerializer.Serialize(Session, options);
+            Debug.WriteLine(jsonString);
+
+            string fileName = string.Format("{0}_{1:ddMMMyy}.json", Session.Name, Session.DateTime);
+
+            var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
+            File.WriteAllText(localPath, jsonString);
         }
     }
 

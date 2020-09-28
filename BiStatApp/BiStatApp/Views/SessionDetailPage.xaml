@@ -5,6 +5,7 @@
              x:Class="BiStatApp.Views.SessionDetailPage">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Send" Command="{Binding SendCommand}"/>
         <ToolbarItem Text="Add" Command="{Binding AddShootingBoutCommand}" />
     </ContentPage.ToolbarItems>
 

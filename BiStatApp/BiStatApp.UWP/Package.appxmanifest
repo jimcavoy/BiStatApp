@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="2cb3baf1-a4b1-43ab-851a-10bfc23cc1c3"
+    Name="ThetaStream.BiStatApp.UWP"
     Publisher="CN=915f8da6-16e8-4a72-ac29-c8764063903a"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>BiStatApp.UWP</DisplayName>
-    <PublisherDisplayName>915f8da6-16e8-4a72-ac29-c8764063903a</PublisherDisplayName>
+    <DisplayName>Biathlon Shooting Stats</DisplayName>
+    <PublisherDisplayName>James McAvoy</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

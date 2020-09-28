@@ -27,7 +27,7 @@ namespace BiStatApp.Persistence
                 }
             });
 
-            return list.OrderBy(d => d.DateTime).AsEnumerable();
+            return list.OrderBy(d => d.DateTime).Reverse().AsEnumerable();
         }
 
         public async Task DeleteSession(Session session)
