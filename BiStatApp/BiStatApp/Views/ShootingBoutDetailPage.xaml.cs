@@ -39,7 +39,7 @@ namespace BiStatApp.Views
             Charlie.IsChecked = ViewModel.Bout.Charlie;
             Delta.IsChecked = ViewModel.Bout.Delta;
             Echo.IsChecked = ViewModel.Bout.Echo;
-            Position.IsToggled = ViewModel.Bout.Position == ShootingBout.PositionEnum.PRONE ? false : true;
+            Position.IsToggled = ViewModel.Bout.Position != ShootingBout.PositionEnum.PRONE;
             base.OnAppearing();
         }
 

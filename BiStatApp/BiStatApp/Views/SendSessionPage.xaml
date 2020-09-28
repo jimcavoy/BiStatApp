@@ -13,8 +13,8 @@
                 HorizontalOptions="CenterAndExpand" />
             <Entry x:Name="textTo" Placeholder="someone@example.com"></Entry>
             <Entry x:Name="textSubject" Placeholder="Subject"></Entry>
-            <Entry x:Name="textBody" Placeholder="Message" HeightRequest="100"></Entry>
-            <Button x:Name="btnSend" Text="Send Email" Clicked="btnSend_Clicked" />
+            <Editor x:Name="textBody" Placeholder="Message" HeightRequest="200"></Editor>
+            <Button x:Name="btnSend" Text="Send Email" Clicked="OnSendBtnClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

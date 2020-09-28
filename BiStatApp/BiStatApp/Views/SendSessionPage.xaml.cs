@@ -14,7 +14,7 @@ namespace BiStatApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendSessionPage : ContentPage
     {
-        private string _filepath;
+        private readonly string _filepath;
         private readonly IPageService _pageService;
 
         public SendSessionPage(IPageService pageService, string filepath)
@@ -24,10 +24,12 @@ namespace BiStatApp.Views
             _filepath = filepath;
         }
 
-        private async void btnSend_Clicked(object sender, EventArgs e)
+        private async void OnSendBtnClicked(object sender, EventArgs e)
         {
-            List<string> toAddress = new List<string>();
-            toAddress.Add(textTo.Text);
+            List<string> toAddress = new List<string>
+            {
+                textTo.Text
+            };
             await SendEmail(textSubject.Text, textBody.Text, toAddress);
         }
 
