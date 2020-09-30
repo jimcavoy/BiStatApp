@@ -4,9 +4,32 @@
              x:Class="BiStatApp.Views.PracticesPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Practices}" 
+                      HasUnevenRows="True"
+                      SeparatorColor="Gray"
+                      SeparatorVisibility="Default"
+                      VerticalScrollBarVisibility="Default"
+                      ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="Body"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="StartAndExpand"
+                                           Style="{DynamicResource ListItemTextStyle}"/>
+                                    <Label Text="{Binding Description}" 
+                                           Style="{DynamicResource ListItemDetailTextStyle}"
+                                           TextColor="DarkGray"
+                                           FontSize="Micro"/>
+                                </StackLayout>
+                             </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

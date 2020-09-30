@@ -13,6 +13,8 @@ namespace BiStatApp.Persistence
 		public DbSet<Session> Sessions { get; set; }
 		public DbSet<ShootingBout> Bouts { get; set; }
 
+		public DbSet<Practice> Practices { get; set; }
+
 		public BiStatContext()
 		{
 			SQLitePCL.Batteries_V2.Init();

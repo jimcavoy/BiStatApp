@@ -12,7 +12,7 @@ namespace BiStatApp.ViewModels
 
 		Task<Session> GetSession(int id);
 
-		Task AddSession(Session session);
+		Task<Session> AddSession(Session session);
 
 		Task UpdateSession(Session session);
 
@@ -25,5 +25,7 @@ namespace BiStatApp.ViewModels
 		Task UpdateShootingBout(ShootingBout bout);
 
 		Task DeleteShootingBout(ShootingBout bout);
+
+		Task<IEnumerable<Practice>> GetPracticesAsync();
 	}
 }
