@@ -21,7 +21,7 @@ namespace BiStatApp.Views
             InitializeComponent();
 
             var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService();
+            var pageService = new PageService() { MainPage = Navigation };
             Title = (viewModel.Id == 0) ? "New Shooting Bout" : "Edit Shooting Bout";
             BindingContext = new ShootingBoutPageViewModel(viewModel ?? new ShootingBoutViewModel(), sessionStore, pageService);
         }

@@ -4,10 +4,6 @@
              x:Name="sessionsPage"
              x:Class="BiStatApp.Views.SessionsPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddSessionCommand}" />
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

@@ -18,7 +18,7 @@ namespace BiStatApp.Views
         public SessionsPage()
         {
             var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService();
+            var pageService = new PageService() { MainPage = Navigation };
 
             ViewModel = new SessionsPageViewModel(sessionStore, pageService);
 

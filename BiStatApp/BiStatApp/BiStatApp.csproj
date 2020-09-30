@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Remove="Assets\Images\BiProne.png" />
     <None Remove="Assets\Images\BiStand.png" />
+    <None Remove="Assets\Images\settings.png" />
     <None Remove="Assets\Images\starget0.png" />
     <None Remove="Assets\Images\stargetA.png" />
     <None Remove="Assets\Images\stargetAB.png" />
@@ -43,6 +44,7 @@
     <None Remove="Assets\Images\stargetD.png" />
     <None Remove="Assets\Images\stargetDE.png" />
     <None Remove="Assets\Images\stargetE.png" />
+    <None Remove="Assets\Images\target.png" />
     <None Remove="Assets\Images\target0.png" />
     <None Remove="Assets\Images\targetAB.png" />
     <None Remove="Assets\Images\targetABC.png" />
@@ -70,9 +72,11 @@
     <None Remove="Assets\Images\targetD.png" />
     <None Remove="Assets\Images\targetDE.png" />
     <None Remove="Assets\Images\targetE.png" />
+    <None Remove="Assets\Images\todo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\settings.png" />
     <EmbeddedResource Include="Assets\Images\stargetABCE.png" />
     <EmbeddedResource Include="Assets\Images\stargetABD.png" />
     <EmbeddedResource Include="Assets\Images\stargetABDE.png" />
@@ -95,6 +99,7 @@
     <EmbeddedResource Include="Assets\Images\stargetD.png" />
     <EmbeddedResource Include="Assets\Images\stargetDE.png" />
     <EmbeddedResource Include="Assets\Images\stargetE.png" />
+    <EmbeddedResource Include="Assets\Images\target.png" />
     <EmbeddedResource Include="Assets\Images\targetABCDE.png" />
   </ItemGroup>
 
@@ -134,6 +139,7 @@
     <EmbeddedResource Include="Assets\Images\targetD.png" />
     <EmbeddedResource Include="Assets\Images\targetDE.png" />
     <EmbeddedResource Include="Assets\Images\targetE.png" />
+    <EmbeddedResource Include="Assets\Images\todo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -143,6 +149,18 @@
   </ItemGroup> 
 
   <ItemGroup>
+    <EmbeddedResource Update="MasterDetailPage1Detail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MainPageMaster.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PracticesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\SendSessionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -150,6 +168,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SessionsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ShootingBoutDetailPage.xaml">

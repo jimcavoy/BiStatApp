@@ -11,7 +11,7 @@ namespace BiStatApp
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new SessionsPage());
+			MainPage = new BiStatApp.Views.MainPage();
 		}
 
 		protected override void OnStart()
