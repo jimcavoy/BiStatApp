@@ -38,6 +38,8 @@ namespace BiStatApp.ViewModels
             _sessionStore = sessionStore;
             _pageService = pageService;
 
+            sessionStore.SeedData();
+
             LoadDataCommand = new Command(async () => await LoadData());
             SelectPracticeCommand = new Command<Practice>(async c => await SelectPractice(c));
         }

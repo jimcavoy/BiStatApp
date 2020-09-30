@@ -27,5 +27,7 @@ namespace BiStatApp.ViewModels
 		Task DeleteShootingBout(ShootingBout bout);
 
 		Task<IEnumerable<Practice>> GetPracticesAsync();
+
+		void SeedData();
 	}
 }

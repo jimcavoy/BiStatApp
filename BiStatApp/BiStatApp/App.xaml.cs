@@ -1,6 +1,4 @@
-﻿using BiStatApp.Views;
-using BiStatApp.Persistence;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,9 +11,6 @@ namespace BiStatApp
 			InitializeComponent();
 
 			MainPage = new BiStatApp.Views.MainPage();
-
-			var database = new SQLiteSessionStore();
-			database.SeedData();
 		}
 
 		protected override void OnStart()
