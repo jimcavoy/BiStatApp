@@ -11,6 +11,7 @@ namespace BiStatApp.Persistence
 {
     public class SQLiteSessionStore : ISessionStore
     {
+        private readonly List<Practice> _practices = new List<Practice>();
         public SQLiteSessionStore()
         {
 
@@ -150,38 +151,27 @@ namespace BiStatApp.Persistence
 
         public async Task<IEnumerable<Practice>> GetPracticesAsync()
         {
-            List<Practice> list = new List<Practice>();
-            await Task.Run(() =>
-            {
-                using (var context = new BiStatContext())
-                {
-                    list = context.Practices.ToList();
-                }
-            });
-            return list.AsEnumerable();
+            SeedData();
+            return await Task.Run(() => _practices);
         }
 
         public void SeedData()
         {
-            using (var context = new BiStatContext())
+            if (_practices.Count == 0)
             {
-                if (!context.Practices.Any())
-                {
-                    context.Practices.Add(new Practice { Name = "1 Shot Setup", Description = "Starting from behind the mat, setup in the prone or standing position and shoot on one target, then get up." });
-                    context.Practices.Add(new Practice { Name = "5 Across", Description = "Shoot five across on a prone or standing target." });
-                    context.Practices.Add(new Practice { Name = "Combo", Description = "A practices that combines skiing and shooting." });
-                    context.Practices.Add(new Practice { Name = "Time Trail", Description = "A practice biathlon race." });
-                    context.Practices.Add(new Practice { Name = "Open Training", Description = "Athlete defined practice." });
-                    context.Practices.Add(new Practice { Name = "Race - Sprint", Description = "Sprint race format." });
-                    context.Practices.Add(new Practice { Name = "Race - Pursuit", Description = "Pursuit race format." });
-                    context.Practices.Add(new Practice { Name = "Race - Mass Start", Description = "Mass Start race format." });
-                    context.Practices.Add(new Practice { Name = "Race - Individual", Description = "Individual race format." });
-                    context.Practices.Add(new Practice { Name = "Race - Relay", Description = "Relay race format." });
-                    context.Practices.Add(new Practice { Name = "Dry Fire", Description = "A dry fire practice." });
-
-                    context.SaveChanges();
-                }
+                _practices.Add(new Practice { Name = "1 Shot Setup", Description = "Starting from behind the mat, setup in the prone or standing position and shoot on one target, then get up." });
+                _practices.Add(new Practice { Name = "5 Across", Description = "Shoot five across on a prone or standing target." });
+                _practices.Add(new Practice { Name = "Combo", Description = "A practices that combines skiing and shooting." });
+                _practices.Add(new Practice { Name = "Time Trail", Description = "A practice biathlon race." });
+                _practices.Add(new Practice { Name = "Open Training", Description = "Athlete defined practice." });
+                _practices.Add(new Practice { Name = "Race - Sprint", Description = "Sprint race format." });
+                _practices.Add(new Practice { Name = "Race - Pursuit", Description = "Pursuit race format." });
+                _practices.Add(new Practice { Name = "Race - Mass Start", Description = "Mass Start race format." });
+                _practices.Add(new Practice { Name = "Race - Individual", Description = "Individual race format." });
+                _practices.Add(new Practice { Name = "Race - Relay", Description = "Relay race format." });
+                _practices.Add(new Practice { Name = "Dry Fire", Description = "A dry fire practice." });
             }
+
         }
 
     }
