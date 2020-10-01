@@ -13,24 +13,23 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <TableView Intent="Form" Margin="16">
-                <TableRoot>
-                    <TableSection Title="{Binding Path=Session.Name}" >
-                    <EntryCell Label="Description" Text="{Binding Path=Session.Description}" />
-                    </TableSection>
-                    <TableSection>
-                        <ViewCell>
-                            <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
-                                <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
-                            </DatePicker>
-                        </ViewCell>
-                    </TableSection>
-                </TableRoot>
-            </TableView>
+            <StackLayout Orientation="Vertical" Margin="10">
+                <Label x:Name="labelTitle"
+                       Text="{Binding Path=Session.Name}"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       TextColor="#CA6F1E"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+                <Entry x:Name="editorDescr" Placeholder="Discription" Text="{Binding Path=Session.Description}" />
+                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
+                    <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
+                </DatePicker>
+            </StackLayout>
 
             <ListView ItemsSource="{Binding Path=ShootingBouts}" 
                       SelectedItem="{Binding SelectedShootingBout, Mode=TwoWay}"
@@ -41,7 +40,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="10">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="10">
                                     <Image Source="{Binding TargetImage}" HeightRequest="50"/>
                                 </StackLayout>
                             </ViewCell.View>

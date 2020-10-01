@@ -76,12 +76,19 @@ namespace BiStatApp.ViewModels
 
         private void OnSessionUpdated(SessionDetailViewModel source, Session session)
         {
-            var sessionInList = Sessions.Single(c => c.Id == session.Id);
+            var sessionInList = Sessions.SingleOrDefault(c => c.Id == session.Id);
 
-            sessionInList.Id = session.Id;
-            sessionInList.Name = session.Name;
-            sessionInList.Description = session.Description;
-            sessionInList.DateTime = session.DateTime;
+            if (sessionInList == null)
+            {
+                Sessions.Add(new SessionViewModel(session));
+            }
+            else
+            {
+                sessionInList.Id = session.Id;
+                sessionInList.Name = session.Name;
+                sessionInList.Description = session.Description;
+                sessionInList.DateTime = session.DateTime;
+            }
         }
 
         private async Task LoadData()
