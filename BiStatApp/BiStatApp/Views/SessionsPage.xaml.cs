@@ -30,9 +30,6 @@ namespace BiStatApp.Views
         protected override void OnAppearing()
         {
             ViewModel.LoadDataCommand.Execute(null);
-            double hits = ViewModel.OverallHitPercentage;
-            //string label = string.Format("Overall Hits: {0:P2}", hits);
-            //OverallLabel.Text = label;
             base.OnAppearing();
         }
 

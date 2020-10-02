@@ -11,9 +11,10 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <ListView ItemsSource="{Binding Sessions}" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" 
-                  HasUnevenRows="True" SeparatorColor="Gray" ItemSelected="OnSessionSelected"
+                  HasUnevenRows="True" SeparatorColor="{StaticResource MediumGrayTextColor}"
+                  ItemSelected="OnSessionSelected"
                   SeparatorVisibility="Default"
-                      VerticalScrollBarVisibility="Default">
+                  VerticalScrollBarVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

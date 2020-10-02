@@ -6,10 +6,11 @@
         <StackLayout>
             <ListView ItemsSource="{Binding Practices}" 
                       HasUnevenRows="True"
-                      SeparatorColor="Gray"
+                      SeparatorColor="{StaticResource MediumGrayTextColor}"
                       SeparatorVisibility="Default"
                       VerticalScrollBarVisibility="Default"
-                      ItemSelected="OnItemSelected">
+                      ItemSelected="OnItemSelected"
+                      SelectedItem="{Binding SelectedPractice, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -22,7 +23,7 @@
                                            Style="{DynamicResource ListItemTextStyle}"/>
                                     <Label Text="{Binding Description}" 
                                            Style="{DynamicResource ListItemDetailTextStyle}"
-                                           TextColor="DarkGray"
+                                           TextColor="{StaticResource LightTextColor}"
                                            FontSize="Micro"/>
                                 </StackLayout>
                              </ViewCell.View>

@@ -18,7 +18,7 @@ namespace BiStatApp.ViewModels
         private readonly ISessionStore _sessionStore;
         private readonly IPageService _pageService;
 
-        private bool _isDataLoaded = false; 
+        private bool _isDataLoaded = false;
 
         public ObservableCollection<Practice> Practices { get; private set; }
             = new ObservableCollection<Practice>();
@@ -26,7 +26,7 @@ namespace BiStatApp.ViewModels
         public Practice SelectedPractice
         {
             get { return _selectedPractice; }
-            set { _selectedPractice = value; }
+            set { SetValue(ref _selectedPractice, value); }
         }
 
         public ICommand LoadDataCommand { get; private set; }
@@ -58,9 +58,11 @@ namespace BiStatApp.ViewModels
         private async Task SelectPractice(Practice practice)
         {
             if (practice == null)
+            {
                 return;
-
+            }
             SelectedPractice = null;
+
             var session = new Session()
             {
                 Name = practice.Name,
