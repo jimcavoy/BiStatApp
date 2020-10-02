@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BiStatApp.ViewModels;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,14 @@ namespace BiStatApp.Views
         public SettingsPage()
         {
             InitializeComponent();
+
+            BindingContext = new SettingsPageViewModel();
+        }
+
+        public SettingsPageViewModel ViewModel
+        {
+            get { return BindingContext as SettingsPageViewModel; }
+            set { BindingContext = value; }
         }
     }
 }

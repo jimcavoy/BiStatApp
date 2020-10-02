@@ -6,39 +6,48 @@
     <ContentPage.Content>
         <Grid Padding="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <Label Text="Shots" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="1" Grid.Row="0" />
             <Label Text="Average" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="2" Grid.Row="0" />
-            <Label Text="Prone" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="0" Grid.Row="1" />
+            <Label Text="Prone" Style="{DynamicResource ListItemDetailTextStyle}"  Grid.Column="0" Grid.Row="1" />
             <Label Text="Standing" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="0" Grid.Row="2" />
             <Label Text="Overall" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="0" Grid.Row="3" />
+            <Label Text="Sessions Count" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="0" Grid.Row="5"/>
+
             <Label Text="{Binding ProneShots}"
+                Style="{DynamicResource ListItemTextStyle }" TextColor="Black"
+                Grid.Column="1" Grid.Row="1"/>
+            <Label Text="{Binding StandingShots}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
-               Grid.Column="1" Grid.Row="1"/>
-            <Label Text="{Binding StandingShots}"
+                Grid.Column="1" Grid.Row="2"/>
+            <Label Text="{Binding TotalShots}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
-               Grid.Column="1" Grid.Row="2"/>
-            <Label Text="{Binding TotalShots}"
+                Grid.Column="1" Grid.Row="3"/>
+
+            <Label Text="{Binding ProneAverage, StringFormat='{0:P2}'}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
-               Grid.Column="1" Grid.Row="3"/>
-            <Label Text="{Binding ProneAverage, StringFormat='{0:P2}'}"
-                Style="{DynamicResource ListItemTextStyle }"
-               Grid.Column="2" Grid.Row="2"/>
-            <Label Text="{Binding StandingAverage, StringFormat='{0:P2}'}"
+                Grid.Column="2" Grid.Row="2"/>
+            <Label Text="{Binding StandingAverage, StringFormat='{0:P2}'}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
                Grid.Column="2" Grid.Row="1"/>
-            <Label Text="{Binding OverallAverage, StringFormat='{0:P2}'}"
+            <Label Text="{Binding OverallAverage, StringFormat='{0:P2}'}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
-               Grid.Column="2" Grid.Row="3"/>
+                Grid.Column="2" Grid.Row="3"/>
+
+            <Label Text="{Binding Sessions.Count}" TextColor="Black"
+                Style="{DynamicResource ListItemTextStyle }"
+                Grid.Column="1" Grid.Row="5"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -20,7 +20,7 @@
                   ItemsSource="{Binding MenuItems}"
                   x:FieldModifier="public">
             <ListView.Header>
-                <Grid BackgroundColor="#03A9F4">
+                <Grid BackgroundColor="{StaticResource PrimaryDark}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>

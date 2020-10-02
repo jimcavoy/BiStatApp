@@ -13,7 +13,6 @@ namespace BiStatApp.ViewModels
     {
         public List<SessionViewModel> Sessions { get; set; }
 
-
         public ReportPageViewModel(IEnumerable<SessionViewModel> sessionStore)
         {
             Sessions = sessionStore.ToList();
@@ -57,7 +56,9 @@ namespace BiStatApp.ViewModels
         public double StandingAverage { get; private set; } = 0;
 
         public int TotalShots { get; private set; } = 0;
+
         public int ProneShots { get; private set; } = 0;
+
         public int StandingShots { get; private set; } = 0;
 
     }
