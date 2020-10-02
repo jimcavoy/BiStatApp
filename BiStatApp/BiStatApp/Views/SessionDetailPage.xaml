@@ -20,9 +20,7 @@
             <StackLayout Orientation="Vertical" Margin="10">
                 <Label x:Name="labelTitle"
                        Text="{Binding Path=Session.Name}"
-                       FontSize="Large"
-                       FontAttributes="Bold"
-                       TextColor="#CA6F1E"
+                       Style="{DynamicResource TitleStyle}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" />
                 <Entry x:Name="editorDescr" Placeholder="Discription" Text="{Binding Path=Session.Description}" />

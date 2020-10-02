@@ -96,5 +96,70 @@ namespace BiStatApp.ViewModels
             }
         }
 
+        public int ProneShots
+        {
+            get
+            {
+                int shots = 0;
+                foreach(var sb in Bouts)
+                {
+                    if (sb.Position == ShootingBout.PositionEnum.PRONE)
+                    {
+                        shots += 5;
+                    }
+                }
+                return shots;
+            }
+        }
+
+        public int StandingShots
+        {
+            get
+            {
+                int shots = 0;
+                foreach (var sb in Bouts)
+                {
+                    if (sb.Position == ShootingBout.PositionEnum.STANDING)
+                    {
+                        shots += 5;
+                    }
+                }
+                return shots;
+            }
+        }
+
+        public double ProneAverage
+        {
+            get 
+            {
+                double hits = 0.0;
+                foreach (var sb in Bouts)
+                {
+                    if (sb.Position == ShootingBout.PositionEnum.PRONE)
+                    {
+                        var vm = new ShootingBoutViewModel(sb);
+                        hits += 5 - vm.Misses;
+                    }
+                }
+                return (double)(hits / ProneShots);
+            }
+        }
+
+        public double StandingAverage
+        {
+            get
+            {
+                double hits = 0.0;
+                foreach (var sb in Bouts)
+                {
+                    if (sb.Position == ShootingBout.PositionEnum.STANDING)
+                    {
+                        var vm = new ShootingBoutViewModel(sb);
+                        hits += 5 - vm.Misses;
+                    }
+                }
+                return (double)(hits / StandingShots);
+            }
+        }
     }
 }

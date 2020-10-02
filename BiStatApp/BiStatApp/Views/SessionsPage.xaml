@@ -50,11 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!--<Label x:Name="OverallLabel"
-                   FontAttributes="Bold"
-                   HorizontalOptions="CenterAndExpand"
-                   Grid.Row="1">
-            </Label>-->
+            <Button Text="Report" Command="{Binding ReportCommand}" Grid.Row="1" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

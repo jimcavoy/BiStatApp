@@ -47,6 +47,8 @@ namespace BiStatApp.ViewModels
         public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
 
+        public ICommand ReportCommand { get; private set; }
+
         public SessionsPageViewModel()
         {
 
@@ -61,6 +63,7 @@ namespace BiStatApp.ViewModels
             AddSessionCommand = new Command(async () => await AddSession());
             SelectSessionCommand = new Command<SessionViewModel>(async c => await SelectSession(c));
             DeleteSessionCommand = new Command<SessionViewModel>(async c => await DeleteSession(c));
+            ReportCommand = new Command(async () => await ShowReport());
 
             MessagingCenter.Subscribe<SessionDetailViewModel, Session>
                 (this, Events.SessionAdded, OnSessionAdded);
@@ -126,6 +129,11 @@ namespace BiStatApp.ViewModels
                 var session = await _sessionStore.GetSession(sessionViewModel.Id);
                 await _sessionStore.DeleteSession(session);
             }
+        }
+
+        private async Task ShowReport()
+        {
+            await _pageService.PushAsync(new ReportPage(Sessions));
         }
     }
 }

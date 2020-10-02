@@ -5,13 +5,21 @@
              Padding="0,40,0,0"
              IconImageSource="hamburger.png"
              Title="Master">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="mySubtitleStyle" TargetType="Label" BaseResourceKey="SubtitleStyle">
+                <Setter Property="FontFamily" Value="" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <StackLayout>
         <ListView x:Name="MenuItemsListView"
-              SeparatorVisibility="None"
-              HasUnevenRows="true"
-              ItemsSource="{Binding MenuItems}"
+                  SeparatorVisibility="None"
+                  HasUnevenRows="true"
+                  ItemsSource="{Binding MenuItems}"
                   x:FieldModifier="public">
-            <!--<ListView.Header>
+            <ListView.Header>
                 <Grid BackgroundColor="#03A9F4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -24,13 +32,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
-                    <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="Biathlon Shooting Stats"
-              Style="{DynamicResource SubtitleStyle}"/>
+                    <Label Grid.Column="1"
+                              Grid.Row="2"
+                              Text="Biathlon Shooting Stats"
+                              TextColor="White"
+                              Style="{DynamicResource mySubtitleStyle}"/>
                 </Grid>
-            </ListView.Header>-->
+            </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

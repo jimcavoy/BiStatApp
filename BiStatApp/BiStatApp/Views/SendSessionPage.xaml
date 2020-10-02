@@ -6,9 +6,7 @@
         <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="10">
             <Label x:Name="labelTitle"
                 Text="Email Results"
-                FontSize="Large"
-                FontAttributes="Bold"
-                TextColor="#CA6F1E"
+                Style="{DynamicResource TitleStyle}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Entry x:Name="textTo" Placeholder="someone@example.com"></Entry>
