@@ -87,6 +87,11 @@ namespace BiStatApp.ViewModels
             get
             {
                 double hits = 0;
+                if (Bouts.Count() == 0)
+                {
+                    return hits;
+                }
+
                 foreach(var sb in Bouts)
                 {
                     var vm = new ShootingBoutViewModel(sb);

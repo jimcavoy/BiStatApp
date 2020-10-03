@@ -19,7 +19,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Vertical" Padding="10">
+                                <StackLayout Orientation="Vertical" Padding="20,5,20,5">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" 
                                            FontSize="Body"
@@ -30,7 +30,8 @@
                                            Style="{DynamicResource ListItemTextStyle}"
                                            FontSize="Body"
                                            FontAttributes="Bold"
-                                           HorizontalOptions="EndAndExpand"/>
+                                           HorizontalOptions="EndAndExpand"
+                                              Padding="0,0,25,0"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 

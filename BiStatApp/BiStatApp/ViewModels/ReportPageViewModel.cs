@@ -25,26 +25,31 @@ namespace BiStatApp.ViewModels
             double hits = 0;
             double proneAve = 0;
             double standingAve = 0;
+            int sessionCount = 0;
 
             foreach (var s in Sessions)
             {
-                hits += s.HitPercentage;
-                TotalShots += s.Bouts.Count() * 5;
-                foreach (var b in s.Bouts)
+                if (s.Name != "Dry Fire")
                 {
-                    if (b.Position == ShootingBout.PositionEnum.PRONE)
+                    sessionCount++;
+                    hits += s.HitPercentage;
+                    TotalShots += s.Bouts.Count() * 5;
+                    foreach (var b in s.Bouts)
                     {
-                        ProneShots += 5;
-                        proneAve += s.ProneAverage;
-                    }
-                    else
-                    {
-                        StandingShots += 5;
-                        standingAve += s.StandingAverage;
-                    }
+                        if (b.Position == ShootingBout.PositionEnum.PRONE)
+                        {
+                            ProneShots += 5;
+                            proneAve += s.ProneAverage;
+                        }
+                        else
+                        {
+                            StandingShots += 5;
+                            standingAve += s.StandingAverage;
+                        }
+                    } 
                 }
             }
-            OverallAverage = hits / Sessions.Count;
+            OverallAverage = hits / sessionCount;
             ProneAverage = proneAve / (ProneShots / 5);
             StandingAverage = standingAve / (StandingShots / 5);
         }

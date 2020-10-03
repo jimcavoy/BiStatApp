@@ -68,15 +68,20 @@ namespace BiStatApp.ViewModels
                 Name = practice.Name,
                 DateTime = System.DateTime.Now
             };
-            session.Bouts.Add(new ShootingBout()
+
+            if (practice.Name != "Dry Fire")
             {
-                Position = ShootingBout.PositionEnum.PRONE,
-                Alpha = false,
-                Bravo = false,
-                Charlie = false,
-                Delta = false,
-                Echo = false,
-            });
+                session.Bouts.Add(new ShootingBout()
+                {
+                    Position = ShootingBout.PositionEnum.PRONE,
+                    Alpha = false,
+                    Bravo = false,
+                    Charlie = false,
+                    Delta = false,
+                    Echo = false,
+                });
+            }
+
             session = await _sessionStore.AddSession(session);
 
             await _pageService.PushAsync(new SessionDetailPage(new SessionViewModel(session)));
