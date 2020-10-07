@@ -22,15 +22,15 @@ namespace BiStatApp.Models
 
 		public PositionEnum Position { get; set; } = PositionEnum.PRONE;
 
-		public bool Alpha { get; set; }
+		public bool Alpha { get; set; } = false;
 
-		public bool Bravo { get; set; }
+		public bool Bravo { get; set; } = false;
 
-		public bool Charlie { get; set; }
+		public bool Charlie { get; set; } = false;
 
-		public bool Delta { get; set; }
+		public bool Delta { get; set; } = false;
 
-		public bool Echo { get; set; }
+		public bool Echo { get; set; } = false;
 
 		[JsonIgnore]
 		public int SessionId { get; set; }

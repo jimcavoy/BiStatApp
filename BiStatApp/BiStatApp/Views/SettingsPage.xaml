@@ -21,11 +21,11 @@
             </StackLayout>
             <ScrollView Grid.Row="1">
                 <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
-                    <Label FontSize="22">
+                    <Label>
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="Version" FontAttributes="Bold" FontSize="22" />
+                                    <Span Text="Version" FontAttributes="Bold" />
                                     <Span Text=": " />
                                     <Span Text="0.1.0.0-alpha" ForegroundColor="{StaticResource LightTextColor}" />
                                 </FormattedString.Spans>

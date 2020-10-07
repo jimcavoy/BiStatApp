@@ -69,23 +69,39 @@ namespace BiStatApp.ViewModels
                 DateTime = System.DateTime.Now
             };
 
-            if (practice.Name != "Dry Fire")
-            {
-                session.Bouts.Add(new ShootingBout()
-                {
-                    Position = ShootingBout.PositionEnum.PRONE,
-                    Alpha = false,
-                    Bravo = false,
-                    Charlie = false,
-                    Delta = false,
-                    Echo = false,
-                });
-            }
+            AddShootingBouts(session, practice.Name);
 
             session = await _sessionStore.AddSession(session);
 
             await _pageService.PushAsync(new SessionDetailPage(new SessionViewModel(session)));
         }
 
+        private void AddShootingBouts(Session session, string practiceType)
+        {
+            if (practiceType == "Dry Fire")
+                return;
+
+            session.Bouts.Add(new ShootingBout());
+
+            if (practiceType == "Race - Sprint")
+            {
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+            }
+            else if (practiceType == "Race - Pursuit" ||
+                practiceType == "Race - Mass Start" ||
+                practiceType == "Race - Relay" ||
+                practiceType == "Time Trail")
+            {
+                session.Bouts.Add(new ShootingBout());
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+            }
+            else if (practiceType == "Race - Individual")
+            {
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+                session.Bouts.Add(new ShootingBout());
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+            }
+        }
     }
 }
