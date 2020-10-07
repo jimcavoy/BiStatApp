@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+using MvvmHelpers;
 
 namespace BiStatApp.ViewModels
 {
@@ -20,8 +21,25 @@ namespace BiStatApp.ViewModels
 
         //private bool _isDataLoaded = false;
 
-        public ObservableCollection<SessionViewModel> Sessions { get; private set; }
-            = new ObservableCollection<SessionViewModel>();
+        public ObservableRangeCollection<SessionViewModel> Sessions { get; private set; }
+            = new ObservableRangeCollection<SessionViewModel>();
+        public ObservableRangeCollection<SessionViewModel> AllSessions { get; private set; }
+            = new ObservableRangeCollection<SessionViewModel>();
+
+        public ObservableRangeCollection<string> FilterOptions { get; }
+
+        string _selectedFilter = "All";
+
+        public string SelectedFilter
+        {
+            get => _selectedFilter;
+            set
+            {
+                SetValue(ref _selectedFilter, value);
+                OnPropertyChanged("SelectedFilter");
+                FilterSessions();
+            }
+        }
 
         public SessionViewModel SelectedSession
         {
@@ -70,6 +88,19 @@ namespace BiStatApp.ViewModels
 
             MessagingCenter.Subscribe<SessionDetailViewModel, Session>
                 (this, Events.SessionUpdated, OnSessionUpdated);
+
+            FilterOptions = new ObservableRangeCollection<string>
+            { 
+                "All",
+                "1 Shot Setup",
+                "5 Across",
+                "Combo",
+                "Time Trail",
+                "Open Training",
+                "Race",
+                "Dry Fire"
+            };
+
         }
 
         private void OnSessionAdded(SessionDetailViewModel source, Session session)
@@ -100,10 +131,11 @@ namespace BiStatApp.ViewModels
             //    return;
 
             //_isDataLoaded = true;
-            Sessions.Clear();
+            AllSessions.Clear();
             var sessions = await _sessionStore.GetSessionsAsync();
             foreach (var session in sessions)
-                Sessions.Add(new SessionViewModel(session));
+                AllSessions.Add(new SessionViewModel(session));
+            FilterSessions();
         }
 
         private async Task AddSession()
@@ -134,6 +166,11 @@ namespace BiStatApp.ViewModels
         private async Task ShowReport()
         {
             await _pageService.PushAsync(new ReportPage(Sessions));
+        }
+
+        void FilterSessions()
+        {
+            Sessions.ReplaceRange(AllSessions.Where(a => a.Name.Contains(SelectedFilter) || SelectedFilter == "All" ));
         }
     }
 }

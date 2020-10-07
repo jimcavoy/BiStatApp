@@ -7,14 +7,23 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" Padding="10">
+                <Label Text="Filter:" VerticalOptions="Center"/>
+                <Picker ItemsSource="{Binding FilterOptions}"
+                        SelectedItem="{Binding SelectedFilter}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
             <ListView ItemsSource="{Binding Sessions}" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" 
                   HasUnevenRows="True" SeparatorColor="{StaticResource MediumGrayTextColor}"
                   ItemSelected="OnSessionSelected"
                   SeparatorVisibility="Default"
-                  VerticalScrollBarVisibility="Default">
+                  VerticalScrollBarVisibility="Default"
+                  Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -52,7 +61,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Report" Command="{Binding ReportCommand}" Grid.Row="1" />
+            <Button Text="Report" Command="{Binding ReportCommand}" Grid.Row="2" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
