@@ -171,7 +171,6 @@ namespace BiStatApp.Persistence
                 _practices.Add(new Practice { Name = "Race - Relay", Description = "Relay race format." });
                 _practices.Add(new Practice { Name = "Dry Fire", Description = "A dry fire practice." });
             }
-
         }
 
     }
