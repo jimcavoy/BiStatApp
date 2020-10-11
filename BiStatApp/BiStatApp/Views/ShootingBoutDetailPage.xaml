@@ -14,7 +14,7 @@
                 <CheckBox x:Name="Charlie" CheckedChanged="Charlie_CheckedChanged"/>
                 <CheckBox x:Name="Delta" CheckedChanged="Delta_CheckedChanged"/>
                 <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
-                <Switch x:Name="Position" Toggled="Position_Toggled" />
+                <Switch x:Name="Position" Toggled="Position_Toggled" VerticalOptions="Center"/>
             </StackLayout>
             <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="1"/>
         </Grid>
