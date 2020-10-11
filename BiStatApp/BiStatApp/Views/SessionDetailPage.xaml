@@ -23,7 +23,7 @@
                        Style="{DynamicResource TitleStyle}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" />
-                <Entry x:Name="editorDescr" Placeholder="Discription" Text="{Binding Path=Session.Description}" />
+                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Session.Description}" />
                 <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
                     <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
                 </DatePicker>
