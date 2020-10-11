@@ -17,7 +17,15 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <PackageCertificateThumbprint>F8F88CF564C8154E9D2F7930B719A44C225D3068</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -115,6 +123,9 @@
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
     <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
@@ -155,6 +166,9 @@
       <Project>{187641E3-E3DE-4795-844D-1946C2D0FFBA}</Project>
       <Name>BiStatApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BiStatApp.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
