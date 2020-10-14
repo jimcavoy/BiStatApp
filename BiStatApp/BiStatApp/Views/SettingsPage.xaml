@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="settingsPage"
              x:Class="BiStatApp.Views.SettingsPage">
     <ContentPage.Content>
         <Grid>
@@ -8,7 +9,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <StackLayout BackgroundColor="{StaticResource PrimaryDark}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackLayout BackgroundColor="{StaticResource PrimaryDark}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Grid.ColumnSpan="2">
                 <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                     <!--<ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
                         <Image Source="{Binding BannerImage}" VerticalOptions="Center" HeightRequest="64" />
@@ -19,21 +24,27 @@
                            TextColor="{StaticResource LightBackgroundColor}"/>
                 </StackLayout>
             </StackLayout>
-            <ScrollView Grid.Row="1">
-                <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <FormattedString.Spans>
-                                    <Span Text="Version" FontAttributes="Bold" />
-                                    <Span Text=": " />
-                                    <Span Text="0.1.0.0-alpha" ForegroundColor="{StaticResource LightTextColor}" />
-                                </FormattedString.Spans>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-            </ScrollView>
+
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" Grid.Row="1">
+                <Label Style="{DynamicResource ListItemTextStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Version"/>
+                                <Span Text=": " />
+                                <Span Text="0.1.0.0-alpha" ForegroundColor="{StaticResource LightTextColor}" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Button Text="&#xf0e0; Send Feedback" 
+                        FontFamily="FontAwesomeSolid" 
+                        BackgroundColor="{StaticResource LightBackgroundColor}"
+                        Clicked="OnSendButtonClicked"/>
+
+            </StackLayout>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

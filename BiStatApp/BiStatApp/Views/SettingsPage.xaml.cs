@@ -18,13 +18,20 @@ namespace BiStatApp.Views
         {
             InitializeComponent();
 
-            BindingContext = new SettingsPageViewModel();
+            var pageService = new PageService() { MainPage = Navigation };
+
+            BindingContext = new SettingsPageViewModel(pageService);
         }
 
         public SettingsPageViewModel ViewModel
         {
             get { return BindingContext as SettingsPageViewModel; }
             set { BindingContext = value; }
+        }
+
+        private void OnSendButtonClicked(object sender, EventArgs e)
+        {
+            ViewModel.SendReportCommand.Execute(e);
         }
     }
 }

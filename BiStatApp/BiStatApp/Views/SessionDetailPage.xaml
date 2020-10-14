@@ -50,7 +50,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="2" />
+            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="2"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
