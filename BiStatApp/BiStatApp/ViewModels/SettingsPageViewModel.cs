@@ -22,10 +22,14 @@ namespace BiStatApp.ViewModels
             }
         }
 
+        public string CurrentVersion { get; private set; }
+
         public SettingsPageViewModel(IPageService pageService)
         {
             _pageService = pageService;
             SendReportCommand = new Command(async () => await SendReport());
+
+            CurrentVersion = VersionTracking.CurrentVersion;
         }
 
         private async Task SendReport()

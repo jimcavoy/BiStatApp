@@ -32,7 +32,7 @@
                             <FormattedString.Spans>
                                 <Span Text="Version"/>
                                 <Span Text=": " />
-                                <Span Text="0.1.0.0-alpha" ForegroundColor="{StaticResource LightTextColor}" />
+                                <Span Text="{Binding CurrentVersion}" ForegroundColor="{StaticResource LightTextColor}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
