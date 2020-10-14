@@ -19,6 +19,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\FontAwesome5Brands.otf" />
+    <None Remove="Assets\FontAwesome5Regular.otf" />
+    <None Remove="Assets\FontAwesome5Solid.otf" />
     <None Remove="Assets\Images\BiProne.png" />
     <None Remove="Assets\Images\BiStand.png" />
     <None Remove="Assets\Images\settings.png" />
@@ -91,6 +94,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="FontAwesome5Brands.otf" />
+    <EmbeddedResource Include="FontAwesome5Regular.otf" />
+    <EmbeddedResource Include="FontAwesome5Solid.otf" />
     <EmbeddedResource Include="Assets\Images\settings.png" />
     <EmbeddedResource Include="Assets\Images\stargetABCE.png" />
     <EmbeddedResource Include="Assets\Images\stargetABD.png" />
@@ -167,9 +173,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1534" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup> 
 

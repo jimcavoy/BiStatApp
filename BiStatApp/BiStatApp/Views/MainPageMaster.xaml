@@ -47,8 +47,8 @@
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Icon}" />
-                            <Label Grid.Column="1" Text="{Binding Title}" />
+                            <Image Source="{Binding Icon}" Margin="5,0,0,0"/>
+                            <Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="Center" Style="{DynamicResource ListItemTextStyle}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
