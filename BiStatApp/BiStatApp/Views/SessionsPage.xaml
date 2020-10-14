@@ -12,9 +12,13 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" Padding="10">
-                <Label Text="Filter:" VerticalOptions="Center"/>
+                <Label Text="Filters:" VerticalOptions="Center"/>
                 <Picker ItemsSource="{Binding FilterOptions}"
                         SelectedItem="{Binding SelectedFilter}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"/>
+                <Picker ItemsSource="{Binding FilterPeriodOptions}"
+                        SelectedItem="{Binding SelectedPeriodFilter}"
                         VerticalOptions="Center"
                         HorizontalOptions="FillAndExpand"/>
             </StackLayout>

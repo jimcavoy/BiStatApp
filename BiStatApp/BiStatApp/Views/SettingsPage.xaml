@@ -10,7 +10,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackLayout BackgroundColor="{StaticResource PrimaryDark}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill" Grid.ColumnSpan="2">
@@ -26,7 +26,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" Grid.Row="1">
-                <Label Style="{DynamicResource ListItemTextStyle}">
+                <Label Style="{DynamicResource ListItemTextStyle}" Padding="10,0,0,0">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
@@ -38,10 +38,11 @@
                     </Label.FormattedText>
                 </Label>
 
-                <Button Text="&#xf0e0; Send Feedback" 
+                <Button Text="&#xf0e0; Send Feedback"
                         FontFamily="FontAwesomeSolid" 
                         BackgroundColor="{StaticResource LightBackgroundColor}"
-                        Clicked="OnSendButtonClicked"/>
+                        Clicked="OnSendButtonClicked"
+                        HorizontalOptions="Start"/>
 
             </StackLayout>
 

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using MvvmHelpers;
+using System.Data;
 
 namespace BiStatApp.ViewModels
 {
@@ -27,6 +28,21 @@ namespace BiStatApp.ViewModels
             = new ObservableRangeCollection<SessionViewModel>();
 
         public ObservableRangeCollection<string> FilterOptions { get; }
+
+        public ObservableRangeCollection<string> FilterPeriodOptions { get; }
+
+        string _selectedPeriodFilter = "All";
+
+        public string SelectedPeriodFilter
+        {
+            get => _selectedPeriodFilter;
+            set
+            {
+                SetValue(ref _selectedPeriodFilter, value);
+                OnPropertyChanged("SelectedPeriodFilter");
+                FilterSessions();
+            }
+        }
 
         string _selectedFilter = "All";
 
@@ -101,6 +117,13 @@ namespace BiStatApp.ViewModels
                 "Dry Fire"
             };
 
+            FilterPeriodOptions = new ObservableRangeCollection<string>
+            {
+                "All",
+                "3 Months",
+                "1 Month"
+            };
+
         }
 
         private void OnSessionAdded(SessionDetailViewModel source, Session session)
@@ -168,9 +191,30 @@ namespace BiStatApp.ViewModels
             await _pageService.PushAsync(new ReportPage(Sessions));
         }
 
+
+        /// <summary>
+        /// Filter on practice and period
+        /// </summary>
         void FilterSessions()
         {
-            Sessions.ReplaceRange(AllSessions.Where(a => a.Name.Contains(SelectedFilter) || SelectedFilter == "All" ));
+            ObservableRangeCollection<SessionViewModel> typeSessions = new ObservableRangeCollection<SessionViewModel>();
+            typeSessions.ReplaceRange(AllSessions.Where(a => a.Name.Contains(SelectedFilter) || SelectedFilter == "All" ));
+
+            ObservableRangeCollection<SessionViewModel> typePeriodSession = new ObservableRangeCollection<SessionViewModel>();
+
+            DateTime startPeriod = new DateTime(1970, 1, 1);
+            if (SelectedPeriodFilter == "3 Months")
+            {
+                startPeriod = DateTime.Today.AddMonths(-3);
+            }
+            else if (SelectedPeriodFilter == "1 Month")
+            {
+                startPeriod = DateTime.Today.AddMonths(-1);
+            }
+
+            typePeriodSession.ReplaceRange(typeSessions.Where(a => a.DateTime > startPeriod));
+
+            Sessions.ReplaceRange(typePeriodSession);
         }
     }
 }
