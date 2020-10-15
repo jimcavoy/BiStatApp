@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BiStatApp.UWP")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Biathlon Shooting Stats")]
+[assembly: AssemblyDescription("Track your Biathlon Shooting results")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ThetaStream")]
 [assembly: AssemblyProduct("BiStatApp.UWP")]
