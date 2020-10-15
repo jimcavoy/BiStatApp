@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BiStatApp.Views.SendSessionPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="10">
+        <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="10" Spacing="10">
             <Label x:Name="labelTitle"
                 Text="Email Results"
                 Style="{DynamicResource TitleStyle}"
@@ -12,7 +12,10 @@
             <Entry x:Name="textTo" Placeholder="someone@example.com"></Entry>
             <Entry x:Name="textSubject" Placeholder="Subject"></Entry>
             <Editor x:Name="textBody" Placeholder="Message" HeightRequest="200"></Editor>
-            <Button x:Name="btnSend" Text="Send Email" Clicked="OnSendBtnClicked" />
+            <Button x:Name="btnSend" 
+                    Text="&#xf1d8; Send Email" 
+                    FontFamily="FontAwesomeSolid"
+                    Clicked="OnSendBtnClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
