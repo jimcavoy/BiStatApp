@@ -102,10 +102,14 @@ namespace BiStatApp.ViewModels
                 return;
 
             _isDataLoaded = true;
-            foreach (var b in Session.Bouts)
+
+            await Task.Run(() =>
             {
-                ShootingBouts.Add(new ShootingBoutViewModel(b));
-            }
+                foreach (var b in Session.Bouts)
+                {
+                    ShootingBouts.Add(new ShootingBoutViewModel(b));
+                }
+            });
         }
 
         async Task Save()
