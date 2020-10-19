@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiStatApp.Android", "BiStat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiStatApp.iOS", "BiStatApp\BiStatApp.iOS\BiStatApp.iOS.csproj", "{A96A65FB-1917-40F4-B3B4-F05E3F929C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiStatApp", "BiStatApp\BiStatApp\BiStatApp.csproj", "{626947E0-2DBB-4332-8BC6-146026601C20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BiStatApp", "BiStatApp\BiStatApp\BiStatApp.csproj", "{626947E0-2DBB-4332-8BC6-146026601C20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,7 +117,6 @@ Global
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Debug|x86.Build.0 = Debug|iPhoneSimulator
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Debug|x86.Deploy.0 = Debug|iPhoneSimulator
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Release|Any CPU.Deploy.0 = Release|iPhoneSimulator
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Release|ARM.ActiveCfg = Release|iPhoneSimulator
 		{A96A65FB-1917-40F4-B3B4-F05E3F929C27}.Release|ARM.Build.0 = Release|iPhoneSimulator
