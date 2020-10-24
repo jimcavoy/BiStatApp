@@ -90,7 +90,8 @@ namespace BiStatApp.ViewModels
             else if (practiceType == "Race - Pursuit" ||
                 practiceType == "Race - Mass Start" ||
                 practiceType == "Race - Relay" ||
-                practiceType == "Time Trail")
+                practiceType == "Time Trail" ||
+                practiceType == "Combo")
             {
                 session.Bouts.Add(new ShootingBout());
                 session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
@@ -100,6 +101,10 @@ namespace BiStatApp.ViewModels
             {
                 session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
                 session.Bouts.Add(new ShootingBout());
+                session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
+            }
+            else
+            {
                 session.Bouts.Add(new ShootingBout() { Position = ShootingBout.PositionEnum.STANDING });
             }
         }

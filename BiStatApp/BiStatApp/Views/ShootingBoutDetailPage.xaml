@@ -16,7 +16,11 @@
                 <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
                 <Switch x:Name="Position" Toggled="Position_Toggled" VerticalOptions="Center"/>
             </StackLayout>
-            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="1"/>
+            <Button Text="Save"
+                    TextColor="{StaticResource LightBackgroundColor}"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding SaveCommand}" Grid.Row="1"
+                    Margin="10"/>
         </Grid>
 
         

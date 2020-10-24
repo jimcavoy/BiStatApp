@@ -24,8 +24,8 @@ namespace BiStatApp.ViewModels
             }
             MenuItems = new ObservableCollection<MainPageMasterMenuItem>(new[]
             {
-                new MainPageMasterMenuItem { Id = 0, Title = "Train", TargetType = typeof(PracticesPage), Icon = new FontImageSource() { FontFamily = "FontAwesomeSolid", Glyph="\uf140", Color=color} },
-                new MainPageMasterMenuItem { Id = 1, Title = "History", TargetType = typeof(SessionsPage), Icon = new FontImageSource() { FontFamily = "FontAwesomeSolid", Glyph="\uf03a", Color=color} },
+                new MainPageMasterMenuItem { Id = 0, Title = "Add Session", TargetType = typeof(PracticesPage), Icon = new FontImageSource() { FontFamily = "FontAwesomeSolid", Glyph="\uf140", Color=color} },
+                new MainPageMasterMenuItem { Id = 1, Title = "Sessions", TargetType = typeof(SessionsPage), Icon = new FontImageSource() { FontFamily = "FontAwesomeSolid", Glyph="\uf03a", Color=color} },
                 new MainPageMasterMenuItem { Id = 2, Title = "Settings", TargetType = typeof(SettingsPage), Icon = new FontImageSource() { FontFamily = "FontAwesomeSolid", Glyph="\uf013", Color=color} }
             });
         }

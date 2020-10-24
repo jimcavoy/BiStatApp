@@ -50,7 +50,10 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Save" Command="{Binding SaveCommand}" Grid.Row="2"/>
+            <Button Text="Save" 
+                    TextColor="{StaticResource LightBackgroundColor}" 
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding SaveCommand}" Grid.Row="2" Margin="10"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

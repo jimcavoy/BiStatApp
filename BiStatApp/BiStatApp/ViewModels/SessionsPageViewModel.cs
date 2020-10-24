@@ -80,7 +80,6 @@ namespace BiStatApp.ViewModels
         public ICommand AddSessionCommand { get; private set; }
         public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
-
         public ICommand ReportCommand { get; private set; }
 
         public SessionsPageViewModel()
@@ -163,7 +162,7 @@ namespace BiStatApp.ViewModels
 
         private async Task AddSession()
         {
-            await _pageService.PushAsync(new SessionDetailPage(new SessionViewModel()));
+            await _pageService.PushAsync(new PracticesPage());
         }
 
         private async Task SelectSession(SessionViewModel session)
