@@ -92,6 +92,31 @@ namespace BiStatApp.Persistence
             return session;
         }
 
+        public async Task<BiStatDocument> GetDocument()
+        {
+            BiStatDocument doc = new BiStatDocument();
+            await Task.Run(() =>
+            {
+                using (var context = new BiStatContext())
+                {
+                    var list = context.Sessions.Include(s => s.Bouts).ToList();
+                    foreach (var s in list)
+                    {
+                        doc.Sessions.Add(s);
+                    }
+                }
+            });
+            return doc;
+        }
+
+        public async Task SetDocument(BiStatDocument doc)
+        {
+            foreach(var session in doc.Sessions)
+            {
+                await AddSession(session);
+            }
+        }
+
         public async Task<ShootingBout> GetShootingBout(int id)
         {
             ShootingBout bout = new ShootingBout();

@@ -28,6 +28,10 @@ namespace BiStatApp.ViewModels
 
 		Task<IEnumerable<Practice>> GetPracticesAsync();
 
+		Task<BiStatDocument> GetDocument();
+
+		Task SetDocument(BiStatDocument doc);
+
 		void SeedData();
 	}
 }

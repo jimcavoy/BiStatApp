@@ -38,11 +38,38 @@
                     </Label.FormattedText>
                 </Label>
 
-                <Button Text="&#xf0e0; Send Feedback"
-                        FontFamily="FontAwesomeSolid" 
-                        BackgroundColor="{StaticResource LightBackgroundColor}"
+                <Button Text="Send Feedback"
+                        TextColor="{StaticResource LightBackgroundColor}"
+                        BackgroundColor="{StaticResource Primary}"
                         Clicked="OnSendButtonClicked"
-                        HorizontalOptions="Start"/>
+                        HorizontalOptions="Start"
+                        Margin="10">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="&#xf0e0;" FontFamily="FontAwesomeSolid" />
+                    </Button.ImageSource>
+                </Button>
+
+                <Button Text="Export Data"
+                        TextColor="{StaticResource LightBackgroundColor}"
+                        BackgroundColor="{StaticResource Primary}"
+                        HorizontalOptions="Start"
+                        Clicked="OnExportButtonClicked"
+                        Margin="10">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="&#xf56e;" FontFamily="FontAwesomeSolid" />
+                    </Button.ImageSource>
+                </Button>
+
+                <Button Text="Import Data"
+                        TextColor="{StaticResource LightBackgroundColor}"
+                        BackgroundColor="{StaticResource Primary}"
+                        HorizontalOptions="Start"
+                        Clicked="OnImportButtonClicked"
+                        Margin="10">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="&#xf56f;" FontFamily="FontAwesomeSolid" />
+                    </Button.ImageSource>
+                </Button>
 
             </StackLayout>
 

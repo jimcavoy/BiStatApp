@@ -1,4 +1,5 @@
 ﻿using BiStatApp.ViewModels;
+using BiStatApp.Persistence;
 
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,10 @@ namespace BiStatApp.Views
         {
             InitializeComponent();
 
+            var sessionStore = new SQLiteSessionStore();
             var pageService = new PageService() { MainPage = Navigation };
 
-            BindingContext = new SettingsPageViewModel(pageService);
+            BindingContext = new SettingsPageViewModel(sessionStore, pageService);
         }
 
         public SettingsPageViewModel ViewModel
@@ -32,6 +34,16 @@ namespace BiStatApp.Views
         private void OnSendButtonClicked(object sender, EventArgs e)
         {
             ViewModel.SendReportCommand.Execute(e);
+        }
+
+        private void OnExportButtonClicked(object sender, EventArgs e)
+        {
+            ViewModel.ExportDataCommand.Execute(e);
+        }
+
+        private void OnImportButtonClicked(object sender, EventArgs e)
+        {
+            ViewModel.ImportDataCommand.Execute(e);
         }
     }
 }
