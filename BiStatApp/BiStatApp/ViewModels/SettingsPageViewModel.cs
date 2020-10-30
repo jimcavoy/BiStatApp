@@ -1,4 +1,5 @@
 ﻿using BiStatApp.Models;
+using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -86,6 +87,9 @@ namespace BiStatApp.ViewModels
 
                 var localPath = Path.Combine(FileSystem.AppDataDirectory, fileName);
                 File.WriteAllText(localPath, jsonString);
+
+                CrossToastPopUp.Current.ShowToastMessage("Sessions Backup");
+
             }
             catch (Exception ex)
             {
@@ -106,6 +110,8 @@ namespace BiStatApp.ViewModels
                 var doc = JsonSerializer.Deserialize<BiStatDocument>(jsonString, options);
 
                 await _sessionStore.SetDocument(doc);
+
+                CrossToastPopUp.Current.ShowToastMessage("Sessions Restored");
             }
             catch (Exception ex)
             {
