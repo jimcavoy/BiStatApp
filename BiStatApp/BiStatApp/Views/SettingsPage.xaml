@@ -49,7 +49,7 @@
                     </Button.ImageSource>
                 </Button>
 
-                <Button Text="Export Data"
+                <Button Text="Backup"
                         TextColor="{StaticResource LightBackgroundColor}"
                         BackgroundColor="{StaticResource Primary}"
                         HorizontalOptions="Start"
@@ -60,7 +60,7 @@
                     </Button.ImageSource>
                 </Button>
 
-                <Button Text="Import Data"
+                <Button Text="Restore"
                         TextColor="{StaticResource LightBackgroundColor}"
                         BackgroundColor="{StaticResource Primary}"
                         HorizontalOptions="Start"
