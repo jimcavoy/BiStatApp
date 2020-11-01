@@ -88,7 +88,7 @@ namespace BiStatApp.ViewModels
                 var localPath = Path.Combine(FileSystem.AppDataDirectory, fileName);
                 File.WriteAllText(localPath, jsonString);
 
-                CrossToastPopUp.Current.ShowToastMessage("Sessions Backup");
+                //CrossToastPopUp.Current.ShowToastMessage("Sessions Backup");
 
             }
             catch (Exception ex)
@@ -101,17 +101,22 @@ namespace BiStatApp.ViewModels
         {
             try
             {
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
-                string fileName = "BiStatDocument.json";
+                var result = await FilePicker.PickAsync();
+                if (result != null)
+                {
+                    IFileHelper reader = DependencyService.Get<IFileHelper>();
+                    if (await reader.CopyFileAsync("", result.FullPath))
+                    {
+                        string jsonString = await reader.ReadTextAsync(result.FileName);
 
-                var localPath = Path.Combine(FileSystem.AppDataDirectory, fileName);
-                string jsonString = File.ReadAllText(localPath);
-                var doc = JsonSerializer.Deserialize<BiStatDocument>(jsonString, options);
+                        var options = new JsonSerializerOptions();
+                        options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+                        var doc = JsonSerializer.Deserialize<BiStatDocument>(jsonString, options);
 
-                await _sessionStore.SetDocument(doc);
-
-                CrossToastPopUp.Current.ShowToastMessage("Sessions Restored");
+                        await _sessionStore.SetDocument(doc); 
+                        //CrossToastPopUp.Current.ShowToastMessage("Sessions Restored");
+                    }
+                }
             }
             catch (Exception ex)
             {

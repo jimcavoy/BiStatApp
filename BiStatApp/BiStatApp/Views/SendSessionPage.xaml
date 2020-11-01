@@ -13,9 +13,14 @@
             <Entry x:Name="textSubject" Placeholder="Subject"></Entry>
             <Editor x:Name="textBody" Placeholder="Message" HeightRequest="200"></Editor>
             <Button x:Name="btnSend" 
-                    Text="&#xf1d8; Send Email" 
-                    FontFamily="FontAwesomeSolid"
-                    Clicked="OnSendBtnClicked" />
+                    Text="Send Email" 
+                    TextColor="{StaticResource LightBackgroundColor}"
+                    BackgroundColor="{StaticResource Primary}"
+                    Clicked="OnSendBtnClicked" >
+                <Button.ImageSource>
+                    <FontImageSource Glyph="&#xf1d8;" FontFamily="FontAwesomeSolid" />
+                </Button.ImageSource>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

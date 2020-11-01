@@ -29,7 +29,7 @@ namespace BiStatApp.ViewModels
 
             foreach (var s in Sessions)
             {
-                if (s.Name != "Dry Fire")
+                if (s.Name != "Dry Fire" && s.Bouts.Count() > 0)
                 {
                     sessionCount++;
                     hits += s.HitPercentage;

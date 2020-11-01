@@ -60,7 +60,7 @@
                     </Button.ImageSource>
                 </Button>
 
-                <Button Text="Restore"
+                <Button Text="Import"
                         TextColor="{StaticResource LightBackgroundColor}"
                         BackgroundColor="{StaticResource Primary}"
                         HorizontalOptions="Start"
