@@ -7,7 +7,6 @@ using Android.Util;
 using Java.IO;
 using System;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace BiStatApp.Droid
 {

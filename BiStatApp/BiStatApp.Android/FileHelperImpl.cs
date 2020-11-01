@@ -2,18 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
-using Android.App;
 using Android.Content;
-using Android.Icu.Text;
-using Android.OS;
-using Android.Provider;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
 
 using Xamarin.Forms;
 
