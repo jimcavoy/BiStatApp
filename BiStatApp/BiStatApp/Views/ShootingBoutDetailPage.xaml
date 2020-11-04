@@ -19,13 +19,13 @@
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="10">
                     <Label Text="Start HR" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
-                    <Entry x:Name="entryStartHR" Placeholder="0" Text="{Binding Path=Bout.StartHeartRate}" WidthRequest="50"/>
+                    <Entry x:Name="entryStartHR" Placeholder="0" Text="{Binding Path=Bout.StartHeartRate}" WidthRequest="50" Keyboard="Numeric"/>
                     <Label Text="End HR" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
-                    <Entry x:Name="entryEndHR" Placeholder="0" Text="{Binding Path=Bout.EndHeartRate}" WidthRequest="50"/>
+                    <Entry x:Name="entryEndHR" Placeholder="0" Text="{Binding Path=Bout.EndHeartRate}" WidthRequest="50" Keyboard="Numeric"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Margin="10">
-                    <Label Text="Duration" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
-                    <Entry x:Name="entryDur" Placeholder="0" Text="{Binding Path=Bout.Duration}" WidthRequest="60"/>
+                    <Label Text="Duration (seconds)" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
+                    <Entry x:Name="entryDur" Placeholder="0" Text="{Binding Path=Bout.Duration}" WidthRequest="60" Keyboard="Numeric"/>
                 </StackLayout>
                 <Button x:Name="btnStopwatch"
                     Text="Start" 
