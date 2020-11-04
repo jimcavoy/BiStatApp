@@ -3,9 +3,11 @@ using BiStatApp.Persistence;
 using BiStatApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -16,6 +18,9 @@ namespace BiStatApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShootingBoutDetailPage : ContentPage
     {
+        Timer _timer;
+        decimal _elapsedTime;
+
         public ShootingBoutDetailPage(ShootingBoutViewModel viewModel)
         {
             InitializeComponent();
@@ -71,6 +76,30 @@ namespace BiStatApp.Views
         private void Position_Toggled(object sender, ToggledEventArgs e)
         {
             ViewModel.PositionChangedCommand.Execute(e.Value);
+        }
+
+        private void btnStopwatch_Clicked(object sender, EventArgs e)
+        {
+            if (btnStopwatch.BackgroundColor == Color.Green)
+            {
+                btnStopwatch.Text = "Stop";
+                btnStopwatch.BackgroundColor = Color.Red;
+                ViewModel.Bout.Duration = 0;
+                _elapsedTime = 0;
+                _timer = new Timer(TimerProc, null, 0, 100);
+            }
+            else
+            {
+                _timer.Dispose();
+                btnStopwatch.Text = "Start";
+                btnStopwatch.BackgroundColor = Color.Green;
+            }
+        }
+
+        private void TimerProc(object state)
+        {
+            _elapsedTime += Convert.ToDecimal(0.1);
+            ViewModel.Bout.Duration = _elapsedTime;
         }
     }
 }

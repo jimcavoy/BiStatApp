@@ -13,7 +13,7 @@ namespace BiStatApp.ViewModels
         private readonly ISessionStore _sessionStore;
         private readonly IPageService _pageService;
 
-        public ShootingBout Bout { get; private set; }
+        public ShootingBoutViewModel Bout { get; private set; }
 
         public ICommand SaveCommand { get; private set; }
 
@@ -45,7 +45,7 @@ namespace BiStatApp.ViewModels
             EchoCheckedCommand = new Command<bool>(async c => await EchoChecked(c));
             PositionChangedCommand = new Command<bool>(async c => await PositionChanged(c));
 
-            Bout = new ShootingBout
+            Bout = new ShootingBoutViewModel
             {
                 Id = viewModel.Id,
                 SessionId = viewModel.SessionId,
@@ -54,21 +54,39 @@ namespace BiStatApp.ViewModels
                 Charlie = viewModel.Charlie,
                 Delta = viewModel.Delta,
                 Echo = viewModel.Echo,
-                Position = viewModel.Position
+                Position = viewModel.Position,
+                StartHeartRate = viewModel.StartHeartRate,
+                EndHeartRate = viewModel.EndHeartRate,
+                Duration = viewModel.Duration
             };
         }
 
         async Task Save()
         {
+            ShootingBout aBout = new ShootingBout
+            {
+                Id = Bout.Id,
+                SessionId = Bout.SessionId,
+                Alpha = Bout.Alpha,
+                Bravo = Bout.Bravo,
+                Charlie = Bout.Charlie,
+                Delta = Bout.Delta,
+                Echo = Bout.Echo,
+                Position = Bout.Position,
+                StartHeartRate = Bout.StartHeartRate,
+                EndHeartRate = Bout.EndHeartRate,
+                Duration = Convert.ToDouble(Bout.Duration)
+            };
+
             if (Bout.Id == 0)
             {
-                await _sessionStore.AddShootingBout(Bout);
-                MessagingCenter.Send(this, Events.ShootingBoutAdded, Bout);
+                await _sessionStore.AddShootingBout(aBout);
+                MessagingCenter.Send(this, Events.ShootingBoutAdded, aBout);
             }
             else
             {
-                await _sessionStore.UpdateShootingBout(Bout);
-                MessagingCenter.Send(this, Events.ShootingBoutUpdated, Bout);
+                await _sessionStore.UpdateShootingBout(aBout);
+                MessagingCenter.Send(this, Events.ShootingBoutUpdated, aBout);
             }
             await _pageService.PopAsync();
         }

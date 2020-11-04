@@ -1,0 +1,13 @@
+BUILD NOTES
+
+27 Oct 2020
+======================================
+EF MIGRATION
+======================================
+
+Based on solution provided here, https://github.com/ngrumbine/EFDemo.
+
+Open Package Manager Console and run the following command.
+
+add-migration "Initial" -Project BiStatApp -StartupProject BiStatApp.MigrationTool
+

@@ -3,15 +3,21 @@ using BiStatApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Xamarin.Essentials;
 
 namespace BiStatApp.Persistence
 {
     public class SQLiteSessionStore : ISessionStore
     {
         private readonly List<Practice> _practices = new List<Practice>();
+
+        private string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "BiStatApp.db3");
+
         public SQLiteSessionStore()
         {
 
@@ -22,7 +28,7 @@ namespace BiStatApp.Persistence
             List<Session> list = new List<Session>();
             await Task.Run(() =>
             {
-                using (var context = new BiStatContext())
+                using (var context = new BiStatContext(_dbPath))
                 {
                     list = context.Sessions.Include(s => s.Bouts).ToList();
                 }
@@ -33,7 +39,7 @@ namespace BiStatApp.Persistence
 
         public async Task DeleteSession(Session session)
         {
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 var origSession = context.Sessions
                     .Where(s => s.Id == session.Id)
@@ -46,7 +52,7 @@ namespace BiStatApp.Persistence
         public async Task<Session> AddSession(Session session)
         {
             Session ret;
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 ret = context.Sessions.Add(session).Entity;
 
@@ -63,7 +69,7 @@ namespace BiStatApp.Persistence
 
         public async Task UpdateSession(Session session)
         {
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 var origSession = context.Sessions
                     .Where(s => s.Id == session.Id).FirstOrDefault();
@@ -81,7 +87,7 @@ namespace BiStatApp.Persistence
             Session session = new Session();
             await Task.Run(() =>
             {
-                using (var context = new BiStatContext())
+                using (var context = new BiStatContext(_dbPath))
                 {
                     session = context.Sessions
                         .Where(s => s.Id == id)
@@ -97,7 +103,7 @@ namespace BiStatApp.Persistence
             BiStatDocument doc = new BiStatDocument();
             await Task.Run(() =>
             {
-                using (var context = new BiStatContext())
+                using (var context = new BiStatContext(_dbPath))
                 {
                     var list = context.Sessions.Include(s => s.Bouts).ToList();
                     foreach (var s in list)
@@ -122,7 +128,7 @@ namespace BiStatApp.Persistence
             ShootingBout bout = new ShootingBout();
             await Task.Run(() =>
             {
-                using (var context = new BiStatContext())
+                using (var context = new BiStatContext(_dbPath))
                 {
                     bout = context.Bouts
                         .Where(b => b.Id == id)
@@ -134,7 +140,7 @@ namespace BiStatApp.Persistence
 
         public async Task AddShootingBout(ShootingBout bout)
         {
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 context.Bouts.Add(bout);
                 await context.SaveChangesAsync();
@@ -143,7 +149,7 @@ namespace BiStatApp.Persistence
 
         public async Task UpdateShootingBout(ShootingBout bout)
         {
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 var origBout = context.Bouts
                     .Where(b => b.Id == bout.Id).FirstOrDefault();
@@ -156,6 +162,9 @@ namespace BiStatApp.Persistence
                     origBout.Charlie = bout.Charlie;
                     origBout.Delta = bout.Delta;
                     origBout.Echo = bout.Echo;
+                    origBout.StartHeartRate = bout.StartHeartRate;
+                    origBout.EndHeartRate = bout.EndHeartRate;
+                    origBout.Duration = bout.Duration;
 
                     await context.SaveChangesAsync();
                 }
@@ -167,7 +176,7 @@ namespace BiStatApp.Persistence
             if (bout.Id == 0)
                 return;
 
-            using (var context = new BiStatContext())
+            using (var context = new BiStatContext(_dbPath))
             {
                 context.Bouts.Remove(bout);
                 await context.SaveChangesAsync();

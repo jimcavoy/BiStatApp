@@ -8,13 +8,35 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <CheckBox x:Name="Alpha" CheckedChanged="Alpha_CheckedChanged"/>
-                <CheckBox x:Name="Bravo" CheckedChanged="Bravo_CheckedChanged"/>
-                <CheckBox x:Name="Charlie" CheckedChanged="Charlie_CheckedChanged"/>
-                <CheckBox x:Name="Delta" CheckedChanged="Delta_CheckedChanged"/>
-                <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
-                <Switch x:Name="Position" Toggled="Position_Toggled" VerticalOptions="Center"/>
+            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" Margin="10">
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <CheckBox x:Name="Alpha" CheckedChanged="Alpha_CheckedChanged"/>
+                    <CheckBox x:Name="Bravo" CheckedChanged="Bravo_CheckedChanged"/>
+                    <CheckBox x:Name="Charlie" CheckedChanged="Charlie_CheckedChanged"/>
+                    <CheckBox x:Name="Delta" CheckedChanged="Delta_CheckedChanged"/>
+                    <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
+                    <Switch x:Name="Position" Toggled="Position_Toggled" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <Label Text="Start HR" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
+                    <Entry x:Name="entryStartHR" Placeholder="0" Text="{Binding Path=Bout.StartHeartRate}" WidthRequest="50"/>
+                    <Label Text="End HR" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
+                    <Entry x:Name="entryEndHR" Placeholder="0" Text="{Binding Path=Bout.EndHeartRate}" WidthRequest="50"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <Label Text="Duration" Style="{DynamicResource ListItemTextStyle}" VerticalOptions="Center"/>
+                    <Entry x:Name="entryDur" Placeholder="0" Text="{Binding Path=Bout.Duration}" WidthRequest="60"/>
+                </StackLayout>
+                <Button x:Name="btnStopwatch"
+                    Text="Start" 
+                    TextColor="{StaticResource LightBackgroundColor}"
+                    BackgroundColor="Green"
+                    Margin="10"
+                    Clicked="btnStopwatch_Clicked">
+                    <Button.ImageSource>
+                        <FontImageSource Glyph="&#xf2f2;" FontFamily="FontAwesomeSolid" />
+                    </Button.ImageSource>
+                </Button>
             </StackLayout>
             <Button Text="Save"
                     TextColor="{StaticResource LightBackgroundColor}"
@@ -23,6 +45,6 @@
                     Margin="10"/>
         </Grid>
 
-        
+
     </ContentPage.Content>
 </ContentPage>

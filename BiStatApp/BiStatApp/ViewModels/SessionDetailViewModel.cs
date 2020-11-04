@@ -93,6 +93,9 @@ namespace BiStatApp.ViewModels
                 boutInList.Charlie = bout.Charlie;
                 boutInList.Delta = bout.Delta;
                 boutInList.Echo = bout.Echo;
+                boutInList.StartHeartRate = bout.StartHeartRate;
+                boutInList.EndHeartRate = bout.EndHeartRate;
+                boutInList.Duration = Convert.ToDecimal(bout.Duration);
             }
         }
 

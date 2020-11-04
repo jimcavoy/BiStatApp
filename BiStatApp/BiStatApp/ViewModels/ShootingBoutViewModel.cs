@@ -26,6 +26,9 @@ namespace BiStatApp.ViewModels
             _charlie = bout.Charlie;
             _delta = bout.Delta;
             _echo = bout.Echo;
+            _startHeartRate = bout.StartHeartRate;
+            _endHeartRate = bout.EndHeartRate;
+            _duration = Convert.ToDecimal(bout.Duration);
             SessionId = bout.SessionId;
         }
 
@@ -95,6 +98,43 @@ namespace BiStatApp.ViewModels
                 OnPropertyChanged(nameof(TargetImage));
             }
         }
+
+        private int _startHeartRate;
+
+        public int StartHeartRate
+        {
+            get { return _startHeartRate; }
+            set
+            {
+                SetValue(ref _startHeartRate, value);
+                OnPropertyChanged(nameof(StartHeartRate));
+            }
+        }
+
+        private int _endHeartRate;
+
+        public int EndHeartRate
+        {
+            get { return _endHeartRate; }
+            set
+            {
+                SetValue(ref _endHeartRate, value);
+                OnPropertyChanged(nameof(EndHeartRate));
+            }
+        }
+
+        private decimal _duration;
+
+        public decimal Duration
+        { 
+            get { return _duration; }
+            set
+            {
+                SetValue(ref _duration, value);
+                OnPropertyChanged(nameof(Duration));
+            }
+        }
+
 
         public int Misses
         {

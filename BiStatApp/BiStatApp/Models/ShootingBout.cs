@@ -32,6 +32,12 @@ namespace BiStatApp.Models
 
 		public bool Echo { get; set; } = false;
 
+		public double Duration { get; set; } = 0;
+
+		public int StartHeartRate { get; set; } = 0;
+
+		public int EndHeartRate { get; set; } = 0;
+
 		[JsonIgnore]
 		public int SessionId { get; set; }
 

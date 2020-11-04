@@ -13,18 +13,18 @@ namespace BiStatApp.Persistence
 		public DbSet<Session> Sessions { get; set; }
 		public DbSet<ShootingBout> Bouts { get; set; }
 
-		public BiStatContext()
+		private string _databasePath;
+
+		public BiStatContext(string databasePath)
 		{
 			SQLitePCL.Batteries_V2.Init();
-
-			this.Database.EnsureCreated();
+			_databasePath = databasePath;
+			this.Database.Migrate();
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			string dbPath = Path.Combine(FileSystem.AppDataDirectory, "BiStatApp.db3");
-
-			optionsBuilder.UseSqlite($"Filename={dbPath}");
+			optionsBuilder.UseSqlite($"Filename={_databasePath}");
 		}
 	}
 }
