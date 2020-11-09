@@ -101,5 +101,10 @@ namespace BiStatApp.Views
             _elapsedTime += Convert.ToDecimal(0.1);
             ViewModel.Bout.Duration = _elapsedTime;
         }
+
+        private void AdvanceSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+            ViewModel.ShowAdvanceView = e.Value;
+        }
     }
 }

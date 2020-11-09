@@ -8,12 +8,23 @@ using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
 {
-    public class ShootingBoutPageViewModel
+    public class ShootingBoutPageViewModel : BaseViewModel
     {
         private readonly ISessionStore _sessionStore;
         private readonly IPageService _pageService;
 
         public ShootingBoutViewModel Bout { get; private set; }
+
+        bool _showAdvanceView = false;
+        public bool ShowAdvanceView
+        {
+            get => _showAdvanceView;
+            set
+            {
+                SetValue(ref _showAdvanceView, value);
+                OnPropertyChanged("ShowAdvanceView");
+            }
+        }
 
         public ICommand SaveCommand { get; private set; }
 
