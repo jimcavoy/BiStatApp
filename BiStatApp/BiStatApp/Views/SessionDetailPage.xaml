@@ -2,38 +2,48 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="sessionDetailPage"
-             x:Class="BiStatApp.Views.SessionDetailPage">
+             x:Class="BiStatApp.Views.SessionDetailPage"
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Send" Command="{Binding SendCommand}"/>
-        <ToolbarItem Text="Add" Command="{Binding AddShootingBoutCommand}" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>
-                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Orientation="Vertical" Margin="10">
+            <StackLayout 
+                Orientation="Vertical"
+                BackgroundColor="{StaticResource Accent}">
                 <Label x:Name="labelTitle"
-                       Text="{Binding Path=Session.Name}"
+                       Text="{Binding Path=SessionName}"
+                       TextColor="{StaticResource LightBackgroundColor}"
                        Style="{DynamicResource TitleStyle}"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
-                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Session.Description}" />
-                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
-                    <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
-                </DatePicker>
+                       HorizontalOptions="CenterAndExpand" 
+                       Padding="0,20,0,0"/>
+                
+                <Label x:Name="dateLabel" 
+                       Text="{Binding Path=DateTime}"
+                       TextColor="{StaticResource LightBackgroundColor}"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       HorizontalOptions="CenterAndExpand"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Grid.Row="1" Padding="10,10,0,0">
+                <Label Text="Description: " FontSize="Medium" />
+                <Label x:Name="editorDescr" Text="{Binding Path=Description}" />
             </StackLayout>
 
             <ListView ItemsSource="{Binding Path=ShootingBouts}" 
-                      SelectedItem="{Binding SelectedShootingBout, Mode=TwoWay}"
-                      HasUnevenRows="True" 
-                      ItemSelected="OnBoutSelected"
-                      Grid.Row="1">
+                    HasUnevenRows="True"
+                    Grid.Row="2"
+                    SelectionMode="None"
+                    SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -42,18 +52,12 @@
                                     <Image Source="{Binding TargetImage}" HeightRequest="50"/>
                                 </StackLayout>
                             </ViewCell.View>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionDetailPage}, Path=ViewModel.DeleteShootingBoutCommand}" CommandParameter="{Binding .}" />
-                            </ViewCell.ContextActions>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Text="Save" 
-                    TextColor="{StaticResource LightBackgroundColor}" 
-                    BackgroundColor="{StaticResource Primary}"
-                    Command="{Binding SaveCommand}" Grid.Row="2" Margin="10"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

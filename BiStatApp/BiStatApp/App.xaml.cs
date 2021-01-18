@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiStatApp.Persistence;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,8 @@ namespace BiStatApp
 		{
 			InitializeComponent();
 
-			MainPage = new BiStatApp.Views.MainPage();
+			DependencyService.Register<SQLiteSessionStore>();
+			MainPage = new AppShell();
 		}
 
 		protected override void OnStart()

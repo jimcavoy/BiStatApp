@@ -19,6 +19,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\MainPageMasterViewModel.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\MainPageMaster.xaml.cs" />
+    <Compile Remove="Views\MainPageMasterMenuItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MainPageMaster.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\FontAwesome5Brands.otf" />
     <None Remove="Assets\FontAwesome5Regular.otf" />
     <None Remove="Assets\FontAwesome5Solid.otf" />
@@ -194,10 +206,7 @@
     <EmbeddedResource Update="MasterDetailPage1Detail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MainPageMaster.xaml">
+    <EmbeddedResource Update="Views\NewSessionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PracticesPage.xaml">

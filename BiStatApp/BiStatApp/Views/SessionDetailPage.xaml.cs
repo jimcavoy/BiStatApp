@@ -14,25 +14,18 @@ namespace BiStatApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SessionDetailPage : ContentPage
     {
+
+        public SessionDetailPage()
+        {
+            InitializeComponent();
+            ViewModel = new SessionDetailViewModel();
+        }
+
         public SessionDetailPage(SessionViewModel viewModel)
         {
             InitializeComponent();
-
-            var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService() { MainPage = Navigation };
             Title = (viewModel.Name == null) ? "New Session" : "Edit Session";
-            BindingContext = new SessionDetailViewModel(viewModel ?? new SessionViewModel(), sessionStore, pageService);
-        }
-
-        protected override void OnAppearing()
-        {
-            ViewModel.LoadDataCommand.Execute(null);
-            base.OnAppearing();
-        }
-
-        void OnBoutSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ViewModel.SelectShootingBoutCommand.Execute(e.SelectedItem);
+            ViewModel = new SessionDetailViewModel(viewModel);
         }
 
         public SessionDetailViewModel ViewModel

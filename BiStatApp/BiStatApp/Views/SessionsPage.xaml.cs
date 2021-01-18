@@ -17,23 +17,15 @@ namespace BiStatApp.Views
     {
         public SessionsPage()
         {
-            var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService() { MainPage = Navigation };
-
-            ViewModel = new SessionsPageViewModel(sessionStore, pageService);
-
+            ViewModel = new SessionsPageViewModel();
             InitializeComponent();
         }
 
         protected override void OnAppearing()
         {
-            ViewModel.LoadDataCommand.Execute(null);
             base.OnAppearing();
-        }
-
-        void OnSessionSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ViewModel.SelectSessionCommand.Execute(e.SelectedItem);
+            ViewModel.OnAppearing();
+            ViewModel.LoadDataCommand.Execute(null);
         }
 
         public SessionsPageViewModel ViewModel

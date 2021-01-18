@@ -4,6 +4,7 @@ using BiStatApp.ViewModels;
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,10 +18,6 @@ namespace BiStatApp.ViewModels
     public class SessionsPageViewModel : BaseViewModel
     {
         private SessionViewModel _selectedSession;
-        private readonly ISessionStore _sessionStore;
-        private readonly IPageService _pageService;
-
-        //private bool _isDataLoaded = false;
 
         public ObservableRangeCollection<SessionViewModel> Sessions { get; private set; }
             = new ObservableRangeCollection<SessionViewModel>();
@@ -59,8 +56,12 @@ namespace BiStatApp.ViewModels
 
         public SessionViewModel SelectedSession
         {
-            get { return _selectedSession; }
-            set { SetValue(ref _selectedSession, value); }
+            get => _selectedSession;
+            set 
+            { 
+                SetValue(ref _selectedSession, value);
+                OnSelectSession(value);
+            }
         }
 
         public double OverallHitPercentage
@@ -77,29 +78,14 @@ namespace BiStatApp.ViewModels
         }
 
         public ICommand LoadDataCommand { get; private set; }
-        public ICommand AddSessionCommand { get; private set; }
         public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
-        public ICommand ReportCommand { get; private set; }
 
         public SessionsPageViewModel()
         {
-
-        }
-
-        public SessionsPageViewModel(ISessionStore sessionStore, IPageService pageService)
-        {
-            _sessionStore = sessionStore;
-            _pageService = pageService;
-
             LoadDataCommand = new Command(async () => await LoadData());
-            AddSessionCommand = new Command(async () => await AddSession());
-            SelectSessionCommand = new Command<SessionViewModel>(async c => await SelectSession(c));
+            SelectSessionCommand = new Command<SessionViewModel>(OnSelectSession);
             DeleteSessionCommand = new Command<SessionViewModel>(async c => await DeleteSession(c));
-            ReportCommand = new Command(async () => await ShowReport());
-
-            MessagingCenter.Subscribe<SessionDetailViewModel, Session>
-                (this, Events.SessionAdded, OnSessionAdded);
 
             MessagingCenter.Subscribe<SessionDetailViewModel, Session>
                 (this, Events.SessionUpdated, OnSessionUpdated);
@@ -123,11 +109,7 @@ namespace BiStatApp.ViewModels
                 "1 Month"
             };
 
-        }
-
-        private void OnSessionAdded(SessionDetailViewModel source, Session session)
-        {
-            Sessions.Add(new SessionViewModel(session));
+            Title = "History";
         }
 
         private void OnSessionUpdated(SessionDetailViewModel source, Session session)
@@ -149,45 +131,50 @@ namespace BiStatApp.ViewModels
 
         private async Task LoadData()
         {
-            //if (_isDataLoaded)
-            //    return;
+            IsBusy = true;
 
-            //_isDataLoaded = true;
-            AllSessions.Clear();
-            var sessions = await _sessionStore.GetSessionsAsync();
-            foreach (var session in sessions)
-                AllSessions.Add(new SessionViewModel(session));
-            FilterSessions();
+            try
+            {
+                AllSessions.Clear();
+                var sessions = await DataStore.GetSessionsAsync();
+                foreach (var session in sessions)
+                    AllSessions.Add(new SessionViewModel(session));
+                FilterSessions();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
-        private async Task AddSession()
+        public void OnAppearing()
         {
-            await _pageService.PushAsync(new PracticesPage());
+            IsBusy = true;
+            SelectedSession = null;
         }
 
-        private async Task SelectSession(SessionViewModel session)
+
+        private async void OnSelectSession(SessionViewModel session)
         {
             if (session == null)
                 return;
 
-            SelectedSession = null;
-            await _pageService.PushAsync(new SessionDetailPage(session));
+            await Shell.Current.GoToAsync($"{nameof(SessionDetailPage)}?{nameof(SessionDetailViewModel.SessionId)}={session.Id.ToString()}");
         }
 
         private async Task DeleteSession(SessionViewModel sessionViewModel)
         {
-            if (await _pageService.DisplayAlert("Warning", $"Are you sure you want to delete {sessionViewModel.Name}?", "Yes", "No"))
+            if (await Application.Current.MainPage.DisplayAlert("Warning", $"Are you sure you want to delete {sessionViewModel.Name}?", "Yes", "No"))
             {
                 Sessions.Remove(sessionViewModel);
 
-                var session = await _sessionStore.GetSession(sessionViewModel.Id);
-                await _sessionStore.DeleteSession(session);
+                var session = await DataStore.GetSession(sessionViewModel.Id);
+                await DataStore.DeleteSession(session);
             }
-        }
-
-        private async Task ShowReport()
-        {
-            await _pageService.PushAsync(new ReportPage(Sessions));
         }
 
 
