@@ -15,11 +15,10 @@ namespace BiStatApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReportPage : ContentPage
     {
-        public ReportPage(IEnumerable<SessionViewModel> sessions)
+        public ReportPage()
         {
             InitializeComponent();
-
-            BindingContext = new ReportPageViewModel(sessions);
+            ViewModel = new ReportPageViewModel();
         }
 
         public ReportPageViewModel ViewModel

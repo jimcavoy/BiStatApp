@@ -10,6 +10,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" Padding="10">
                 <Label Text="Filters:" VerticalOptions="Center"/>
@@ -65,7 +66,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!--<Button Text="Report" TextColor="{StaticResource LightBackgroundColor}" Command="{Binding ReportCommand}" Grid.Row="2" BackgroundColor="{StaticResource Primary}" Margin="10"/>-->
+            <Button Text="Report" TextColor="{StaticResource LightBackgroundColor}" Command="{Binding ReportCommand}" Grid.Row="2" BackgroundColor="{StaticResource Primary}" Margin="10"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

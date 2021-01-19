@@ -66,7 +66,7 @@
                 Style="{DynamicResource ListItemTextStyle }"
                 Grid.Column="2" Grid.Row="6"/>
 
-            <Label Text="{Binding Sessions.Count}" TextColor="Black"
+            <Label Text="{Binding SessionsCount}" TextColor="Black"
                 Style="{DynamicResource ListItemTextStyle }"
                 Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2"/>
 

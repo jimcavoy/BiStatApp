@@ -80,12 +80,14 @@ namespace BiStatApp.ViewModels
         public ICommand LoadDataCommand { get; private set; }
         public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
+        public ICommand ReportCommand { get; private set; }
 
         public SessionsPageViewModel()
         {
             LoadDataCommand = new Command(async () => await LoadData());
             SelectSessionCommand = new Command<SessionViewModel>(OnSelectSession);
             DeleteSessionCommand = new Command<SessionViewModel>(async c => await DeleteSession(c));
+            ReportCommand = new Command(async () => await ShowReport());
 
             MessagingCenter.Subscribe<SessionDetailViewModel, Session>
                 (this, Events.SessionUpdated, OnSessionUpdated);
@@ -175,6 +177,12 @@ namespace BiStatApp.ViewModels
                 var session = await DataStore.GetSession(sessionViewModel.Id);
                 await DataStore.DeleteSession(session);
             }
+        }
+
+        private async Task ShowReport()
+        {
+            string filter = SelectedFilter + "+" + SelectedPeriodFilter;
+            await Shell.Current.GoToAsync($"{nameof(ReportPage)}?{nameof(ReportPageViewModel.Filter)}={filter}");
         }
 
 

@@ -42,7 +42,7 @@ namespace BiStatApp.ViewModels
             set
             {
                 _sessionId = value;
-                LoadSessionId(value);
+                LoadData(value);
             }
         }
 
@@ -242,7 +242,7 @@ namespace BiStatApp.ViewModels
             //await _pageService.PushAsync(new SendSessionPage(_pageService, localPath));
         }
 
-        public async void LoadSessionId(string sessionId)
+        public async void LoadData(string sessionId)
         {
             int id = int.Parse(sessionId);
             var Session = await DataStore.GetSession(id);

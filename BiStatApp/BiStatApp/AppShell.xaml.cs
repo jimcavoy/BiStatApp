@@ -12,7 +12,7 @@ namespace BiStatApp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(SessionDetailPage), typeof(SessionDetailPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(ReportPage), typeof(ReportPage));
         }
 
     }
