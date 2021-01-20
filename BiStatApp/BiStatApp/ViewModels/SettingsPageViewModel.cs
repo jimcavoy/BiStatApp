@@ -18,10 +18,6 @@ namespace BiStatApp.ViewModels
 {
     public class SettingsPageViewModel : BaseViewModel
     {
-        private readonly IPageService _pageService;
-
-        private readonly ISessionStore _sessionStore;
-
         public ICommand SendReportCommand { get; private set; }
 
         public ICommand ExportDataCommand { get; private set; }
@@ -38,10 +34,9 @@ namespace BiStatApp.ViewModels
 
         public string CurrentVersion { get; private set; }
 
-        public SettingsPageViewModel(ISessionStore sessionStore, IPageService pageService)
+        public SettingsPageViewModel()
         {
-            _sessionStore = sessionStore;
-            _pageService = pageService;
+            Title = "Settings";
 
             SendReportCommand = new Command(async () => await SendReport());
             ExportDataCommand = new Command(async () => await ExportData());
@@ -69,7 +64,7 @@ namespace BiStatApp.ViewModels
             }
             catch (Exception ex)
             {
-                await _pageService.DisplayAlert("Warning", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Warning", ex.Message, "Ok");
             }
         }
 
@@ -80,7 +75,7 @@ namespace BiStatApp.ViewModels
                 var options = new JsonSerializerOptions();
                 options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
                 options.WriteIndented = true;
-                BiStatDocument doc = await _sessionStore.GetDocument();
+                BiStatDocument doc = await DataStore.GetDocument();
                 doc.Version = CurrentVersion;
                 string jsonString = JsonSerializer.Serialize(doc, options);
 
@@ -89,14 +84,14 @@ namespace BiStatApp.ViewModels
                 var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
                 File.WriteAllText(localPath, jsonString);
 
-                await _pageService.PushAsync(new SendSessionPage(_pageService, localPath));
+                await Shell.Current.GoToAsync($"{nameof(SendSessionPage)}?{nameof(SendSessionPage.Filepath)}={localPath}");
 
                 //CrossToastPopUp.Current.ShowToastMessage("Sessions Backup");
 
             }
             catch (Exception ex)
             {
-                await _pageService.DisplayAlert("Error", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
 
@@ -116,14 +111,14 @@ namespace BiStatApp.ViewModels
                         options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
                         var doc = JsonSerializer.Deserialize<BiStatDocument>(jsonString, options);
 
-                        await _sessionStore.SetDocument(doc); 
+                        await DataStore.SetDocument(doc); 
                         CrossToastPopUp.Current.ShowToastMessage("Sessions Restored");
                     }
                 }
             }
             catch (Exception ex)
             {
-                await _pageService.DisplayAlert("Error", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
     }

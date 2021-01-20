@@ -18,11 +18,8 @@ namespace BiStatApp.Views
         public SettingsPage()
         {
             InitializeComponent();
-
-            var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService() { MainPage = Navigation };
-
-            BindingContext = new SettingsPageViewModel(sessionStore, pageService);
+            SettingsPageViewModel settingsPageViewModel = new SettingsPageViewModel();
+            BindingContext = settingsPageViewModel;
         }
 
         public SettingsPageViewModel ViewModel

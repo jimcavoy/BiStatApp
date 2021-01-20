@@ -17,14 +17,14 @@ namespace BiStatApp.ViewModels
 		public bool IsBusy
 		{
 			get { return isBusy; }
-			set { SetValue(ref isBusy, value); }
+			set { SetValue(ref isBusy, value, "IsBusy"); }
 		}
 
 		string title = string.Empty;
 		public string Title
 		{
 			get { return title; }
-			set { SetValue(ref title, value); }
+			set { SetValue(ref title, value, "Title"); }
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -24,21 +24,16 @@ namespace BiStatApp.ViewModels
         private string _sessionName;
         private string _description;
         private string _dateTime;
-
         public Session Session { get; private set; }
-
         public ShootingBoutViewModel SelectedShootingBout
         {
-            get { return _selectedShootingBout; }
-            set { SetValue(ref _selectedShootingBout, value); }
+            get => _selectedShootingBout;
+            set => SetValue(ref _selectedShootingBout, value);
         }
 
         public string SessionId
         {
-            get
-            {
-                return _sessionId;
-            }
+            get => _sessionId;
             set
             {
                 _sessionId = value;
@@ -234,12 +229,12 @@ namespace BiStatApp.ViewModels
             string jsonString = JsonSerializer.Serialize(Session, options);
             Debug.WriteLine(jsonString);
 
-            string fileName = string.Format("{0}_{1:ddMMMyy}.json", Session.Name, Session.DateTime);
+            string fileName = string.Format("{0}_{1}.json", SessionName, DateTime);
 
             var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
             File.WriteAllText(localPath, jsonString);
 
-            //await _pageService.PushAsync(new SendSessionPage(_pageService, localPath));
+            await Shell.Current.GoToAsync("..");
         }
 
         public async void LoadData(string sessionId)

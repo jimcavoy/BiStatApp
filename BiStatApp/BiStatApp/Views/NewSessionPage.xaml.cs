@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiStatApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BiStatApp.Views
         public NewSessionPage()
         {
             InitializeComponent();
+            BindingContext = new NewSessionPageViewModel();
         }
     }
 }

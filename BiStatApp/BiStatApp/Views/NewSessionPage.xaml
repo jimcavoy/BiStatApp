@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="newSessionPage"
              x:Class="BiStatApp.Views.NewSessionPage">
 
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Text="Send" Command="{Binding SendCommand}"/>
+    <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddShootingBoutCommand}" />
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <Grid>
@@ -18,12 +18,12 @@
 
             <StackLayout Orientation="Vertical" Margin="10">
                 <Label x:Name="labelTitle"
-                       Text="{Binding Path=Session.Name}"
+                       Text="{Binding Path=SessionName}"
                        Style="{DynamicResource TitleStyle}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" />
-                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Session.Description}" />
-                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
+                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Description}" />
+                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=DateTime}">
                     <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
                 </DatePicker>
             </StackLayout>
@@ -31,27 +31,28 @@
             <ListView ItemsSource="{Binding Path=ShootingBouts}" 
                       SelectedItem="{Binding SelectedShootingBout, Mode=TwoWay}"
                       HasUnevenRows="True"
-                      Grid.Row="1">
+                      Grid.Row="1"
+                      Margin="10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="10">
-                                    <Image Source="{Binding TargetImage}" HeightRequest="50"/>
+                                    <Image Source="{Binding TargetImage, Mode=TwoWay}" HeightRequest="50"/>
                                 </StackLayout>
                             </ViewCell.View>
-                            <!--<ViewCell.ContextActions>
-                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionDetailPage}, Path=ViewModel.DeleteShootingBoutCommand}" CommandParameter="{Binding .}" />
-                            </ViewCell.ContextActions>-->
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference newSessionPage}, Path=ViewModel.DeleteShootingBoutCommand}" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!--<Button Text="Save" 
+            <Button Text="Save" 
                     TextColor="{StaticResource LightBackgroundColor}" 
                     BackgroundColor="{StaticResource Primary}"
-                    Command="{Binding SaveCommand}" Grid.Row="2" Margin="10"/>-->
+                    Command="{Binding SaveCommand}" Grid.Row="2" Margin="10"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

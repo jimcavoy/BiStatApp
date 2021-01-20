@@ -36,7 +36,6 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _selectedPeriodFilter, value);
-                OnPropertyChanged("SelectedPeriodFilter");
                 FilterSessions();
             }
         }
@@ -49,7 +48,6 @@ namespace BiStatApp.ViewModels
             set
             {
                 SetValue(ref _selectedFilter, value);
-                OnPropertyChanged("SelectedFilter");
                 FilterSessions();
             }
         }
@@ -78,14 +76,12 @@ namespace BiStatApp.ViewModels
         }
 
         public ICommand LoadDataCommand { get; private set; }
-        public ICommand SelectSessionCommand { get; private set; }
         public ICommand DeleteSessionCommand { get; private set; }
         public ICommand ReportCommand { get; private set; }
 
         public SessionsPageViewModel()
         {
             LoadDataCommand = new Command(async () => await LoadData());
-            SelectSessionCommand = new Command<SessionViewModel>(OnSelectSession);
             DeleteSessionCommand = new Command<SessionViewModel>(async c => await DeleteSession(c));
             ReportCommand = new Command(async () => await ShowReport());
 
@@ -155,7 +151,6 @@ namespace BiStatApp.ViewModels
 
         public void OnAppearing()
         {
-            IsBusy = true;
             SelectedSession = null;
         }
 

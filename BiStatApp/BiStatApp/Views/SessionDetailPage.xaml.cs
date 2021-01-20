@@ -1,10 +1,4 @@
-﻿using BiStatApp.Persistence;
-using BiStatApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BiStatApp.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,13 +13,6 @@ namespace BiStatApp.Views
         {
             InitializeComponent();
             ViewModel = new SessionDetailViewModel();
-        }
-
-        public SessionDetailPage(SessionViewModel viewModel)
-        {
-            InitializeComponent();
-            Title = (viewModel.Name == null) ? "New Session" : "Edit Session";
-            ViewModel = new SessionDetailViewModel(viewModel);
         }
 
         public SessionDetailViewModel ViewModel

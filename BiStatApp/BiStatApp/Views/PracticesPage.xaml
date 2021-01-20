@@ -9,7 +9,6 @@
                       SeparatorColor="{StaticResource MediumGrayTextColor}"
                       SeparatorVisibility="Default"
                       VerticalScrollBarVisibility="Default"
-                      ItemSelected="OnItemSelected"
                       SelectedItem="{Binding SelectedPractice, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

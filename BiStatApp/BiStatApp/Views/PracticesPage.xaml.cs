@@ -17,16 +17,8 @@ namespace BiStatApp.Views
     {
         public PracticesPage()
         {
-            var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService()
-            {
-                MainPage = Navigation
-            };
-
-            ViewModel = new PracticesPageViewModel(sessionStore, pageService);
-
+            ViewModel = new PracticesPageViewModel();
             Title = "Add New Session";
-
             InitializeComponent();
         }
 
@@ -34,11 +26,6 @@ namespace BiStatApp.Views
         {
             ViewModel.LoadDataCommand.Execute(null);
             base.OnAppearing();
-        }
-
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ViewModel.SelectPracticeCommand.Execute(e.SelectedItem);
         }
 
         public PracticesPageViewModel ViewModel

@@ -35,71 +35,43 @@ namespace BiStatApp.ViewModels
         public double OverallAverage
         {
             get => _overallAve;
-            private set
-            {
-                SetValue(ref _overallAve, value);
-                OnPropertyChanged("OverallAverage");
-            }
+            private set => SetValue(ref _overallAve, value);
         }
 
         public double ProneAverage
         {
             get => _proneAve;
-            private set
-            {
-                SetValue(ref _proneAve, value);
-                OnPropertyChanged("ProneAverage");
-            }
+            private set => SetValue(ref _proneAve, value);
         }
 
         public double StandingAverage
         {
             get => _standingAve;
-            private set
-            {
-                SetValue(ref _standingAve, value);
-                OnPropertyChanged("StandingAverage");
-            }
+            private set => SetValue(ref _standingAve, value);
         }
 
         public int TotalShots
         {
             get => _totalShots;
-            private set
-            {
-                SetValue(ref _totalShots, value);
-                OnPropertyChanged("TotalShots");
-            }
+            private set => SetValue(ref _totalShots, value);
         }
 
         public int ProneShots
         {
             get => _proneShots;
-            private set
-            {
-                SetValue(ref _proneShots, value);
-                OnPropertyChanged("ProneShots");
-            }
+            private set => SetValue(ref _proneShots, value); 
         }
 
         public int StandingShots
         {
             get => _standingShots;
-            private set
-            {
-                SetValue(ref _standingShots, value);
-                OnPropertyChanged("StandingShots");
-            }
+            private set => SetValue(ref _standingShots, value);
         }
 
         public int SessionsCount
         {
             get => _sessionsCount;
-            private set
-            {
-                SetValue(ref _sessionsCount, value);
-                OnPropertyChanged("SessionsCount");
-            }
+            private set => SetValue(ref _sessionsCount, value);
         }
 
         public ReportPageViewModel()

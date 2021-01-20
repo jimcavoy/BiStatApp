@@ -1,4 +1,5 @@
 ﻿using BiStatApp.Models;
+using BiStatApp.Views;
 
 using System;
 using System.Linq;
@@ -8,23 +9,29 @@ using Xamarin.Forms;
 
 namespace BiStatApp.ViewModels
 {
+    [QueryProperty(nameof(BoutId), nameof(BoutId))]
     public class ShootingBoutPageViewModel : BaseViewModel
     {
-        private readonly ISessionStore _sessionStore;
-        private readonly IPageService _pageService;
-
+        private string _boutId;
         public ShootingBoutViewModel Bout { get; private set; }
 
         bool _showAdvanceView = false;
         public bool ShowAdvanceView
         {
             get => _showAdvanceView;
+            set => SetValue(ref _showAdvanceView, value);
+        }
+
+        public string BoutId
+        {
+            get => _boutId;
             set
             {
-                SetValue(ref _showAdvanceView, value);
-                OnPropertyChanged("ShowAdvanceView");
+                _boutId = value;
+                LoadData(value);
             }
         }
+
 
         public ICommand SaveCommand { get; private set; }
 
@@ -40,14 +47,8 @@ namespace BiStatApp.ViewModels
 
         public ICommand PositionChangedCommand { get; private set; }
 
-        public ShootingBoutPageViewModel(ShootingBoutViewModel viewModel, ISessionStore sessionStore, IPageService pageService)
+        public ShootingBoutPageViewModel()
         {
-            if (viewModel == null)
-                throw new ArgumentNullException(nameof(viewModel));
-
-            _pageService = pageService;
-            _sessionStore = sessionStore;
-
             SaveCommand = new Command(async () => await Save());
             AlphaCheckedCommand = new Command<bool>(async c => await AlphaChecked(c));
             BravoCheckedCommand = new Command<bool>(async c => await BravoChecked(c));
@@ -55,21 +56,6 @@ namespace BiStatApp.ViewModels
             DeltaCheckedCommand = new Command<bool>(async c => await DeltaChecked(c));
             EchoCheckedCommand = new Command<bool>(async c => await EchoChecked(c));
             PositionChangedCommand = new Command<bool>(async c => await PositionChanged(c));
-
-            Bout = new ShootingBoutViewModel
-            {
-                Id = viewModel.Id,
-                SessionId = viewModel.SessionId,
-                Alpha = viewModel.Alpha,
-                Bravo = viewModel.Bravo,
-                Charlie = viewModel.Charlie,
-                Delta = viewModel.Delta,
-                Echo = viewModel.Echo,
-                Position = viewModel.Position,
-                StartHeartRate = viewModel.StartHeartRate,
-                EndHeartRate = viewModel.EndHeartRate,
-                Duration = viewModel.Duration
-            };
         }
 
         async Task Save()
@@ -91,15 +77,15 @@ namespace BiStatApp.ViewModels
 
             if (Bout.Id == 0)
             {
-                await _sessionStore.AddShootingBout(aBout);
+                await DataStore.AddShootingBout(aBout);
                 MessagingCenter.Send(this, Events.ShootingBoutAdded, aBout);
             }
             else
             {
-                await _sessionStore.UpdateShootingBout(aBout);
+                await DataStore.UpdateShootingBout(aBout);
                 MessagingCenter.Send(this, Events.ShootingBoutUpdated, aBout);
             }
-            await _pageService.PopAsync();
+            await Shell.Current.GoToAsync("..");
         }
 
         async Task AlphaChecked(bool value)
@@ -130,6 +116,37 @@ namespace BiStatApp.ViewModels
         async Task PositionChanged(bool value)
         {
             await Task.Run(() => { Bout.Position = value ? ShootingBout.PositionEnum.STANDING : ShootingBout.PositionEnum.PRONE; });
+        }
+
+        private async void LoadData(string boutId)
+        {
+            int id = int.Parse(boutId);
+            var b = await DataStore.GetShootingBout(id);
+
+            if (b != null)
+            {
+                Bout = new ShootingBoutViewModel
+                {
+                    Id = b.Id,
+                    SessionId = b.SessionId,
+                    Alpha = b.Alpha,
+                    Bravo = b.Bravo,
+                    Charlie = b.Charlie,
+                    Delta = b.Delta,
+                    Echo = b.Echo,
+                    Position = b.Position,
+                    StartHeartRate = b.StartHeartRate,
+                    EndHeartRate = b.EndHeartRate,
+                    Duration = (decimal)b.Duration
+                };
+
+                Title = "Edit";
+            }
+            else
+            {
+                Bout = new ShootingBoutViewModel();
+                Title = "New";
+            }
         }
     }
 }

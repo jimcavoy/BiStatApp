@@ -11,17 +11,21 @@ using Xamarin.Forms.Xaml;
 
 namespace BiStatApp.Views
 {
+    [QueryProperty(nameof(Filepath), nameof(Filepath))]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SendSessionPage : ContentPage
     {
-        private readonly string _filepath;
-        private readonly IPageService _pageService;
+        private string _filepath;
 
-        public SendSessionPage(IPageService pageService, string filepath)
+        public string Filepath
+        {
+            get => _filepath;
+            set => _filepath = value;
+        }
+
+        public SendSessionPage(IPageService pageService)
         {
             InitializeComponent();
-            _pageService = pageService;
-            _filepath = filepath;
         }
 
         private async void OnSendBtnClicked(object sender, EventArgs e)
@@ -45,12 +49,12 @@ namespace BiStatApp.Views
                 };
                 message.Attachments.Add(new EmailAttachment(_filepath));
                 await Email.ComposeAsync(message);
-                await _pageService.PopAsync();
+                await Shell.Current.GoToAsync("..");
 
             }
             catch (Exception ex)
             {
-                await _pageService.DisplayAlert("Warning", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Warning", ex.Message, "Ok");
             }
         }
     }

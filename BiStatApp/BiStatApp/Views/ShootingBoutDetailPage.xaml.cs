@@ -21,14 +21,10 @@ namespace BiStatApp.Views
         Timer _timer;
         decimal _elapsedTime;
 
-        public ShootingBoutDetailPage(ShootingBoutViewModel viewModel)
+        public ShootingBoutDetailPage()
         {
             InitializeComponent();
-
-            var sessionStore = new SQLiteSessionStore();
-            var pageService = new PageService() { MainPage = Navigation };
-            Title = (viewModel.Id == 0) ? "New Shooting Bout" : "Edit Shooting Bout";
-            BindingContext = new ShootingBoutPageViewModel(viewModel ?? new ShootingBoutViewModel(), sessionStore, pageService);
+            ViewModel = new ShootingBoutPageViewModel();
         }
 
         public ShootingBoutPageViewModel ViewModel
@@ -39,12 +35,12 @@ namespace BiStatApp.Views
         
         protected override void OnAppearing()
         {
-            Alpha.IsChecked = ViewModel.Bout.Alpha;
-            Bravo.IsChecked = ViewModel.Bout.Bravo;
-            Charlie.IsChecked = ViewModel.Bout.Charlie;
-            Delta.IsChecked = ViewModel.Bout.Delta;
-            Echo.IsChecked = ViewModel.Bout.Echo;
-            Position.IsToggled = ViewModel.Bout.Position != ShootingBout.PositionEnum.PRONE;
+            //Alpha.IsChecked = ViewModel.Bout.Alpha;
+            //Bravo.IsChecked = ViewModel.Bout.Bravo;
+            //Charlie.IsChecked = ViewModel.Bout.Charlie;
+            //Delta.IsChecked = ViewModel.Bout.Delta;
+            //Echo.IsChecked = ViewModel.Bout.Echo;
+            //Position.IsToggled = ViewModel.Bout.Position != ShootingBout.PositionEnum.PRONE;
             base.OnAppearing();
         }
 

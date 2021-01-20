@@ -32,107 +32,88 @@ namespace BiStatApp.ViewModels
             SessionId = bout.SessionId;
         }
 
+        public ShootingBout CreateShootingBout()
+        {
+            ShootingBout sb = new ShootingBout()
+            {
+                Id = Id,
+                Position = Position,
+                Alpha = Alpha,
+                Bravo = Bravo,
+                Charlie = Charlie,
+                Delta = Delta,
+                Echo = Echo,
+                StartHeartRate = StartHeartRate,
+                EndHeartRate = EndHeartRate,
+                Duration = (double)Duration,
+                SessionId = SessionId
+            };
+
+            return sb;
+        }
+
         private ShootingBout.PositionEnum _position = ShootingBout.PositionEnum.PRONE;
         public ShootingBout.PositionEnum Position
         {
-            get { return _position; }
-            set
-            {
-                SetValue(ref _position, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _position; 
+            set => SetValue(ref _position, value, "TargetImage");
         }
 
         private bool _alpha;
         public bool Alpha
         {
-            get { return _alpha; }
-            set
-            {
-                SetValue(ref _alpha, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _alpha; 
+            set => SetValue(ref _alpha, value, "TargetImage");
         }
 
         private bool _bravo;
         public bool Bravo
         {
-            get { return _bravo; }
-            set
-            {
-                SetValue(ref _bravo, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _bravo; 
+            set => SetValue(ref _bravo, value, "TargetImage");
         }
 
         private bool _charlie;
         public bool Charlie
         {
-            get { return _charlie; }
-            set
-            {
-                SetValue(ref _charlie, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _charlie; 
+            set => SetValue(ref _charlie, value, "TargetImage");
         }
 
 
         private bool _delta;
         public bool Delta
         {
-            get { return _delta; }
-            set
-            {
-                SetValue(ref _delta, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _delta; 
+            set => SetValue(ref _delta, value, "TargetImage");
         }
 
         private bool _echo;
         public bool Echo
         {
-            get { return _echo; }
-            set
-            {
-                SetValue(ref _echo, value);
-                OnPropertyChanged(nameof(TargetImage));
-            }
+            get => _echo; 
+            set => SetValue(ref _echo, value, "TargetImage");
         }
 
         private int _startHeartRate;
-
         public int StartHeartRate
         {
-            get { return _startHeartRate; }
-            set
-            {
-                SetValue(ref _startHeartRate, value);
-                OnPropertyChanged(nameof(StartHeartRate));
-            }
+            get => _startHeartRate;
+            set => SetValue(ref _startHeartRate, value, "StartHeartRate");
         }
 
         private int _endHeartRate;
-
         public int EndHeartRate
         {
-            get { return _endHeartRate; }
-            set
-            {
-                SetValue(ref _endHeartRate, value);
-                OnPropertyChanged(nameof(EndHeartRate));
-            }
+            get => _endHeartRate; 
+            set => SetValue(ref _endHeartRate, value, "EndHeartRate");
         }
 
         private decimal _duration;
-
         public decimal Duration
         { 
-            get { return _duration; }
-            set
-            {
-                SetValue(ref _duration, value);
-                OnPropertyChanged(nameof(Duration));
-            }
+            get => _duration; 
+            set => SetValue(ref _duration, value, "Duration");
         }
 
 
@@ -194,7 +175,5 @@ namespace BiStatApp.ViewModels
                 return ImageSource.FromResource("BiStatApp.Assets.Images." + imageName + "0.png");
             }
         }
-
-
     }
 }

@@ -15,8 +15,6 @@ namespace BiStatApp.ViewModels
     public class PracticesPageViewModel : BaseViewModel
     {
         private Practice _selectedPractice;
-        private readonly ISessionStore _sessionStore;
-        private readonly IPageService _pageService;
 
         private bool _isDataLoaded = false;
 
@@ -25,21 +23,19 @@ namespace BiStatApp.ViewModels
 
         public Practice SelectedPractice
         {
-            get { return _selectedPractice; }
-            set { SetValue(ref _selectedPractice, value); }
+            get =>_selectedPractice; 
+            set 
+            { 
+                SetValue(ref _selectedPractice, value);
+                OnSelectPractice(value);
+            }
         }
 
         public ICommand LoadDataCommand { get; private set; }
 
-        public ICommand SelectPracticeCommand { get; private set; }
-
-        public PracticesPageViewModel(ISessionStore sessionStore, IPageService pageService)
+        public PracticesPageViewModel()
         {
-            _sessionStore = sessionStore;
-            _pageService = pageService;
-
             LoadDataCommand = new Command(async () => await LoadData());
-            SelectPracticeCommand = new Command<Practice>(async c => await SelectPractice(c));
         }
 
         private async Task LoadData()
@@ -48,14 +44,14 @@ namespace BiStatApp.ViewModels
                 return;
 
             _isDataLoaded = true;
-            var practices = await _sessionStore.GetPracticesAsync();
+            var practices = await DataStore.GetPracticesAsync();
             foreach (var p in practices)
             {
                 Practices.Add(p);
             }
         }
 
-        private async Task SelectPractice(Practice practice)
+        private async void OnSelectPractice(Practice practice)
         {
             if (practice == null)
             {
@@ -71,9 +67,8 @@ namespace BiStatApp.ViewModels
 
             AddShootingBouts(session, practice.Name);
 
-            session = await _sessionStore.AddSession(session);
-
-            await _pageService.PushAsync(new SessionDetailPage(new SessionViewModel(session)));
+            session = await DataStore.AddSession(session);
+            await Shell.Current.GoToAsync($"{nameof(NewSessionPage)}?{nameof(NewSessionPageViewModel.SessionId)}={session.Id.ToString()}");
         }
 
         private void AddShootingBouts(Session session, string practiceType)

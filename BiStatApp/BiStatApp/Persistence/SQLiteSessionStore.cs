@@ -138,13 +138,15 @@ namespace BiStatApp.Persistence
             return bout;
         }
 
-        public async Task AddShootingBout(ShootingBout bout)
+        public async Task<ShootingBout> AddShootingBout(ShootingBout bout)
         {
+            ShootingBout ret = null;
             using (var context = new BiStatContext(_dbPath))
             {
-                context.Bouts.Add(bout);
+                ret = context.Bouts.Add(bout).Entity;
                 await context.SaveChangesAsync();
             }
+            return ret;
         }
 
         public async Task UpdateShootingBout(ShootingBout bout)

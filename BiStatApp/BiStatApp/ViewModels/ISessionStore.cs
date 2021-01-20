@@ -20,7 +20,7 @@ namespace BiStatApp.ViewModels
 
 		Task<ShootingBout> GetShootingBout(int id);
 
-		Task AddShootingBout(ShootingBout bout);
+		Task<ShootingBout> AddShootingBout(ShootingBout bout);
 
 		Task UpdateShootingBout(ShootingBout bout);
 
