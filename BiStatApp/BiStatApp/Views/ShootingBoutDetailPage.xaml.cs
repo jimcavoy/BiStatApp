@@ -32,49 +32,28 @@ namespace BiStatApp.Views
             get { return BindingContext as ShootingBoutPageViewModel; }
             set { BindingContext = value; }
         }
-        
+
         protected override void OnAppearing()
         {
-            //Alpha.IsChecked = ViewModel.Bout.Alpha;
-            //Bravo.IsChecked = ViewModel.Bout.Bravo;
-            //Charlie.IsChecked = ViewModel.Bout.Charlie;
-            //Delta.IsChecked = ViewModel.Bout.Delta;
-            //Echo.IsChecked = ViewModel.Bout.Echo;
-            //Position.IsToggled = ViewModel.Bout.Position != ShootingBout.PositionEnum.PRONE;
             base.OnAppearing();
+            MessagingCenter.Subscribe<ShootingBoutPageViewModel>
+                (this, Events.ShootingBoutUpdated, OnShootingBoutUpdate);
         }
 
-        private void Alpha_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        protected void OnShootingBoutUpdate(ShootingBoutPageViewModel source)
         {
-            ViewModel.AlphaCheckedCommand.Execute(e.Value);
+            Alpha.IsChecked = ViewModel.Bout.Alpha;
+            Bravo.IsChecked = ViewModel.Bout.Bravo;
+            Charlie.IsChecked = ViewModel.Bout.Charlie;
+            Delta.IsChecked = ViewModel.Bout.Delta;
+            Echo.IsChecked = ViewModel.Bout.Echo;
+            bool isToggled = ViewModel.Bout.Position == ShootingBout.PositionEnum.STANDING;
+            Position.IsToggled = isToggled;
+            MessagingCenter.Unsubscribe<ShootingBoutPageViewModel>
+               (this, Events.ShootingBoutUpdated);
         }
 
-        private void Bravo_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            ViewModel.BravoCheckedCommand.Execute(e.Value);
-        }
-
-        private void Charlie_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            ViewModel.CharlieCheckedCommand.Execute(e.Value);
-        }
-
-        private void Delta_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            ViewModel.DeltaCheckedCommand.Execute(e.Value);
-        }
-
-        private void Echo_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            ViewModel.EchoCheckedCommand.Execute(e.Value);
-        }
-
-        private void Position_Toggled(object sender, ToggledEventArgs e)
-        {
-            ViewModel.PositionChangedCommand.Execute(e.Value);
-        }
-
-        private void btnStopwatch_Clicked(object sender, EventArgs e)
+        private void BtnStopwatch_Clicked(object sender, EventArgs e)
         {
             if (btnStopwatch.BackgroundColor == Color.Green)
             {

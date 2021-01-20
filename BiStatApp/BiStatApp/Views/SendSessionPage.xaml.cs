@@ -23,7 +23,7 @@ namespace BiStatApp.Views
             set => _filepath = value;
         }
 
-        public SendSessionPage(IPageService pageService)
+        public SendSessionPage()
         {
             InitializeComponent();
         }

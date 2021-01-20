@@ -160,7 +160,7 @@ namespace BiStatApp.ViewModels
             if (session == null)
                 return;
 
-            await Shell.Current.GoToAsync($"{nameof(SessionDetailPage)}?{nameof(SessionDetailViewModel.SessionId)}={session.Id.ToString()}");
+            await Shell.Current.GoToAsync($"{nameof(SessionDetailPage)}?{nameof(SessionDetailViewModel.SessionId)}={session.Id}");
         }
 
         private async Task DeleteSession(SessionViewModel sessionViewModel)

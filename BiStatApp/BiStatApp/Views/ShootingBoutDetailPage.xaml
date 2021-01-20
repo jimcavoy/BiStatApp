@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:BiStatApp.ViewModels"
              x:Class="BiStatApp.Views.ShootingBoutDetailPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:PositionToBoolConverter x:Key="posToBool" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -10,12 +18,12 @@
             </Grid.RowDefinitions>
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" Margin="10">
                 <StackLayout Orientation="Horizontal" Margin="10" HorizontalOptions="Start">
-                    <CheckBox x:Name="Alpha" CheckedChanged="Alpha_CheckedChanged"/>
-                    <CheckBox x:Name="Bravo" CheckedChanged="Bravo_CheckedChanged"/>
-                    <CheckBox x:Name="Charlie" CheckedChanged="Charlie_CheckedChanged"/>
-                    <CheckBox x:Name="Delta" CheckedChanged="Delta_CheckedChanged"/>
-                    <CheckBox x:Name="Echo" CheckedChanged="Echo_CheckedChanged"/>
-                    <Switch x:Name="Position" Toggled="Position_Toggled" VerticalOptions="Center"/>
+                    <CheckBox x:Name="Alpha" IsChecked="{Binding Bout.Alpha, Mode=TwoWay}"/>
+                    <CheckBox x:Name="Bravo" IsChecked="{Binding Bout.Bravo, Mode=TwoWay}"/>
+                    <CheckBox x:Name="Charlie" IsChecked="{Binding Bout.Charlie, Mode=TwoWay}"/>
+                    <CheckBox x:Name="Delta" IsChecked="{Binding Bout.Delta, Mode=TwoWay}"/>
+                    <CheckBox x:Name="Echo" IsChecked="{Binding Bout.Echo, Mode=TwoWay}"/>
+                    <Switch x:Name="Position" IsToggled="{Binding Bout.Position, Converter={StaticResource posToBool}}" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Switch x:Name="AdvanceSwitch" IsToggled="False" Toggled="AdvanceSwitch_Toggled" HorizontalOptions="Start"/>
@@ -37,7 +45,7 @@
                     TextColor="{StaticResource LightBackgroundColor}"
                     BackgroundColor="Green"
                     Margin="10"
-                    Clicked="btnStopwatch_Clicked">
+                    Clicked="BtnStopwatch_Clicked">
                         <Button.ImageSource>
                             <FontImageSource Glyph="&#xf2f2;" FontFamily="FontAwesomeSolid" />
                         </Button.ImageSource>

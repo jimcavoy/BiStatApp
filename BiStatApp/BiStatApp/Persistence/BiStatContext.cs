@@ -13,7 +13,7 @@ namespace BiStatApp.Persistence
 		public DbSet<Session> Sessions { get; set; }
 		public DbSet<ShootingBout> Bouts { get; set; }
 
-		private string _databasePath;
+		private readonly string _databasePath;
 
 		public BiStatContext(string databasePath)
 		{

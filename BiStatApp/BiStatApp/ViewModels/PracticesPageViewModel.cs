@@ -68,7 +68,7 @@ namespace BiStatApp.ViewModels
             AddShootingBouts(session, practice.Name);
 
             session = await DataStore.AddSession(session);
-            await Shell.Current.GoToAsync($"{nameof(NewSessionPage)}?{nameof(NewSessionPageViewModel.SessionId)}={session.Id.ToString()}");
+            await Shell.Current.GoToAsync($"{nameof(NewSessionPage)}?{nameof(NewSessionPageViewModel.SessionId)}={session.Id}");
         }
 
         private void AddShootingBouts(Session session, string practiceType)

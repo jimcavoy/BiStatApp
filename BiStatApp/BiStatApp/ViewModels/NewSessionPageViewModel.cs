@@ -106,7 +106,7 @@ namespace BiStatApp.ViewModels
             };
             newSb = await DataStore.AddShootingBout(newSb);
             ShootingBouts.Add(new ShootingBoutViewModel(newSb));
-            await Shell.Current.GoToAsync($"{nameof(ShootingBoutDetailPage)}?{nameof(ShootingBoutPageViewModel.BoutId)}={newSb.Id.ToString()}");
+            await Shell.Current.GoToAsync($"{nameof(ShootingBoutDetailPage)}?{nameof(ShootingBoutPageViewModel.BoutId)}={newSb.Id}");
         }
 
         private async void OnSelectShootingBout(ShootingBoutViewModel bout)
@@ -116,7 +116,7 @@ namespace BiStatApp.ViewModels
 
             Subscribe();
             SelectedShootingBout = null;
-            await Shell.Current.GoToAsync($"{nameof(ShootingBoutDetailPage)}?{nameof(ShootingBoutPageViewModel.BoutId)}={bout.Id.ToString()}");
+            await Shell.Current.GoToAsync($"{nameof(ShootingBoutDetailPage)}?{nameof(ShootingBoutPageViewModel.BoutId)}={bout.Id}");
         }
 
         private async Task DeleteShootingBout(ShootingBoutViewModel bout)

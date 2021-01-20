@@ -16,7 +16,7 @@ namespace BiStatApp.Persistence
     {
         private readonly List<Practice> _practices = new List<Practice>();
 
-        private string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "BiStatApp.db3");
+        private readonly string _dbPath = Path.Combine(FileSystem.AppDataDirectory, "BiStatApp.db3");
 
         public SQLiteSessionStore()
         {

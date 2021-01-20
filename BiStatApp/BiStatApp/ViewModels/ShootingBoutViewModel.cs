@@ -55,44 +55,68 @@ namespace BiStatApp.ViewModels
         private ShootingBout.PositionEnum _position = ShootingBout.PositionEnum.PRONE;
         public ShootingBout.PositionEnum Position
         {
-            get => _position; 
-            set => SetValue(ref _position, value, "TargetImage");
+            get => _position;
+            set
+            {
+                SetValue(ref _position, value, "Position");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
         private bool _alpha;
         public bool Alpha
         {
-            get => _alpha; 
-            set => SetValue(ref _alpha, value, "TargetImage");
+            get => _alpha;
+            set
+            {
+                SetValue(ref _alpha, value, "Alpha");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
         private bool _bravo;
         public bool Bravo
         {
-            get => _bravo; 
-            set => SetValue(ref _bravo, value, "TargetImage");
+            get => _bravo;
+            set
+            {
+                SetValue(ref _bravo, value, "Bravo");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
         private bool _charlie;
         public bool Charlie
         {
-            get => _charlie; 
-            set => SetValue(ref _charlie, value, "TargetImage");
+            get => _charlie;
+            set
+            {
+                SetValue(ref _charlie, value, "Charlie");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
 
         private bool _delta;
         public bool Delta
         {
-            get => _delta; 
-            set => SetValue(ref _delta, value, "TargetImage");
+            get => _delta;
+            set
+            {
+                SetValue(ref _delta, value, "Delta");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
         private bool _echo;
         public bool Echo
         {
-            get => _echo; 
-            set => SetValue(ref _echo, value, "TargetImage");
+            get => _echo;
+            set
+            {
+                SetValue(ref _echo, value, "Echo");
+                OnPropertyChanged("TargetImage");
+            }
         }
 
         private int _startHeartRate;
