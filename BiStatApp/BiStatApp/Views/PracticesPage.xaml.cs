@@ -18,7 +18,7 @@ namespace BiStatApp.Views
         public PracticesPage()
         {
             ViewModel = new PracticesPageViewModel();
-            Title = "Add New Session";
+            Title = "Practices";
             InitializeComponent();
         }
 

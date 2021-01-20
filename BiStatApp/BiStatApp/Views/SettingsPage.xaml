@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="settingsPage"
-             x:Class="BiStatApp.Views.SettingsPage">
+             x:Class="BiStatApp.Views.SettingsPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

@@ -13,7 +13,7 @@ using System.Linq;
 namespace BiStatApp.ViewModels
 {
     [QueryProperty(nameof(SessionId), nameof(SessionId))]
-    class NewSessionPageViewModel : BaseViewModel
+    public class NewSessionPageViewModel : BaseViewModel
     {
         private ShootingBoutViewModel _selectedShootingBout;
         private string _sessionId;
@@ -121,7 +121,13 @@ namespace BiStatApp.ViewModels
 
         private async Task DeleteShootingBout(ShootingBoutViewModel bout)
         {
+            if (await Application.Current.MainPage.DisplayAlert("Warning", $"Are you sure you want to delete shooting bout?", "Yes", "No"))
+            {
+                ShootingBouts.Remove(bout);
 
+                var sb = await DataStore.GetShootingBout(bout.Id);
+                await DataStore.DeleteShootingBout(sb);
+            }
         }
 
         private void OnShootingBoutAdded(ShootingBoutPageViewModel source, ShootingBout bout)

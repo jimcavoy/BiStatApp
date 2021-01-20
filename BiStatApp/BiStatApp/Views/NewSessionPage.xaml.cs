@@ -15,8 +15,14 @@ namespace BiStatApp.Views
     {
         public NewSessionPage()
         {
+            ViewModel = new NewSessionPageViewModel();
             InitializeComponent();
-            BindingContext = new NewSessionPageViewModel();
+        }
+
+        public NewSessionPageViewModel ViewModel
+        {
+            get { return BindingContext as NewSessionPageViewModel; }
+            set { BindingContext = value; }
         }
     }
 }
