@@ -82,9 +82,9 @@ namespace BiStatApp.ViewModels
         private async void LoadData(string typeAndPeriod)
         {
             string filter = Uri.UnescapeDataString(typeAndPeriod);
-            string[] filters = filter.Split('+');
-            string type = filters[0];
-            string period = filters[1];
+            string[] filters = filter.Split(',');
+            string type = filters[0] == null ? "All" : filters[0];
+            string period = (filters.Length == 1 || filters[1] == null)? "All" : filters[1];
 
             var AllSessions = await DataStore.GetSessionsAsync();
             List<SessionViewModel> Sessions = new List<SessionViewModel>();

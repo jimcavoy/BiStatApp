@@ -176,7 +176,7 @@ namespace BiStatApp.ViewModels
 
         private async Task ShowReport()
         {
-            string filter = SelectedFilter + "+" + SelectedPeriodFilter;
+            string filter = SelectedFilter + "," + SelectedPeriodFilter;
             await Shell.Current.GoToAsync($"{nameof(ReportPage)}?{nameof(ReportPageViewModel.Filter)}={filter}");
         }
 
