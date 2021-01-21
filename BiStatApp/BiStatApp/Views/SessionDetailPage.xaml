@@ -6,7 +6,11 @@
              >
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Send" Command="{Binding SendCommand}"/>
+        <ToolbarItem Command="{Binding SendCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf0e0;" FontFamily="FontAwesomeSolid" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

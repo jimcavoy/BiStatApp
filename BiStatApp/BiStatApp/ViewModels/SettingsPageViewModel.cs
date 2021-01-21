@@ -84,7 +84,7 @@ namespace BiStatApp.ViewModels
                 var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
                 File.WriteAllText(localPath, jsonString);
 
-                await Shell.Current.GoToAsync($"{nameof(SendSessionPage)}?{nameof(SendSessionPage.Filepath)}={localPath}");
+                await Shell.Current.GoToAsync($"{nameof(SendSessionPage)}?{nameof(SendSessionPageViewModel.Filepath)}={localPath}");
 
                 //CrossToastPopUp.Current.ShowToastMessage("Sessions Backup");
 

@@ -16,6 +16,7 @@ namespace BiStatApp
             Routing.RegisterRoute(nameof(NewSessionPage), typeof(NewSessionPage));
             Routing.RegisterRoute(nameof(ShootingBoutDetailPage), typeof(ShootingBoutDetailPage));
             Routing.RegisterRoute(nameof(PracticesPage), typeof(PracticesPage));
+            Routing.RegisterRoute(nameof(SendSessionPage), typeof(SendSessionPage));
         }
 
     }

@@ -86,18 +86,21 @@ namespace BiStatApp.ViewModels
             string jsonString = JsonSerializer.Serialize(Session, options);
             Debug.WriteLine(jsonString);
 
-            string fileName = string.Format("{0}_{1}.json", SessionName, DateTime);
+            string fileName = string.Format("{0}_{1:ddMMMyy}.json", SessionName, Session.DateTime);
 
             var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
             File.WriteAllText(localPath, jsonString);
 
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"{nameof(SendSessionPage)}?{nameof(SendSessionPageViewModel.Filepath)}={localPath}");
         }
 
         public async void LoadData(string sessionId)
         {
+            if (sessionId == null)
+                return;
+
             int id = int.Parse(sessionId);
-            var Session = await DataStore.GetSession(id);
+            Session = await DataStore.GetSession(id);
 
             if (Session != null)
             {

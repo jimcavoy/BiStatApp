@@ -2,6 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BiStatApp.Views.SendSessionPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SendEmailCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf0e0;" FontFamily="FontAwesomeSolid" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="10" Spacing="10">
             <Label x:Name="labelTitle"
@@ -9,18 +18,18 @@
                 Style="{DynamicResource TitleStyle}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Entry x:Name="textTo" Placeholder="someone@example.com"></Entry>
-            <Entry x:Name="textSubject" Placeholder="Subject"></Entry>
-            <Editor x:Name="textBody" Placeholder="Message" HeightRequest="200"></Editor>
-            <Button x:Name="btnSend" 
+            <Entry x:Name="textTo" Placeholder="someone@example.com" Text="{Binding Recipients}"></Entry>
+            <Entry x:Name="textSubject" Placeholder="Subject" Text="{Binding Subject}"></Entry>
+            <Editor x:Name="textBody" Placeholder="Message" HeightRequest="200" Text="{Binding Body}"></Editor>
+            <!--<Button x:Name="btnSend" 
                     Text="Send Email" 
                     TextColor="{StaticResource LightBackgroundColor}"
                     BackgroundColor="{StaticResource Primary}"
-                    Clicked="OnSendBtnClicked" >
+                    Command="{Binding SendSessionCommand}">
                 <Button.ImageSource>
                     <FontImageSource Glyph="&#xf1d8;" FontFamily="FontAwesomeSolid" />
                 </Button.ImageSource>
-            </Button>
+            </Button>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
