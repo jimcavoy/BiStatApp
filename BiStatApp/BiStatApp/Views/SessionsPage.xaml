@@ -5,12 +5,19 @@
              Title="{Binding Title}"
              x:Class="BiStatApp.Views.SessionsPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ReportCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf080;" FontFamily="FontAwesomeSolid" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
             <StackLayout Orientation="Horizontal" Padding="10">
                 <Label Text="Filters:" VerticalOptions="Center"/>
@@ -65,8 +72,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Button Text="Report" TextColor="{StaticResource LightBackgroundColor}" Command="{Binding ReportCommand}" Grid.Row="2" BackgroundColor="{StaticResource Primary}" Margin="10"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
