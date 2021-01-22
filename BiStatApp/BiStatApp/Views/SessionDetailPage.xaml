@@ -21,8 +21,8 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.85*"/>
-                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
@@ -43,16 +43,16 @@
                        HorizontalOptions="CenterAndExpand"></Label>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="{Binding Path=Session.ProneAverage, StringFormat='Prone {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}"/>
+                    <Label Text="{Binding Path=Session.ProneAverage, StringFormat='Prone {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}" VerticalOptions="Center"/>
                     <Button BackgroundColor="Black"
                         Text="{Binding Session.HitPercentage, StringFormat='{0:#0.##%}'}"
                         TextColor="White"
-                        FontSize="Small"
+                        FontSize="Medium"
                         BorderWidth="1"
                         BorderRadius="100"
-                        WidthRequest="65"
-                        HeightRequest="65"/>
-                    <Label Text="{Binding Path=Session.StandingAverage, StringFormat='Standing {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}"/>
+                        WidthRequest="90"
+                        HeightRequest="90"/>
+                    <Label Text="{Binding Path=Session.StandingAverage, StringFormat='Standing {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}" VerticalOptions="Center"/>
                 </StackLayout>
             </StackLayout>
 
