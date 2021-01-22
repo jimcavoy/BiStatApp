@@ -19,16 +19,13 @@ namespace BiStatApp.ViewModels
     [QueryProperty(nameof(SessionId), nameof(SessionId))]
     public class SessionDetailViewModel : BaseViewModel
     {
-        private ShootingBoutViewModel _selectedShootingBout;
         private string _sessionId;
-        private string _sessionName;
-        private string _description;
-        private string _dateTime;
-        public Session Session { get; private set; }
-        public ShootingBoutViewModel SelectedShootingBout
-        {
-            get => _selectedShootingBout;
-            set => SetValue(ref _selectedShootingBout, value);
+        private SessionViewModel _session;
+
+        public SessionViewModel Session 
+        { 
+            get => _session; 
+            set => SetValue(ref _session, value, "Session");
         }
 
         public string SessionId
@@ -41,32 +38,15 @@ namespace BiStatApp.ViewModels
             }
         }
 
-        public string SessionName
-        {
-            get => _sessionName;
-            set => SetValue(ref _sessionName, value);
-        }
-
-        public string Description
-        {
-            get => _description;
-            set => SetValue(ref _description, value);
-        }
-
-        public string DateTime
-        {
-            get => _dateTime;
-            set => SetValue(ref _dateTime, value);
-        }
-
-
         public ObservableCollection<ShootingBoutViewModel> ShootingBouts { get; private set; }
             = new ObservableCollection<ShootingBoutViewModel>();
 
+        public ICommand SaveCommand { get; private set; }
         public ICommand SendCommand { get; private set; }
 
         public SessionDetailViewModel()
         {
+            SaveCommand = new Command(async () => await Save());
             SendCommand = new Command(async () => await Send());
         }
 
@@ -80,18 +60,32 @@ namespace BiStatApp.ViewModels
 
         private async Task Send()
         {
+            var s = DataStore.GetSession(int.Parse(SessionId));
             var options = new JsonSerializerOptions();
             options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
             options.WriteIndented = true;
-            string jsonString = JsonSerializer.Serialize(Session, options);
+            string jsonString = JsonSerializer.Serialize(s, options);
             Debug.WriteLine(jsonString);
 
-            string fileName = string.Format("{0}_{1:ddMMMyy}.json", SessionName, Session.DateTime);
+            string fileName = string.Format("{0}_{1:ddMMMyy}.json", Session.Name, Session.DateTime);
 
             var localPath = Path.Combine(FileSystem.CacheDirectory, fileName);
             File.WriteAllText(localPath, jsonString);
 
             await Shell.Current.GoToAsync($"{nameof(SendSessionPage)}?{nameof(SendSessionPageViewModel.Filepath)}={localPath}");
+        }
+
+        private async Task Save()
+        {
+            Session us = new Session()
+            {
+                Id = int.Parse(SessionId),
+                Name = Session.Name,
+                Description = Session.Description,
+                DateTime = Session.DateTime
+            };
+            await DataStore.UpdateSession(us);
+            await Shell.Current.GoToAsync("..");
         }
 
         public async void LoadData(string sessionId)
@@ -100,14 +94,11 @@ namespace BiStatApp.ViewModels
                 return;
 
             int id = int.Parse(sessionId);
-            Session = await DataStore.GetSession(id);
-
-            if (Session != null)
+            var s = await DataStore.GetSession(id);
+            if (s != null)
             {
-                SessionName = Session.Name;
-                Description = Session.Description;
-                DateTime = Session.DateTime.ToString("dd MMMM yyy");
-                foreach (var b in Session.Bouts)
+                Session = new SessionViewModel(s);
+                foreach (var b in s.Bouts)
                 {
                     ShootingBouts.Add(new ShootingBoutViewModel(b));
                 }

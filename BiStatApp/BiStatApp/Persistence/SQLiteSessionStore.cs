@@ -28,10 +28,8 @@ namespace BiStatApp.Persistence
             List<Session> list = new List<Session>();
             await Task.Run(() =>
             {
-                using (var context = new BiStatContext(_dbPath))
-                {
-                    list = context.Sessions.Include(s => s.Bouts).ToList();
-                }
+                using var context = new BiStatContext(_dbPath);
+                list = context.Sessions.Include(s => s.Bouts).ToList();
             });
 
             return list.OrderBy(d => d.DateTime).Reverse().AsEnumerable();
@@ -39,14 +37,12 @@ namespace BiStatApp.Persistence
 
         public async Task DeleteSession(Session session)
         {
-            using (var context = new BiStatContext(_dbPath))
-            {
-                var origSession = context.Sessions
-                    .Where(s => s.Id == session.Id)
-                    .FirstOrDefault();
-                context.Remove(origSession);
-                await context.SaveChangesAsync();
-            }
+            using var context = new BiStatContext(_dbPath);
+            var origSession = context.Sessions
+                .Where(s => s.Id == session.Id)
+                .FirstOrDefault();
+            context.Remove(origSession);
+            await context.SaveChangesAsync();
         }
 
         public async Task<Session> AddSession(Session session)

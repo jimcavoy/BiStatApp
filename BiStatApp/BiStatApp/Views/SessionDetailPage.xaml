@@ -6,6 +6,11 @@
              >
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="&#xf0c7;" FontFamily="FontAwesomeSolid" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
         <ToolbarItem Command="{Binding SendCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource Glyph="&#xf0e0;" FontFamily="FontAwesomeSolid" />
@@ -25,14 +30,14 @@
                 Orientation="Vertical"
                 BackgroundColor="{StaticResource Accent}">
                 <Label x:Name="labelTitle"
-                       Text="{Binding Path=SessionName}"
+                       Text="{Binding Path=Session.Name}"
                        TextColor="{StaticResource LightBackgroundColor}"
                        Style="{DynamicResource TitleStyle}"
                        HorizontalOptions="CenterAndExpand" 
                        Padding="0,20,0,0"/>
                 
                 <Label x:Name="dateLabel" 
-                       Text="{Binding Path=DateTime}"
+                       Text="{Binding Path=Session.DateTime, StringFormat='{0: dd MMMM yyyy}'}"
                        TextColor="{StaticResource LightBackgroundColor}"
                        Style="{DynamicResource ListItemTextStyle}"
                        HorizontalOptions="CenterAndExpand"></Label>
@@ -40,7 +45,7 @@
 
             <StackLayout Orientation="Vertical" Grid.Row="1" Padding="10,10,0,0">
                 <Label Text="Description: " FontSize="Medium" />
-                <Label x:Name="editorDescr" Text="{Binding Path=Description}" />
+                <Entry x:Name="editorDescr" Text="{Binding Path=Session.Description}" />
             </StackLayout>
 
             <ListView ItemsSource="{Binding Path=ShootingBouts}" 

@@ -25,7 +25,6 @@ namespace BiStatApp.Views
         {
             base.OnAppearing();
             ViewModel.OnAppearing();
-            ViewModel.LoadDataCommand.Execute(null);
         }
 
         public SessionsPageViewModel ViewModel

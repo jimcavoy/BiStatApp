@@ -14,13 +14,19 @@ namespace BiStatApp.ViewModels
     public class ShootingBoutPageViewModel : BaseViewModel
     {
         private string _boutId;
-        public ShootingBoutViewModel Bout { get; private set; }
+        private ShootingBoutViewModel _bout;
+
+        public ShootingBoutViewModel Bout 
+        {
+            get => _bout; 
+            set => SetValue(ref _bout, value, "Bout");
+        }
 
         bool _showAdvanceView = false;
         public bool ShowAdvanceView
         {
             get => _showAdvanceView;
-            set => SetValue(ref _showAdvanceView, value);
+            set => SetValue(ref _showAdvanceView, value, "ShowAdvanceView");
         }
 
         public string BoutId
@@ -60,12 +66,10 @@ namespace BiStatApp.ViewModels
             if (Bout.Id == 0)
             {
                 await DataStore.AddShootingBout(aBout);
-                MessagingCenter.Send(this, Events.ShootingBoutAdded, aBout);
             }
             else
             {
                 await DataStore.UpdateShootingBout(aBout);
-                MessagingCenter.Send(this, Events.ShootingBoutUpdated, aBout);
             }
             await Shell.Current.GoToAsync("..");
         }
@@ -99,8 +103,6 @@ namespace BiStatApp.ViewModels
                 Bout = new ShootingBoutViewModel();
                 Title = "New";
             }
-
-            MessagingCenter.Send(this, Events.ShootingBoutUpdated);
         }
     }
 }

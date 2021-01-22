@@ -85,9 +85,6 @@ namespace BiStatApp.ViewModels
             DeleteSessionCommand = new Command<SessionViewModel>(async c => await DeleteSession(c));
             ReportCommand = new Command(async () => await ShowReport());
 
-            MessagingCenter.Subscribe<SessionDetailViewModel, Session>
-                (this, Events.SessionUpdated, OnSessionUpdated);
-
             FilterOptions = new ObservableRangeCollection<string>
             { 
                 "All",
@@ -110,23 +107,6 @@ namespace BiStatApp.ViewModels
             Title = "History";
         }
 
-        private void OnSessionUpdated(SessionDetailViewModel source, Session session)
-        {
-            var sessionInList = Sessions.SingleOrDefault(c => c.Id == session.Id);
-
-            if (sessionInList == null)
-            {
-                Sessions.Add(new SessionViewModel(session));
-            }
-            else
-            {
-                sessionInList.Id = session.Id;
-                sessionInList.Name = session.Name;
-                sessionInList.Description = session.Description;
-                sessionInList.DateTime = session.DateTime;
-            }
-        }
-
         private async Task LoadData()
         {
             IsBusy = true;
@@ -136,7 +116,16 @@ namespace BiStatApp.ViewModels
                 AllSessions.Clear();
                 var sessions = await DataStore.GetSessionsAsync();
                 foreach (var session in sessions)
-                    AllSessions.Add(new SessionViewModel(session));
+                {
+                    if (session.Name == null)
+                    {
+                        await DataStore.DeleteSession(session);
+                    }
+                    else
+                    {
+                        AllSessions.Add(new SessionViewModel(session));
+                    }
+                }
                 FilterSessions();
             }
             catch (Exception ex)
@@ -151,6 +140,7 @@ namespace BiStatApp.ViewModels
 
         public void OnAppearing()
         {
+            IsBusy = true;
             SelectedSession = null;
         }
 

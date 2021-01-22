@@ -13,14 +13,32 @@ namespace BiStatApp.ViewModels
         public int Id { get; set; }
 
         private DateTime _dateTime;
+        private string _name = "";
+        private string _description = "";
+        private List<ShootingBout> _shootingBouts = new List<ShootingBout>();
+
         public DateTime DateTime
         {
-            get { return _dateTime; }
-            set
-            {
-                SetValue(ref _dateTime, value);
-                OnPropertyChanged(nameof(DateTime));
-            }
+            get => _dateTime;
+            set => SetValue(ref _dateTime, value, "DateTime");
+        }
+
+        public string Name
+        {
+            get => _name;
+            set => SetValue(ref _name, value, "Name");
+        }
+
+        public string Description
+        {
+            get => _description;
+            set => SetValue(ref _description, value, "Description");
+        }
+
+        public IEnumerable<ShootingBout> Bouts
+        {
+            get => _shootingBouts;
+            set => SetValue(ref _shootingBouts, value.ToList(), "Bouts");
         }
 
         public SessionViewModel()
@@ -43,43 +61,9 @@ namespace BiStatApp.ViewModels
         {
             Id = session.Id;
             DateTime = session.DateTime;
-            _name = session.Name;
-            _description = session.Description;
+            _name = session.Name ?? "";
+            _description = session.Description ?? "";
             _shootingBouts = session.Bouts;
-        }
-
-        private string _name;
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                SetValue(ref _name, value);
-                OnPropertyChanged(nameof(Name));
-            }
-        }
-
-        private string _description;
-        public string Description
-        {
-            get { return _description; }
-            set
-            {
-                SetValue(ref _description, value);
-                OnPropertyChanged(nameof(Description));
-            }
-        }
-
-        private List<ShootingBout> _shootingBouts = new List<ShootingBout>();
-
-        public IEnumerable<ShootingBout> Bouts
-        {
-            get { return _shootingBouts; }
-            set
-            {
-                SetValue(ref _shootingBouts, value.ToList());
-                OnPropertyChanged(nameof(Bouts));
-            }
         }
 
         public double HitPercentage
@@ -92,7 +76,7 @@ namespace BiStatApp.ViewModels
                     return hits;
                 }
 
-                foreach(var sb in Bouts)
+                foreach (var sb in Bouts)
                 {
                     var vm = new ShootingBoutViewModel(sb);
                     hits += 5 - vm.Misses;
@@ -106,7 +90,7 @@ namespace BiStatApp.ViewModels
             get
             {
                 int shots = 0;
-                foreach(var sb in Bouts)
+                foreach (var sb in Bouts)
                 {
                     if (sb.Position == ShootingBout.PositionEnum.PRONE)
                     {
@@ -135,7 +119,7 @@ namespace BiStatApp.ViewModels
 
         public double ProneAverage
         {
-            get 
+            get
             {
                 double hits = 0.0;
                 foreach (var sb in Bouts)

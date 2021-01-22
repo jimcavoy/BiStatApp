@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Name="sessionsPage"
              Title="{Binding Title}"
+             xmlns:local="clr-namespace:BiStatApp.ViewModels"
              x:Class="BiStatApp.Views.SessionsPage">
 
     <ContentPage.ToolbarItems>
@@ -30,48 +31,49 @@
                         VerticalOptions="Center"
                         HorizontalOptions="FillAndExpand"/>
             </StackLayout>
-            <ListView ItemsSource="{Binding Sessions}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+            <RefreshView Command="{Binding LoadDataCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Grid.Row="1">
+                <ListView ItemsSource="{Binding Sessions, Mode=TwoWay}"
                   SelectedItem="{Binding SelectedSession, Mode=TwoWay}"
                   HasUnevenRows="True" SeparatorColor="{StaticResource MediumGrayTextColor}"
                   SeparatorVisibility="Default"
-                  VerticalScrollBarVisibility="Default"
-                  Grid.Row="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Vertical" Padding="20,5,20,5">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}" 
+                  VerticalScrollBarVisibility="Default">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical" Padding="20,5,20,5">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Name}" 
                                            FontSize="Body"
                                            FontAttributes="Bold"
                                            HorizontalOptions="StartAndExpand"
                                            Style="{DynamicResource ListItemTextStyle}"/>
-                                        <Label Text="{Binding HitPercentage, StringFormat='{0:P2}'}"
+                                            <Label Text="{Binding HitPercentage, StringFormat='{0:P2}'}"
                                            Style="{DynamicResource ListItemTextStyle}"
                                            FontSize="Body"
                                            FontAttributes="Bold"
                                            HorizontalOptions="EndAndExpand"
                                               Padding="0,0,25,0"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="{Binding DateTime, StringFormat='{0: dd MMM yy}'}" 
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="Small"/>
-                                        <Label Text="{Binding Description}" 
+                                            <Label Text="{Binding Description, Mode=TwoWay}" 
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            TextColor="DarkGray"
                                            FontSize="Micro"/>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                            </ViewCell.View>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionsPage}, Path=ViewModel.DeleteSessionCommand}" CommandParameter="{Binding .}" />
-                            </ViewCell.ContextActions>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                </ViewCell.View>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Delete" IsDestructive="true" Command="{Binding Source={x:Reference sessionsPage}, Path=ViewModel.DeleteSessionCommand}" CommandParameter="{Binding .}" />
+                                </ViewCell.ContextActions>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

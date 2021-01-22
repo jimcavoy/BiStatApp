@@ -17,9 +17,7 @@ namespace BiStatApp.ViewModels
     {
         private ShootingBoutViewModel _selectedShootingBout;
         private string _sessionId;
-        private string _sessionName;
-        private string _description;
-        private DateTime _dateTime;
+        private SessionViewModel _session;
 
         public string SessionId
         {
@@ -34,22 +32,10 @@ namespace BiStatApp.ViewModels
             }
         }
 
-        public string SessionName
-        {
-            get => _sessionName;
-            set => SetValue(ref _sessionName, value);
-        }
-
-        public string Description
-        {
-            get => _description;
-            set => SetValue(ref _description, value);
-        }
-
-        public DateTime DateTime
-        {
-            get => _dateTime;
-            set => SetValue(ref _dateTime, value);
+        public SessionViewModel Session 
+        { 
+            get => _session; 
+            set => SetValue(ref _session, value, "Session"); 
         }
 
         public ShootingBoutViewModel SelectedShootingBout
@@ -83,9 +69,9 @@ namespace BiStatApp.ViewModels
             Session us = new Session()
             {
                 Id = int.Parse(SessionId),
-                Name = SessionName,
-                Description = Description,
-                DateTime = DateTime
+                Name = Session.Name,
+                Description = Session.Description,
+                DateTime = Session.DateTime
             };
 
             foreach (var sb in ShootingBouts)
@@ -99,7 +85,6 @@ namespace BiStatApp.ViewModels
 
         private async Task AddShootingBout()
         {
-            Subscribe();
             ShootingBout newSb = new ShootingBout()
             {
                 SessionId = int.Parse(SessionId)
@@ -114,7 +99,6 @@ namespace BiStatApp.ViewModels
             if (bout == null)
                 return;
 
-            Subscribe();
             SelectedShootingBout = null;
             await Shell.Current.GoToAsync($"{nameof(ShootingBoutDetailPage)}?{nameof(ShootingBoutPageViewModel.BoutId)}={bout.Id}");
         }
@@ -130,65 +114,25 @@ namespace BiStatApp.ViewModels
             }
         }
 
-        private void OnShootingBoutAdded(ShootingBoutPageViewModel source, ShootingBout bout)
-        {
-            Unsubscribe();
-            ShootingBouts.Add(new ShootingBoutViewModel(bout));
-        }
-
-        private void OnShootingBoutUpdated(ShootingBoutPageViewModel source, ShootingBout bout)
-        {
-            Unsubscribe();
-            var boutInList = ShootingBouts.SingleOrDefault(c => c.Id == bout.Id);
-
-            if (boutInList != null)
-            {
-                boutInList.Position = bout.Position;
-                boutInList.Alpha = bout.Alpha;
-                boutInList.Bravo = bout.Bravo;
-                boutInList.Charlie = bout.Charlie;
-                boutInList.Delta = bout.Delta;
-                boutInList.Echo = bout.Echo;
-                boutInList.StartHeartRate = bout.StartHeartRate;
-                boutInList.EndHeartRate = bout.EndHeartRate;
-                boutInList.Duration = Convert.ToDecimal(bout.Duration);
-            }
-        }
-
-        private void Subscribe()
-        {
-            MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
-                (this, Events.ShootingBoutAdded, OnShootingBoutAdded);
-            MessagingCenter.Subscribe<ShootingBoutPageViewModel, ShootingBout>
-                (this, Events.ShootingBoutUpdated, OnShootingBoutUpdated);
-        }
-
-        private void Unsubscribe()
-        {
-            MessagingCenter.Unsubscribe<ShootingBoutPageViewModel, ShootingBout>
-               (this, Events.ShootingBoutAdded);
-            MessagingCenter.Unsubscribe<ShootingBoutPageViewModel, ShootingBout>
-                (this, Events.ShootingBoutUpdated);
-        }
-
         public async void LoadData(string sessionId)
         {
             if (sessionId == null)
                 return;
 
             int id = int.Parse(sessionId);
-            var Session = await DataStore.GetSession(id);
+            var s = await DataStore.GetSession(id);
+            ShootingBouts.Clear();
 
-            if (Session != null)
+            if (s != null)
             {
-                SessionName = Session.Name;
-                Description = Session.Description;
-                DateTime = Session.DateTime;
-                foreach (var b in Session.Bouts)
+                foreach (var b in s.Bouts)
                 {
                     ShootingBouts.Add(new ShootingBoutViewModel(b));
                 }
             }
+
+            if (Session == null)
+                Session = new SessionViewModel(s);
         }
     }
 }

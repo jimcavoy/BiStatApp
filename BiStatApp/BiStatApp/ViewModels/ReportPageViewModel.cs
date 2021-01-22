@@ -83,7 +83,7 @@ namespace BiStatApp.ViewModels
         {
             string filter = Uri.UnescapeDataString(typeAndPeriod);
             string[] filters = filter.Split(',');
-            string type = filters[0] == null ? "All" : filters[0];
+            string type = filters[0] ?? "All";
             string period = (filters.Length == 1 || filters[1] == null)? "All" : filters[1];
 
             var AllSessions = await DataStore.GetSessionsAsync();

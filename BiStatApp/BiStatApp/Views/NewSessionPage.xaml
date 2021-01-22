@@ -19,12 +19,12 @@
 
             <StackLayout Orientation="Vertical" Margin="10">
                 <Label x:Name="labelTitle"
-                       Text="{Binding Path=SessionName}"
+                       Text="{Binding Path=Session.Name}"
                        Style="{DynamicResource TitleStyle}"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" />
-                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Description}" />
-                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=DateTime}">
+                <Entry x:Name="editorDescr" Placeholder="Description" Text="{Binding Path=Session.Description}" />
+                <DatePicker VerticalOptions="CenterAndExpand" Date="{Binding Path=Session.DateTime}">
                     <DatePicker.Format>dd-MMM-yy</DatePicker.Format>
                 </DatePicker>
             </StackLayout>
