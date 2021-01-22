@@ -60,7 +60,7 @@ namespace BiStatApp.ViewModels
 
         private async Task Send()
         {
-            var s = DataStore.GetSession(int.Parse(SessionId));
+            Session s = await DataStore.GetSession(int.Parse(SessionId));
             var options = new JsonSerializerOptions();
             options.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
             options.WriteIndented = true;
