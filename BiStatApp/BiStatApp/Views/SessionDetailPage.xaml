@@ -21,9 +21,9 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.85*"/>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
 
             <StackLayout 
@@ -35,24 +35,38 @@
                        Style="{DynamicResource TitleStyle}"
                        HorizontalOptions="CenterAndExpand" 
                        Padding="0,20,0,0"/>
-                
+
                 <Label x:Name="dateLabel" 
                        Text="{Binding Path=Session.DateTime, StringFormat='{0: dd MMMM yyyy}'}"
                        TextColor="{StaticResource LightBackgroundColor}"
                        Style="{DynamicResource ListItemTextStyle}"
                        HorizontalOptions="CenterAndExpand"></Label>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="{Binding Path=Session.ProneAverage, StringFormat='Prone {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}"/>
+                    <Button BackgroundColor="Black"
+                        Text="{Binding Session.HitPercentage, StringFormat='{0:#0.##%}'}"
+                        TextColor="White"
+                        FontSize="Small"
+                        BorderWidth="1"
+                        BorderRadius="100"
+                        WidthRequest="65"
+                        HeightRequest="65"/>
+                    <Label Text="{Binding Path=Session.StandingAverage, StringFormat='Standing {0:#0.##%}'}" TextColor="{StaticResource LightBackgroundColor}"/>
+                </StackLayout>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical" Grid.Row="1" Padding="10,10,0,0">
+            <StackLayout Orientation="Vertical" Grid.Row="1" Margin="10,10,0,0">
                 <Label Text="Description: " FontSize="Medium" />
-                <Entry x:Name="editorDescr" Text="{Binding Path=Session.Description}" />
+                <Editor x:Name="editorDescr" Text="{Binding Path=Session.Description}" AutoSize="TextChanges"/>
             </StackLayout>
 
             <ListView ItemsSource="{Binding Path=ShootingBouts}" 
                     HasUnevenRows="True"
                     Grid.Row="2"
                     SelectionMode="None"
-                    SeparatorVisibility="None">
+                    SeparatorVisibility="None"
+                      Margin="10,10,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -61,7 +75,7 @@
                                     <Image Source="{Binding TargetImage}" HeightRequest="50"/>
                                 </StackLayout>
                             </ViewCell.View>
-                            
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
