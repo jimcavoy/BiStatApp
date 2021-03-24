@@ -11,3 +11,9 @@ Open Package Manager Console and run the following command.
 
 add-migration "Initial" -Project BiStatApp -StartupProject BiStatApp.MigrationTool
 
+=====================================
+Macincloud - 24 Mar 2021
+=====================================
+Cancelled subscription, which ends 17 Apr 21.  Used my Microsoft account to login.
+
+
