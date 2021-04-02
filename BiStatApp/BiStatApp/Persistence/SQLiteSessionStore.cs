@@ -194,7 +194,7 @@ namespace BiStatApp.Persistence
                 _practices.Add(new Practice { Name = "1 Shot Setup", Description = "Starting from behind the mat, setup in the prone or standing position and shoot on one target, then get up." });
                 _practices.Add(new Practice { Name = "5 Across", Description = "Shoot five across on a prone or standing target." });
                 _practices.Add(new Practice { Name = "Combo", Description = "A practices that combines skiing and shooting." });
-                _practices.Add(new Practice { Name = "Time Trail", Description = "A practice biathlon race." });
+                _practices.Add(new Practice { Name = "Time Trial", Description = "A practice biathlon race." });
                 _practices.Add(new Practice { Name = "Open Training", Description = "Athlete defined practice." });
                 _practices.Add(new Practice { Name = "Race - Sprint", Description = "Sprint race format." });
                 _practices.Add(new Practice { Name = "Race - Pursuit", Description = "Pursuit race format." });
