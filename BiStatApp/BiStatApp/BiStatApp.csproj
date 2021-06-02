@@ -5,8 +5,8 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <Authors>James McAvoy</Authors>
     <Company>ThetaStream.com</Company>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <FileVersion>0.1.0.0</FileVersion>
+    <AssemblyVersion>0.1.0.3</AssemblyVersion>
+    <FileVersion>0.1.0.3</FileVersion>
     <Copyright>Copyright ©  2021, ThetaStream.com, Inc. All rights reserved.</Copyright>
     <Product>Biathlon Shooting Stats</Product>
     <Version>0.1.0</Version>
