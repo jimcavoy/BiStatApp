@@ -16,4 +16,11 @@ Macincloud - 24 Mar 2021
 =====================================
 Cancelled subscription, which ends 17 Apr 21.  Used my Microsoft account to login.
 
+=====================================
+Ad-Hoc Distribution - 2 Jun 2021
+=====================================
+Ref: https://docs.microsoft.com/en-us/xamarin/android/deploy-test/release-prep/?tabs=windows
+
+Password for signing = Pa$$word123
+
 
