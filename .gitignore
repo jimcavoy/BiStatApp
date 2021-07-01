@@ -3,3 +3,11 @@
 ################################################################################
 
 /BiStatApp/BiStatApp/obj
+/.vs/BiStatApp/v16/TestStore/0
+/BiStatApp/BiStatApp.Android/obj
+*.user
+/BiStatApp/BiStatApp.iOS/obj
+/BiStatApp/BiStatApp.MigrationTool/obj
+/.vs/BiStatApp/v16
+/BiStatApp/BiStatApp/bin/Debug/netstandard2.1
+/BiStatApp/BiStatApp.Android/bin/Debug

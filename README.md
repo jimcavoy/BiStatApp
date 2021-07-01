@@ -1,2 +1,3 @@
 # BiStatApp
-An Xamarin project to create an Android or Apple mobile app to track Biathlon shooting statistics.
+An Xamarin project used to create an Android or Apple mobile app to track personal 
+Biathlon shooting statistics.
